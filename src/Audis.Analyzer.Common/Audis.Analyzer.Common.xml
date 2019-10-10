@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Audis.Analyzer.Common</name>
+    </assembly>
+    <members>
+        <member name="P:Audis.Analyzer.Common.AdaptiveCardResultDto.RemoveWithNextProcessStep">
+            <summary>
+            Set to <see langword="true"/>, if the next process step should remove this adaptive card.
+            </summary>
+        </member>
+        <member name="P:Audis.Analyzer.Common.AnalyzerRequestDto.Data">
+            <summary>
+            Unstructured data object which can be used for information exchange between multiple process steps for a specific analyzer.
+            </summary>
+        </member>
+        <member name="P:Audis.Analyzer.Common.AnalyzerResultDto.SuggestedKnowledges">
+            <summary>
+            Optional knowledges, which can be suggested by the analyzer.
+            Each suggested knowledge has a <see cref="P:Audis.Dtos.SuggestedKnowledgeDto.Probability"/>.
+            </summary>
+        </member>
+        <member name="P:Audis.Analyzer.Common.AnalyzerResultDto.Data">
+            <summary>
+            Unstructured data object which can be used for information exchange between multiple process steps for a specific analyzer.
+            </summary>
+        </member>
+        <member name="T:Audis.Analyzer.Common.IAdaptiveCardController">
+            <summary>
+            Implement this interface, when the controller returns an adaptive card.
+            </summary>
+        </member>
+        <member name="T:Audis.Analyzer.Common.IAnalyzerController">
+            <summary>
+            Implement this interface, when the controller returns an analyzer result.
+            </summary>
+        </member>
+    </members>
+</doc>

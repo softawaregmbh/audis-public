@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="audis" ToolsVersion="14.0">
+  <Include Path="minimumrecommendedrules.ruleset" Action="Default" />
+  <Include Path="stylecop.analyzers.ruleset" Action="Default" />
+  <Rules AnalyzerId="Custom" RuleNamespace="Custom">
+    <Rule Id="SA1118" Action="None" /> <!-- Parameter must not span multiple lines -->
+    <Rule Id="SA1652" Action="None" /> <!-- Enable XML documentation output -->
+    <Rule Id="SA1633" Action="None" /> <!-- File must have header -->
+    <Rule Id="SA1300" Action="None" /> <!-- ElementMustBeginWithUpperCaseLetter -->
+    <Rule Id="SA1413" Action="None" /> <!-- Use trailing comma in multi-line initializers -->
+  </Rules>
+</RuleSet>
