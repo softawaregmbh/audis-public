@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <CodeAnalysisRuleSet>$(SolutionDir)StyleCop\audis.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>$(SolutionDir)..\StyleCop\audis.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
 
@@ -30,11 +30,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="..\StyleCop\stylecop.json" Link="stylecop.json" />
+    <AdditionalFiles Include="..\..\StyleCop\stylecop.json" Link="stylecop.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="..\Assets\package-icon.png" Link="package-icon.png" Pack="true" PackagePath="/" />
+    <Content Include="..\..\Assets\package-icon.png" Link="package-icon.png" Pack="true" PackagePath="/" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Audis.Primitives", "Audis.Primitives\Audis.Primitives.csproj", "{08B4227F-2DAE-4FD1-A6CF-F2E96826DADF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08B4227F-2DAE-4FD1-A6CF-F2E96826DADF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08B4227F-2DAE-4FD1-A6CF-F2E96826DADF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08B4227F-2DAE-4FD1-A6CF-F2E96826DADF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08B4227F-2DAE-4FD1-A6CF-F2E96826DADF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE0FEEA6-FBCF-42B4-BF90-B19341A7ACAD}
+	EndGlobalSection
+EndGlobal
