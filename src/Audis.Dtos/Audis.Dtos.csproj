@@ -45,8 +45,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Audis.Primitives\Audis.Primitives.csproj" />
-  </ItemGroup>
-
 </Project>

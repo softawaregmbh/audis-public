@@ -46,8 +46,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Audis.Dtos\Audis.Dtos.csproj" PrivateAssets="all" />
-  </ItemGroup>
-
 </Project>
