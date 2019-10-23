@@ -13,13 +13,12 @@
         </member>
         <member name="T:Audis.Primitives.QuestionId">
             <summary>
-            Identifies a question with <see cref="!:QuestionConfiguration.ConfigurationName"/> and <see cref="!:QuestionConfiguration.LineNumber"/> ("questionConfigurationName:LineNumber").
+            Identifies a question with <see cref="P:Audis.Primitives.QuestionId.ConfigurationName"/> and <see cref="P:Audis.Primitives.QuestionId.LineNumber"/> ("questionConfigurationName:LineNumber").
             </summary>
         </member>
         <member name="T:Audis.Primitives.AnswerId">
             <summary>
-            Identifies an answer with <see cref="!:QuestionConfiguration.ConfigurationName"/>, <see cref="!:QuestionConfiguration.LineNumber"/>
-            and <see cref="!:AnswerConfiguration.KnowledgeValue"/> ("questionConfigurationName:LineNumber/KnowledgeValue").
+            Identifies an answer with <see cref="P:Audis.Primitives.AnswerId.QuestionId" /> and <see cref="P:Audis.Primitives.AnswerId.LineNumber"/> ("questionConfigurationName:questionLineNumber/answerLineNumber").
             </summary>
         </member>
         <member name="T:Audis.Primitives.ValueOf`2">

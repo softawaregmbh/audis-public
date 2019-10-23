@@ -45,11 +45,14 @@ namespace Audis.Primitives
     }
 
     /// <summary>
-    /// Identifies a question with <see cref="QuestionConfiguration.ConfigurationName"/> and <see cref="QuestionConfiguration.LineNumber"/> ("questionConfigurationName:LineNumber").
+    /// Identifies a question with <see cref="ConfigurationName"/> and <see cref="LineNumber"/> ("questionConfigurationName:LineNumber").
     /// </summary>
     [TypeConverter(typeof(ValueOfTypeConverter<string, QuestionId>))]
     public class QuestionId : CaseInsensitiveValueOfString<QuestionId>
     {
+        public QuestionCatalogName ConfigurationName { get; private set; }
+        public int LineNumber { get; private set; }
+
         protected override void Validate()
         {
             base.Validate();
@@ -59,44 +62,43 @@ namespace Audis.Primitives
                 throw new ArgumentException($"The {nameof(QuestionId)} has an invalid format: \"{this.Value}\", Expected \"<configuration-name>:<lineNumber>\".");
             }
 
-            this.ConfigurationName = QuestionCatalogName.From(this.Value.Split(':')[0]);
+            var split = this.Value.Split(':');
+            this.ConfigurationName = QuestionCatalogName.From(split[0]);
+            this.LineNumber = int.Parse(split[1]);
         }
 
-        public QuestionCatalogName ConfigurationName { get; private set; }
-
-        public static QuestionId From(string configurationName, int lineNumber)
+        public static QuestionId From(QuestionCatalogName configurationName, int lineNumber)
         {
-            return QuestionId.From($"{configurationName}:{lineNumber}");
+            return QuestionId.From($"{configurationName.Value}:{lineNumber}");
         }
     }
 
     /// <summary>
-    /// Identifies an answer with <see cref="QuestionConfiguration.ConfigurationName"/>, <see cref="QuestionConfiguration.LineNumber"/>
-    /// and <see cref="AnswerConfiguration.KnowledgeValue"/> ("questionConfigurationName:LineNumber/KnowledgeValue").
+    /// Identifies an answer with <see cref="QuestionId" /> and <see cref="LineNumber"/> ("questionConfigurationName:questionLineNumber/answerLineNumber").
     /// </summary>
     [TypeConverter(typeof(ValueOfTypeConverter<string, AnswerId>))]
     public class AnswerId : CaseInsensitiveValueOfString<AnswerId>
     {
+        public QuestionId QuestionId { get; private set; }
+        public int LineNumber { get; private set; }
+
         protected override void Validate()
         {
             base.Validate();
 
-            if (!Regex.IsMatch(this.Value, @"[\wäüöß-]+:[1-9]\d*\/[\wäüöß ]+")) // e.g. "abcde:10/ja
+            if (!Regex.IsMatch(this.Value, @"[\wäüöß-]+:[1-9]\d*\/\d+")) // e.g. "abcde:10/3
             {
-                throw new ArgumentException($"The {nameof(AnswerId)} has an invalid format: \"{this.Value}\", Expected \"<configuration-name>:<lineNumber>/<knowledge-value>\".");
+                throw new ArgumentException($"The {nameof(AnswerId)} has an invalid format: \"{this.Value}\", Expected \"<configuration-name>:<questionLineNumber>/<answerLineNumber>\".");
             }
 
             var split = this.Value.Split('/');
             this.QuestionId = QuestionId.From(split[0]);
-            this.KnowledgeValue = KnowledgeValue.From(split[1]);
+            this.LineNumber = int.Parse(split[1]);
         }
 
-        public QuestionId QuestionId { get; private set; }
-        public KnowledgeValue KnowledgeValue { get; private set; }
-
-        public static AnswerId From(QuestionId questionId, KnowledgeValue knowledgeValue)
+        public static AnswerId From(QuestionId questionId, int lineNumber)
         {
-            return AnswerId.From($"{questionId.Value}/{knowledgeValue.Value}");
+            return AnswerId.From($"{questionId.Value}/{lineNumber}");
         }
     }
 
