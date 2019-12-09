@@ -3,6 +3,8 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+name: $(Build.DefinitionName)_$(Build.SourceBranchName)_$(date:yyyy).$(date:MM).$(date:dd)$(Rev:.r)
+
 trigger:
 - master
 
@@ -26,4 +28,4 @@ steps:
   displayName: Publish NuGet Packages to Artifacts
   inputs:
     Contents: '**/*.nupkg'
-    TargetFolder: $(Build.ArtifactsStagingDirectory)
+    TargetFolder: $(Build.ArtifactStagingDirectory)
