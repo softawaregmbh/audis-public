@@ -24,7 +24,7 @@ namespace Audis.Analyzer.Common
 
         public Guid InterrogationId { get; set; }
         public int InterrogationProcessStepId { get; set; }
-        public IEnumerable<Question> CurrentQuestions { get; set; }
+        public Question CurrentQuestion { get; set; }
         public IEnumerable<KnowledgeDto> Knowledge { get; set; }
 
         /// <summary>
