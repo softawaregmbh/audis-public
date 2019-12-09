@@ -1,0 +1,29 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-2019'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- script: dotnet build --configuration $(buildConfiguration) src/Audis.Analyzer.Common/Audis.Analyzer.Common.sln
+  displayName: Build Audis.Analyzer.Common
+
+- script: dotnet build --configuration $(buildConfiguration) src/Audis.Dtos/Audis.Dtos.sln
+  displayName: Build Audis.Dtos
+
+- script: dotnet build --configuration $(buildConfiguration) src/Audis.Primitives/Audis.Primitives.sln
+  displayName: Build Audis.Primitives
+
+- task: CopyFiles@2
+  displayName: Publish NuGet Packages to Artifacts
+  inputs:
+    Contents: '**/*.nupkg'
+    TargetFolder: $(Build.ArtifactsStagingDirectory)
