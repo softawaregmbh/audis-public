@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Audis.Endpoints.Contract</name>
+    </assembly>
+    <members>
+        <member name="P:Audis.Endpoints.Contract.InterrogationUpdated.V1.InterrogationDto.Data">
+            <summary>
+            Free data object where implementation-specific data/identification/... can be stored.
+            </summary>
+        </member>
+    </members>
+</doc>
