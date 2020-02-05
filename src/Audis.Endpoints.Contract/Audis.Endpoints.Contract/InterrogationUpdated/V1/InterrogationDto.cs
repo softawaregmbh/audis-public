@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Newtonsoft.Json.Linq;
 
 namespace Audis.Endpoints.Contract.InterrogationUpdated.V1
@@ -9,8 +8,8 @@ namespace Audis.Endpoints.Contract.InterrogationUpdated.V1
     {
         public Guid Id { get; set; }
         public int ProcessStepId { get; set; }
-        public IEnumerable<KnowledgeDto> Knowledge { get; set; }
-        public IEnumerable<NominatedScenarioDto> NominatedScenarios { get; set; }
+        public IReadOnlyCollection<KnowledgeDto> Knowledge { get; set; }
+        public IReadOnlyCollection<NominatedScenarioDto> NominatedScenarios { get; set; }
 
         /// <summary>
         /// Free data object where implementation-specific data/identification/... can be stored.
