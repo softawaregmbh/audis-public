@@ -5,7 +5,7 @@ namespace Audis.Endpoints.Contract.InterrogationUpdated.V1
     public class KnowledgeValueDto
     {
         public KnowledgeValue KnowledgeValue { get; set; } = default!;
-        public AnswerId AnswerId { get; set; } = default!;
+        public AnswerId? AnswerId { get; set; }
 
         public override bool Equals(object obj)
         {

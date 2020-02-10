@@ -16,7 +16,7 @@
     <FileVersion>1.0.0.0</FileVersion>
     <LangVersion>Latest</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>1.0.0-beta5</Version>
+    <Version>1.0.0-beta6</Version>
   </PropertyGroup>
 
   <PropertyGroup>
