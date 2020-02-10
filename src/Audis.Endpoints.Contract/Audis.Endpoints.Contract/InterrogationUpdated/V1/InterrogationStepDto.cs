@@ -18,8 +18,8 @@ namespace Audis.Endpoints.Contract.InterrogationUpdated.V1
         public string CurrentQuestion { get; set; } = default!;
         public string CurrentQuestionType { get; set; } = default!;
         public IReadOnlyCollection<KnowledgeDto> Knowledge { get; set; } = new List<KnowledgeDto>();
-        public string SuggestedScenarioIdentifier { get; set; } = default!;
-        public string SuggestedScenarioName { get; set; } = default!;
+        public string? SuggestedScenarioIdentifier { get; set; }
+        public string? SuggestedScenarioName { get; set; }
 
         /// <summary>
         /// Free data object where implementation-specific data/identification/... can be stored.
