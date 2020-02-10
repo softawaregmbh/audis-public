@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Audis.Primitives;
+﻿using Audis.Primitives;
 
 namespace Audis.Endpoints.Contract.InterrogationUpdated.V1
 {
     public class KnowledgeValueDto
     {
-        public KnowledgeValue KnowledgeValue { get; set; }
-        public AnswerId AnswerId { get; set; }
+        public KnowledgeValue KnowledgeValue { get; set; } = default!;
+        public AnswerId AnswerId { get; set; } = default!;
 
         public override bool Equals(object obj)
         {

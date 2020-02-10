@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Audis.Primitives;
 
 namespace Audis.Endpoints.Contract.InterrogationUpdated.V1
 {
     public class KnowledgeDto
     {
-        public KnowledgeIdentifier KnowledgeIdentifier { get; set; }
+        public KnowledgeIdentifier KnowledgeIdentifier { get; set; } = default!;
 
-        public HashSet<KnowledgeValueDto> Values { get; set; } = new HashSet<KnowledgeValueDto>();
+        public IReadOnlyCollection<KnowledgeValueDto> Values { get; set; } = new HashSet<KnowledgeValueDto>();
 
         public KnowledgeOrigin Origin { get; set; }
 
