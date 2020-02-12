@@ -10,23 +10,35 @@ namespace Audis.Analyzer.Common.Extensions
     {
         public static bool TryGetSingleKnowledgeValue(this AnalyzerRequestDto analyzerRequestDto, KnowledgeIdentifier knowledgeIdentifier, out KnowledgeValue value)
         {
+            if (TryGetKnowledgeValues(analyzerRequestDto, knowledgeIdentifier, out var values))
+            {
+                value = values.SingleOrDefault();
+                return true;
+            }
+
+            value = null;
+            return false;
+        }
+
+        public static bool TryGetKnowledgeValues(this AnalyzerRequestDto analyzerRequestDto, KnowledgeIdentifier knowledgeIdentifier, out IEnumerable<KnowledgeValue> values)
+        {
             var knowledge = analyzerRequestDto.Knowledge.FirstOrDefault(k => k.KnowledgeIdentifier == knowledgeIdentifier);
 
             if (knowledge == null)
             {
-                value = null;
+                values = null;
                 return false;
             }
 
-            var knowledgeValue = knowledge.Values.SingleOrDefault()?.KnowledgeValue;
+            var knowledgeValues = knowledge.Values.Select(v => v.KnowledgeValue);
 
-            if (knowledgeValue == null)
+            if (knowledgeValues == null || !knowledgeValues.Any())
             {
-                value = null;
+                values = null;
                 return false;
             }
 
-            value = knowledgeValue;
+            values = knowledgeValues;
             return true;
         }
 
