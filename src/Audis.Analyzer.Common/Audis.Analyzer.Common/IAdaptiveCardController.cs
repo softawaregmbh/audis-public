@@ -14,7 +14,7 @@ namespace Audis.Analyzer.Common
     /// </summary>
     public interface IAdaptiveCardController
     {
-        Task<ActionResult<IEnumerable<AdaptiveCardResultDto>>> GetAdaptiveCardResult(
+        Task<ActionResult<AdaptiveCardResultDto>> GetAdaptiveCardResult(
             [FromRoute] TenantId tenantId,
             [FromBody] AnalyzerRequestDto analyzerRequestDto,
             CancellationToken cancellationToken);
