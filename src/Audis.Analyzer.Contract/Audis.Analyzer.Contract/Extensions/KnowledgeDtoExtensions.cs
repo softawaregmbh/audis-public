@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Audis.Primitives;
 
-namespace Audis.Dtos.Extensions
+namespace Audis.Analyzer.Contract.Extensions
 {
     public static class KnowledgeDtoExtensions
     {

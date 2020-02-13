@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Audis.Primitives;
 
-namespace Audis.Dtos
+namespace Audis.Analyzer.Contract
 {
     public class KnowledgeDto
     {

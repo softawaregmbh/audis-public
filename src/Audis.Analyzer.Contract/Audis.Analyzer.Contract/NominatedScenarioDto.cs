@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Audis.Primitives;
 
-namespace Audis.Dtos
+namespace Audis.Analyzer.Contract
 {
     public class NominatedScenarioDto
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
-namespace Audis.Dtos
+namespace Audis.Analyzer.Contract
 {
     public class InterrogationRequestDto
     {
