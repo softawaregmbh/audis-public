@@ -6,7 +6,7 @@
     <Authors>softaware gmbh</Authors>
     <Company>softaware gmbh</Company>
     <Product>Audis</Product>
-    <Description>An Audis library which provides common DTOs.</Description>
+    <Description>An Audis library which provides common DTOs and extension methods for Analyzers.</Description>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>

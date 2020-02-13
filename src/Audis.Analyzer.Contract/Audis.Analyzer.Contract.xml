@@ -4,13 +4,13 @@
         <name>Audis.Analyzer.Contract</name>
     </assembly>
     <members>
-        <member name="P:Audis.Analyzer.Contract.InterrogationRequestDto.Data">
+        <member name="P:Audis.Analyzer.Contract.V1.InterrogationRequestDto.Data">
             <summary>
             Free data object where implementation-specific data/identification/... can be stored.
             Adapters to concrete implementations may use this field for their specific data structure.
             </summary>
         </member>
-        <member name="P:Audis.Analyzer.Contract.SuggestedKnowledgeDto.Probability">
+        <member name="P:Audis.Analyzer.Contract.V1.SuggestedKnowledgeDto.Probability">
             <summary>
             Probability for the suggested knowledge, value between 0..1.
             </summary>
