@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Audis.Dtos</name>
+        <name>Audis.Analyzer.Contract</name>
     </assembly>
     <members>
-        <member name="P:Audis.Dtos.InterrogationRequestDto.Data">
+        <member name="P:Audis.Analyzer.Contract.InterrogationRequestDto.Data">
             <summary>
             Free data object where implementation-specific data/identification/... can be stored.
             Adapters to concrete implementations may use this field for their specific data structure.
             </summary>
         </member>
-        <member name="P:Audis.Dtos.SuggestedKnowledgeDto.Probability">
+        <member name="P:Audis.Analyzer.Contract.SuggestedKnowledgeDto.Probability">
             <summary>
             Probability for the suggested knowledge, value between 0..1.
             </summary>

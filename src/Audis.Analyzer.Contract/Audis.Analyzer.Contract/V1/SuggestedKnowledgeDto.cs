@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Audis.Dtos
+namespace Audis.Analyzer.Contract.V1
 {
     public class SuggestedKnowledgeDto : KnowledgeDto
     {
