@@ -1,6 +1,6 @@
 ﻿using Audis.Primitives;
 
-namespace Audis.Analyzer.Contract
+namespace Audis.Analyzer.Contract.V1
 {
     public class KnowledgeValueDto
     {

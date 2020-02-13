@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Audis.Analyzer.Contract.V1;
 using Audis.Primitives;
 
-namespace Audis.Analyzer.Contract.Extensions
+namespace Audis.Analyzer.Contract.Extensions.V1
 {
     public static class KnowledgeDtoExtensions
     {
