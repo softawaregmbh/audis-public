@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Audis.Dtos;
+using Audis.Analyzer.Contract.V1;
 using Newtonsoft.Json.Linq;
 
-namespace Audis.Analyzer.Common
+namespace Audis.Analyzer.Common.V1
 {
     public class AnalyzerResultDto
     {

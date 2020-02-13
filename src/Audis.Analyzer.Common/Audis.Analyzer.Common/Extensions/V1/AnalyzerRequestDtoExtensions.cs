@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Audis.Analyzer.Common.V1;
 using Audis.Primitives;
 
-namespace Audis.Analyzer.Common.Extensions
+namespace Audis.Analyzer.Common.Extensions.V1
 {
     public static class AnalyzerRequestDtoExtensions
     {
