@@ -4,7 +4,7 @@ using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 
-namespace Audis.Analyzer.Common.Extensions.V2
+namespace Audis.Analyzer.Common.Extensions
 {
     public static class ConfigurationBuilderExtensions
     {
