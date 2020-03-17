@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
-namespace Audis.Analyzer.Common
+namespace Audis.Analyzer.Common.V1
 {
     public class AdaptiveCardResultDto : AnalyzerResultDto
     {

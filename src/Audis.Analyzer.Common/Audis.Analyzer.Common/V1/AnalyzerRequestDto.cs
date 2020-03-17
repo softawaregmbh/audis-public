@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Audis.Dtos;
+using Audis.Analyzer.Contract.V1;
 using Audis.Primitives;
 using Newtonsoft.Json.Linq;
 
-namespace Audis.Analyzer.Common
+namespace Audis.Analyzer.Common.V1
 {
     public class AnalyzerRequestDto
     {
