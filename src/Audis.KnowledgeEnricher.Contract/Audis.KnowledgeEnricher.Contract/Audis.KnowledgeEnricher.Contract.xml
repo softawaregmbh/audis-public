@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Audis.KnowledgeEnricher.Contract</name>
+    </assembly>
+    <members>
+        <member name="T:Audis.KnowledgeEnricher.Contract.V1.IKnowledgeEnricher">
+            <summary>
+            Takes some knowledge and adds further knowledge based on existing knowledge.
+            </summary>
+        </member>
+        <member name="M:Audis.KnowledgeEnricher.Contract.V1.IKnowledgeEnricher.EnrichKnowledge(System.Threading.Tasks.Task{System.Collections.Generic.IReadOnlyCollection{Audis.KnowledgeEnricher.Contract.V1.KnowledgeDto}})">
+            <summary>
+            Takes some knowledge and adds further knowledge based on the existing knowledge. Concrete implementations can inherit specific knowledge based on input knowledge.
+            </summary>
+            <param name="knowledge">The knowledge used as starting point for inheriting knowledge.</param>
+            <returns>Returns the given knowledge plus potentially more inherited knowledge.</returns>
+        </member>
+    </members>
+</doc>
