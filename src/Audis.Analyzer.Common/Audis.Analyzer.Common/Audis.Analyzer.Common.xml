@@ -4,6 +4,24 @@
         <name>Audis.Analyzer.Common</name>
     </assembly>
     <members>
+        <member name="M:Audis.Analyzer.Common.Extensions.ConfigurationBuilderExtensions.AddTenantSpecificSettings(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String)">
+            <summary>
+            Adds implicit tenant configuration stored in appsettings.tenant.json. 
+            </summary>
+            <param name="builder">The Microsoft.Extensions.Configuration.IConfigurationBuilder to add to.</param>
+            <param name="filePath">Optional path relative to the base path of the builder.</param>
+            <returns>The Microsoft.Extensions.Configuration.IConfigurationBuilder.</returns>
+        </member>
+        <member name="M:Audis.Analyzer.Common.Extensions.ConfigurationBuilderExtensions.AddJsonSection(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.String,System.Boolean)">
+            <summary>
+            Adds a section of a JSON configuration file at filePath to builder.
+            </summary>
+            <param name="builder">The Microsoft.Extensions.Configuration.IConfigurationBuilder to add to.</param>
+            <param name="filePath">Path relative to the base path of the executing assembly.</param>
+            <param name="jsonPath">JSONPath query for section.</param>
+            <param name="optional">Whether the file is optional.</param>
+            <returns>The Microsoft.Extensions.Configuration.IConfigurationBuilder.</returns>
+        </member>
         <member name="P:Audis.Analyzer.Common.V1.AdaptiveCardResultDto.RemoveWithNextProcessStep">
             <summary>
             Set to <see langword="true"/>, if the next process step should remove this adaptive card.
