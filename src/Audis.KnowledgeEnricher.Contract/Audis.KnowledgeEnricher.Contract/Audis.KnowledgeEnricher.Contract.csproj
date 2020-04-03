@@ -15,7 +15,8 @@
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <LangVersion>Latest</LangVersion>
-    <Version>1.0.0-beta</Version>
+    <Nullable>enable</Nullable>
+    <Version>1.0.0-beta2</Version>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -34,6 +35,7 @@
 
   <ItemGroup>
     <PackageReference Include="Audis.Primitives" Version="1.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

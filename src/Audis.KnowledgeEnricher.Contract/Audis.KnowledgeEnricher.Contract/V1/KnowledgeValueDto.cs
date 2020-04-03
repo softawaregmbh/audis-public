@@ -7,9 +7,9 @@ namespace Audis.KnowledgeEnricher.Contract.V1
 {
     public class KnowledgeValueDto
     {
-        public KnowledgeValue KnowledgeValue { get; set; }
+        public KnowledgeValue KnowledgeValue { get; set; } = default!;
 
-        public AnswerId AnswerId { get; set; }
+        public AnswerId AnswerId { get; set; } = default!;
 
         public override bool Equals(object obj)
         {
