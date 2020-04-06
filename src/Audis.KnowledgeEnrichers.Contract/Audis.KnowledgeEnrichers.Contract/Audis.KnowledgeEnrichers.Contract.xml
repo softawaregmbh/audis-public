@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Audis.KnowledgeEnricher.Contract</name>
+        <name>Audis.KnowledgeEnrichers.Contract</name>
     </assembly>
     <members>
-        <member name="T:Audis.KnowledgeEnricher.Contract.V1.IKnowledgeEnricher">
+        <member name="T:Audis.KnowledgeEnrichers.Contract.V1.IKnowledgeEnricher">
             <summary>
             Takes some knowledge and returns inherited knowledge.
             </summary>
         </member>
-        <member name="M:Audis.KnowledgeEnricher.Contract.V1.IKnowledgeEnricher.EnrichKnowledgeAsync(System.Collections.Generic.IReadOnlyCollection{Audis.KnowledgeEnricher.Contract.V1.KnowledgeDto},Newtonsoft.Json.Linq.JObject)">
+        <member name="M:Audis.KnowledgeEnrichers.Contract.V1.IKnowledgeEnricher.EnrichKnowledgeAsync(System.Collections.Generic.IReadOnlyCollection{Audis.KnowledgeEnrichers.Contract.V1.KnowledgeDto},Newtonsoft.Json.Linq.JObject)">
             <summary>
             Takes some knowledge and returns only the inherited knowlege if the knowledge enricher has anything to add for the given knowledge.
             </summary>

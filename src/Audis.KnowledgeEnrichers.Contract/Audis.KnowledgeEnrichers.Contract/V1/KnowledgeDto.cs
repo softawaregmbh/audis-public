@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Audis.Primitives;
 
-namespace Audis.KnowledgeEnricher.Contract.V1
+namespace Audis.KnowledgeEnrichers.Contract.V1
 {
     public class KnowledgeDto
     {

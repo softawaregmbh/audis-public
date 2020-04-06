@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
-namespace Audis.KnowledgeEnricher.Contract.V1
+namespace Audis.KnowledgeEnrichers.Contract.V1
 {
     /// <summary>
     /// Takes some knowledge and returns inherited knowledge.
