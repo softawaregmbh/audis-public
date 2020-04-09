@@ -4,7 +4,12 @@
         <name>Audis.Endpoints.Contract</name>
     </assembly>
     <members>
-        <member name="P:Audis.Endpoints.Contract.InterrogationUpdated.V1.InterrogationDto.Data">
+        <member name="P:Audis.Endpoints.Contract.InterrogationUpdated.V1.InterrogationStepDto.Data">
+            <summary>
+            Free data object where implementation-specific data/identification/... can be stored.
+            </summary>
+        </member>
+        <member name="P:Audis.Endpoints.Contract.InterrogationUpdated.V2.InterrogationStepDto.Data">
             <summary>
             Free data object where implementation-specific data/identification/... can be stored.
             </summary>

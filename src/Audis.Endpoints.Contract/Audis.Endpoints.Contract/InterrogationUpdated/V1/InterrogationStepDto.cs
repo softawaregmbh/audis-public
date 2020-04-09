@@ -13,7 +13,7 @@ namespace Audis.Endpoints.Contract.InterrogationUpdated.V1
         public TenantId TenantId { get; set; } = default!;
         public RevisionId RevisionId { get; set; } = default!;
         public string? ExternalId { get; set; }
-        public string UserId { get; set; } = default!;
+        public string? UserId { get; set; }
         public QuestionId? CurrentQuestionId { get; set; }
         public string? CurrentQuestion { get; set; }
         public string? CurrentQuestionType { get; set; }

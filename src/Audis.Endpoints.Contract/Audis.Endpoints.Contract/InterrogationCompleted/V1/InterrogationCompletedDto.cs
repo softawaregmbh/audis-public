@@ -11,7 +11,7 @@ namespace Audis.Endpoints.Contract.InterrogationCompleted.V1
         public TenantId TenantId { get; set; } = default!;
         public RevisionId RevisionId { get; set; } = default!;
         public string? ExternalId { get; set; }
-        public string UserId { get; set; } = default!;
+        public string? UserId { get; set; }
         public string FreeText { get; set; } = default!;
         public bool Cancelled { get; set; }
         public string? CancellationReason { get; set; }
