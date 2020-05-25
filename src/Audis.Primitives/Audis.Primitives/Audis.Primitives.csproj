@@ -23,7 +23,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Development\audis-public\src\Audis.Primitives\Audis.Primitives.xml</DocumentationFile>
+    <DocumentationFile>D:\_GIT\work\audis-public\src\Audis.Primitives\Audis.Primitives\Audis.Primitives.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
