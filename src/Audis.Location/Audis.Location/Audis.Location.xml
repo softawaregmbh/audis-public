@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Audis.Location</name>
+    </assembly>
+    <members>
+        <member name="P:Audis.Location.LocationAddress.V1.LocationAddressRequestDto.Address">
+            <summary>
+            Either <see cref="P:Audis.Location.LocationAddress.V1.LocationAddressRequestDto.Address"/>, <see cref="P:Audis.Location.LocationAddress.V1.LocationAddressRequestDto.PlaceId"/> or both can be set in the analyzer.
+            </summary>
+        </member>
+        <member name="P:Audis.Location.LocationAddress.V1.LocationAddressRequestDto.PlaceId">
+            <summary>
+            Either <see cref="P:Audis.Location.LocationAddress.V1.LocationAddressRequestDto.Address"/>, <see cref="P:Audis.Location.LocationAddress.V1.LocationAddressRequestDto.PlaceId"/> or both can be set in the analyzer.
+            </summary>
+        </member>
+    </members>
+</doc>

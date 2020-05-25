@@ -9,9 +9,9 @@
             this.LocationProvider = locationProvider;
         }
 
-        public string Location { get; set; }
-        public string PlaceId { get; set; }
-        public string LocationProvider { get; set; }
+        public string Location { get; set; } = default!;
+        public string PlaceId { get; set; } = default!;
+        public string LocationProvider { get; set; } = default!;
     }
 }
   
