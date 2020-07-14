@@ -22,6 +22,35 @@
             <param name="optional">Whether the file is optional.</param>
             <returns>The Microsoft.Extensions.Configuration.IConfigurationBuilder.</returns>
         </member>
+        <member name="T:Audis.Analyzer.Common.Utils.AbstractedAdaptiveCard">
+            <summary>
+            A instance of this class symbolizes a concrete adaptive card, constructed
+            by applying the evaluation context to a certain template identified by
+            a certain path.
+            </summary>
+        </member>
+        <member name="P:Audis.Analyzer.Common.Utils.AbstractedAdaptiveCard.TemplatePath">
+            <summary>
+            Gets or sets the template path.
+            </summary>
+        </member>
+        <member name="P:Audis.Analyzer.Common.Utils.AbstractedAdaptiveCard.EvaluationContext">
+            <summary>
+            Gets or sets the evaluation context used to expand the adaptive card template.
+            </summary>
+        </member>
+        <member name="M:Audis.Analyzer.Common.Utils.AdaptiveCardUtils.ConstructAsync(System.Collections.Generic.IEnumerable{Audis.Analyzer.Common.Utils.AbstractedAdaptiveCard})">
+            <summary>
+            Constructs a new adaptive card based on at least one adaptive card template.
+            </summary>
+            <param name="cardTemplates">
+            A <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing at least one <see cref="T:Audis.Analyzer.Common.Utils.AbstractedAdaptiveCard"/>,
+            symbolizing one adaptive card instance used to construct the new adaptive card.
+            </param>
+            <returns>
+            A <see cref="T:System.Threading.Tasks.Task`1"/> returning the constructed adaptive card as serialized JSON string.
+            </returns>
+        </member>
         <member name="P:Audis.Analyzer.Common.V1.AdaptiveCardResultDto.RemoveWithNextProcessStep">
             <summary>
             Set to <see langword="true"/>, if the next process step should remove this adaptive card.
