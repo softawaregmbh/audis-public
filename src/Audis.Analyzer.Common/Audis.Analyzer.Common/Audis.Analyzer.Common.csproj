@@ -23,12 +23,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
-    <DocumentationFile>C:\Development\softaware-audis\Audis\Audis.Analyzer.Common\Audis.Analyzer.Common.xml</DocumentationFile>
+    <DocumentationFile>Audis.Analyzer.Common.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
-    <DocumentationFile>C:\Development\audis-public\src\Audis.Analyzer.Common\Audis.Analyzer.Common\Audis.Analyzer.Common.xml</DocumentationFile>
+    <DocumentationFile>Audis.Analyzer.Common.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
