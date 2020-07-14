@@ -7,6 +7,12 @@
     /// </summary>
     public class AbstractedAdaptiveCard
     {
+        public AbstractedAdaptiveCard(string templatePath, object evaluationContext)
+        {
+            this.TemplatePath = templatePath;
+            this.EvaluationContext = evaluationContext;
+        }
+
         /// <summary>
         /// Gets or sets the template path.
         /// </summary>
