@@ -13,25 +13,23 @@ namespace Audis.Analyzer.Common.Utils
         /// Constructs a new adaptive card based on at least one adaptive card template.
         /// </summary>
         /// <param name="cardTemplates">
-        /// A <see cref="IEnumerable{T}"/> containing at least one <see cref="System.ValueTuple"/> bag,
+        /// A <see cref="IEnumerable{T}"/> containing at least one <see cref="AbstractedAdaptiveCard"/>,
         /// symbolizing one adaptive card instance used to construct the new adaptive card.
-        /// The first bag-element is the path to the adaptive card template, the second element is
-        /// the data object that should be applied on this template.
         /// </param>
         /// <returns>
         /// A <see cref="Task{TResult}"/> returning the constructed adaptive card as serialized JSON string.
         /// </returns>
-        public static async Task<string> ConstructAsync(IEnumerable<(string templatePath, object data)> cardTemplates)
+        public static async Task<string> ConstructAsync(IEnumerable<AbstractedAdaptiveCard> cardTemplates)
         {
             var body = new JArray();
-            foreach (var (templatePath, evaluationContext) in cardTemplates)
+            foreach (var abstractedCard in cardTemplates)
             {
                 string cardString;
-                using (var templateStream = File.OpenText(templatePath))
+                using (var templateStream = File.OpenText(abstractedCard.TemplatePath))
                 {
                     var templateString = await templateStream.ReadToEndAsync();
                     cardString = new AdaptiveCardTemplate(templateString)
-                        .Expand(evaluationContext);
+                        .Expand(abstractedCard.EvaluationContext);
                 }
 
                 body.Merge(JArray.Parse(cardString));
