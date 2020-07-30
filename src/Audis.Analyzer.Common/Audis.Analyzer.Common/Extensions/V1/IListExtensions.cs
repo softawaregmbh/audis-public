@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Audis.Analyzer.Contract.V1;
 using Audis.Primitives;
 
@@ -12,7 +13,6 @@ namespace Audis.Analyzer.Common.Extensions.V1
             string identifier,
             string value,
             double probability = 1.0,
-            DateTime? lastUpdated = null,
             KnowledgeOrigin origin = KnowledgeOrigin.Client)
         {
             if (identifier is null)
@@ -20,22 +20,40 @@ namespace Audis.Analyzer.Common.Extensions.V1
                 throw new ArgumentNullException(nameof(identifier));
             }
 
-            if (value != null)
+            if (!string.IsNullOrWhiteSpace(value))
             {
-                suggestedKnowledges.Add(new SuggestedKnowledgeDto
+                var knowledgeIdent = KnowledgeIdentifier.From(identifier);
+                var knowledgeValue = KnowledgeValue.From(value);
+
+                var existingKnowledge = suggestedKnowledges.FirstOrDefault(k => k.KnowledgeIdentifier == knowledgeIdent);
+                if (existingKnowledge == null)
                 {
-                    KnowledgeIdentifier = KnowledgeIdentifier.From(identifier),
-                    Values = new HashSet<KnowledgeValueDto>(new KnowledgeValueDto[]
+                    suggestedKnowledges.Add(new SuggestedKnowledgeDto
                     {
+                        KnowledgeIdentifier = knowledgeIdent,
+                        Values = new HashSet<KnowledgeValueDto>(new KnowledgeValueDto[]
+                        {
                         new KnowledgeValueDto
                         {
-                            KnowledgeValue = KnowledgeValue.From(value)
+                            KnowledgeValue = knowledgeValue
                         }
-                    }),
-                    Probability = probability,
-                    LastUpdated = lastUpdated ?? DateTime.UtcNow,
-                    Origin = origin
-                });
+                        }),
+                        Probability = probability,
+                        LastUpdated = DateTime.UtcNow,
+                        Origin = origin
+                    });
+                }
+                else
+                {
+                    existingKnowledge.Values.Add(new KnowledgeValueDto
+                    {
+                        KnowledgeValue = knowledgeValue
+                    });
+
+                    existingKnowledge.LastUpdated = DateTime.UtcNow;
+                    existingKnowledge.Probability = (existingKnowledge.Probability + probability) / 2;
+                    existingKnowledge.Origin = origin;
+                }
             }
         }
     }
