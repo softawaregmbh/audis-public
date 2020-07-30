@@ -15,6 +15,11 @@ namespace Audis.Analyzer.Common.Extensions.V1
             DateTime? lastUpdated = null,
             KnowledgeOrigin origin = KnowledgeOrigin.Client)
         {
+            if (identifier is null)
+            {
+                throw new ArgumentNullException(nameof(identifier));
+            }
+
             if (value != null)
             {
                 suggestedKnowledges.Add(new SuggestedKnowledgeDto
