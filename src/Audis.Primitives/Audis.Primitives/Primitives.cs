@@ -2,13 +2,15 @@
 #pragma warning disable SA1402 // File may only contain a single type
 #pragma warning disable SA1502 // Element should not be on a single line
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Audis.Primitives
 {
+    /// <summary>
+    /// When you want to store a <see cref="DateTime"/> instance as <see cref="KnowledgeValue"/>,
+    /// make sure it is serialized conforming to ISO_8601 (DateTime.ToString("o")).
+    /// </summary>
     [TypeConverter(typeof(ValueOfTypeConverter<string, KnowledgeValue>))]
     public class KnowledgeValue : CaseInsensitiveValueOfString<KnowledgeValue> { }
 
