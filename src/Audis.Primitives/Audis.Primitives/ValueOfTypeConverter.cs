@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Text;
 
 namespace Audis.Primitives
 {
@@ -20,6 +18,11 @@ namespace Audis.Primitives
                 return true;
             }
 
+            if (sourceType == typeof(DateTime) && typeof(TValue) == typeof(string))
+            {
+                return true;
+            }
+
             return base.CanConvertFrom(context, sourceType);
         }
 
@@ -28,6 +31,11 @@ namespace Audis.Primitives
             if (value is TValue tValue)
             {
                 return ValueOf<TValue, TThis>.From(tValue);
+            }
+
+            if (value is DateTime date && typeof(TValue) == typeof(string) && date.ToString("o") is TValue stringValue)
+            {
+                return ValueOf<TValue, TThis>.From(stringValue);
             }
 
             return base.ConvertFrom(context, culture, value);
