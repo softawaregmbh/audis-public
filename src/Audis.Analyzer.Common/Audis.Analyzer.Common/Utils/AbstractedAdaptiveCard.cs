@@ -14,12 +14,12 @@
         }
 
         /// <summary>
-        /// Gets or sets the template path.
+        /// Gets the template path.
         /// </summary>
         public string TemplatePath { get; }
 
         /// <summary>
-        /// Gets or sets the evaluation context used to expand the adaptive card template.
+        /// Gets the evaluation context used to expand the adaptive card template.
         /// </summary>
         public object EvaluationContext { get; }
     }
