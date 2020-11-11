@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace Audis.Primitives.Tests
@@ -184,6 +185,15 @@ namespace Audis.Primitives.Tests
 
             Assert.AreEqual(equals, value1.Equals(value2));
             Assert.AreEqual(equals, value1.GetHashCode() == value2.GetHashCode());
+        }
+
+        [Test]
+        public void KnowledgeValueWithDateTimeCanBeSerializedAndDeserialized()
+        {
+            var knowledgeValue = KnowledgeValue.From(DateTime.Now.ToString("o"));
+            var json = JsonConvert.SerializeObject(knowledgeValue);
+            var deserializedKnowledegeValue = JsonConvert.DeserializeObject<KnowledgeValue>(json);            
+            Assert.AreEqual(knowledgeValue, deserializedKnowledegeValue);
         }
     }
 }

@@ -16,7 +16,7 @@
     <FileVersion>1.0.0.0</FileVersion>
     <LangVersion>Latest</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>1.0.0-beta1</Version>
+    <Version>1.0.0-beta2</Version>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -34,7 +34,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Audis.Primitives" Version="1.0.0" />
+    <PackageReference Include="Audis.Primitives" Version="1.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
