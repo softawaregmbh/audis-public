@@ -11,7 +11,7 @@ namespace Audis.Primitives.Tests
         [TestCase("@rd4", "rd4")]
         public void TestDispositionCode(string input, string expected)
         {
-            Assert.AreEqual(expected, DispositionCode.From(input).Value);
+            Assert.AreEqual(expected, new DispositionCode(input).Value);
         }
 
         [TestCase(null)]
@@ -20,7 +20,7 @@ namespace Audis.Primitives.Tests
         [TestCase("@")]
         public void TestEmptyDispositionCodeThrows(string input)
         {
-            Assert.Throws<ArgumentNullException>(() => DispositionCode.From(input));
+            Assert.Throws<ArgumentNullException>(() => new DispositionCode(input));
         }
 
         [TestCase(null)]
@@ -28,13 +28,13 @@ namespace Audis.Primitives.Tests
         [TestCase("  ")]
         public void TestEmptyKnowledgeIdentifierThrows(string input)
         {
-            Assert.Throws<ArgumentNullException>(() => KnowledgeIdentifier.From(input));
+            Assert.Throws<ArgumentNullException>(() => new KnowledgeIdentifier(input));
         }
 
         [Test]
         public void TestKnowledgeIdentifierInvalidFormat()
         {
-            var ex = Assert.Throws<ArgumentException>(() => KnowledgeIdentifier.From("no-leading-hashtag"));
+            var ex = Assert.Throws<ArgumentException>(() => new KnowledgeIdentifier("no-leading-hashtag"));
             Assert.AreEqual("The KnowledgeIdentifier has an invalid format: \"no-leading-hashtag\", Expected starting with #.", ex.Message);
         }
 
@@ -43,7 +43,7 @@ namespace Audis.Primitives.Tests
         [TestCase("  ")]
         public void TestEmptyKnowledgeValueThrows(string input)
         {
-            Assert.Throws<ArgumentNullException>(() => KnowledgeValue.From(input));
+            Assert.Throws<ArgumentNullException>(() => new KnowledgeValue(input));
         }
 
         [TestCase(null)]
@@ -51,7 +51,7 @@ namespace Audis.Primitives.Tests
         [TestCase("  ")]
         public void TestEmptyQuestionIdThrows(string input)
         {
-            Assert.Throws<ArgumentNullException>(() => QuestionId.From(input));
+            Assert.Throws<ArgumentNullException>(() => new QuestionId(input));
         }
 
         [TestCase("invalid-format", true)]
@@ -64,15 +64,24 @@ namespace Audis.Primitives.Tests
         {
             if (throws)
             {
-                var ex = Assert.Throws<ArgumentException>(() => QuestionId.From(input));
-                Assert.AreEqual($"The QuestionId has an invalid format: \"{input}\", Expected \"<configuration-name>:<lineNumber>\".", ex.Message);
+                var ex = Assert.Throws<ArgumentException>(() => new QuestionId(input));
+                Assert.AreEqual($"The QuestionId has an invalid format: \"{input}\", Expected \"<question-catalog-name>:<lineNumber>\".", ex.Message);
             }
             else
             {
-                var questionId = QuestionId.From(input);
+                var questionId = new QuestionId(input);
                 Assert.AreEqual(input, questionId.Value);
-                Assert.AreEqual(QuestionCatalogName.From(input.Split(':')[0]), questionId.ConfigurationName);
+                Assert.AreEqual(new QuestionCatalogName(input.Split(':')[0]), questionId.QuestionCatalogName);
             }
+        }
+
+        [Test]
+        public void TestQuestionIdQuestionCatalogAndLineNumberConstructor()
+        {
+            var questionId = new QuestionId(new QuestionCatalogName("question-catalog"), 10);
+            Assert.That(questionId.Value, Is.EqualTo("question-catalog:10"));
+            Assert.AreEqual(new QuestionCatalogName(questionId.Value.Split(':')[0]), questionId.QuestionCatalogName);
+            Assert.AreEqual(int.Parse(questionId.Value.Split(':')[1]), questionId.LineNumber);
         }
 
         [TestCase(null)]
@@ -80,7 +89,7 @@ namespace Audis.Primitives.Tests
         [TestCase("  ")]
         public void TestEmptyAnswerIdThrows(string input)
         {
-            Assert.Throws<ArgumentNullException>(() => AnswerId.From(input));
+            Assert.Throws<ArgumentNullException>(() => new AnswerId(input));
         }
 
         [TestCase("invalid-format", true)]
@@ -96,16 +105,25 @@ namespace Audis.Primitives.Tests
         {
             if (throws)
             {
-                var ex = Assert.Throws<ArgumentException>(() => AnswerId.From(input));
-                Assert.AreEqual($"The AnswerId has an invalid format: \"{input}\", Expected \"<configuration-name>:<questionLineNumber>/<answerLineNumber>\".", ex.Message);
+                var ex = Assert.Throws<ArgumentException>(() => new AnswerId(input));
+                Assert.AreEqual($"The AnswerId has an invalid format: \"{input}\", Expected \"<question-catalog-name>:<questionLineNumber>/<answerLineNumber>\".", ex.Message);
             }
             else
             {
-                var answerId = AnswerId.From(input);
+                var answerId = new AnswerId(input);
                 Assert.AreEqual(input, answerId.Value);
                 var split = input.Split('/');
                 Assert.AreEqual(split[0], answerId.QuestionId.Value);
             }
+        }
+
+        [Test]
+        public void TestAnswerIdQuestionIdAndLineNumberConstructor()
+        {
+            var answerId = new AnswerId(new QuestionId(new QuestionCatalogName("question-catalog"), 10), 12);
+            Assert.That(answerId.Value, Is.EqualTo("question-catalog:10/12"));
+            Assert.AreEqual(new QuestionId(answerId.Value.Split('/')[0]), answerId.QuestionId);
+            Assert.AreEqual(int.Parse(answerId.Value.Split('/')[1]), answerId.LineNumber);
         }
 
         [TestCase("#audis.schmerzen", "#audis.schmerzen", true)]
@@ -114,8 +132,8 @@ namespace Audis.Primitives.Tests
         [TestCase("#audis.value1", "#audis.value2", false)]
         public void AssertKnowledgeIdentifierCaseInsensitiveEqualsAndGetHashCode(string input1, string input2, bool equals)
         {
-            var value1 = KnowledgeIdentifier.From(input1);
-            var value2 = KnowledgeIdentifier.From(input2);
+            var value1 = new KnowledgeIdentifier(input1);
+            var value2 = new KnowledgeIdentifier(input2);
 
             Assert.AreEqual(equals, value1.Equals(value2));
             Assert.AreEqual(equals, value1.GetHashCode() == value2.GetHashCode());
@@ -128,8 +146,9 @@ namespace Audis.Primitives.Tests
         [TestCase("ja", "nein", false)]
         public void AssertKnowledgeValueCaseInsensitiveEqualsAndGetHashCode(string input1, string input2, bool equals)
         {
-            var value1 = KnowledgeValue.From(input1);
-            var value2 = KnowledgeValue.From(input2);
+            var v = new KnowledgeValue("asdf");
+            var value1 = new KnowledgeValue(input1);
+            var value2 = new KnowledgeValue(input2);
 
             Assert.AreEqual(equals, value1.Equals(value2));
             Assert.AreEqual(equals, value1.GetHashCode() == value2.GetHashCode());
@@ -144,8 +163,24 @@ namespace Audis.Primitives.Tests
         [TestCase("@RD1", "@RD2", false)]
         public void AssertDispositionCodeCaseInsensitiveEqualsAndGetHashCode(string input1, string input2, bool equals)
         {
-            var value1 = DispositionCode.From(input1);
-            var value2 = DispositionCode.From(input2);
+            var value1 = new DispositionCode(input1);
+            var value2 = new DispositionCode(input2);
+
+            Assert.AreEqual(equals, value1.Equals(value2));
+            Assert.AreEqual(equals, value1.GetHashCode() == value2.GetHashCode());
+        }
+
+        [TestCase("@Scenario", "@Scenario", true)]
+        [TestCase("@Scenario", "Scenario", true)]
+        [TestCase("Scenario", "@Scenario", true)]
+        [TestCase("Scenario", "Scenario", true)]
+        [TestCase("scenario", "SCENARIO", true)]
+        [TestCase("SCENARIO", "scenario", true)]
+        [TestCase("@Scenario1", "@Scenario2", false)]
+        public void AssertScenarioCaseInsensitiveEqualsAndGetHashCode(string input1, string input2, bool equals)
+        {
+            var value1 = new ScenarioIdentifier(input1);
+            var value2 = new ScenarioIdentifier(input2);
 
             Assert.AreEqual(equals, value1.Equals(value2));
             Assert.AreEqual(equals, value1.GetHashCode() == value2.GetHashCode());
