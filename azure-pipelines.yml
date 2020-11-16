@@ -39,6 +39,9 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration) src/Audis.Primitives/Audis.Primitives.sln
   displayName: Build Audis.Primitives
 
+- script: dotnet test --no-build --configuration $(buildConfiguration) src/Audis.Primitives/Audis.Primitives.sln
+  displayName: Test Audis.Primitives
+
 - task: CopyFiles@2
   displayName: Publish NuGet Packages to Artifacts
   inputs:
