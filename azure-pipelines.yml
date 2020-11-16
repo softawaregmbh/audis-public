@@ -27,6 +27,15 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration) src/Audis.Analyzer.Contract/Audis.Analyzer.Contract.sln
   displayName: Build Audis.Analyzer.Contract
 
+- script: dotnet build --configuration $(buildConfiguration) src/Audis.Endpoints.Contract/Audis.Endpoints.Contract.sln
+  displayName: Build Audis.Endpoints.Contract
+
+- script: dotnet build --configuration $(buildConfiguration) src/Audis.KnowledgeEnrichers.Contract/Audis.KnowledgeEnrichers.Contract.sln
+  displayName: Build Audis.KnowledgeEnrichers.Contract
+
+- script: dotnet build --configuration $(buildConfiguration) src/Audis.Location/Audis.Location.sln
+  displayName: Build Audis.Location
+
 - script: dotnet build --configuration $(buildConfiguration) src/Audis.Primitives/Audis.Primitives.sln
   displayName: Build Audis.Primitives
 
