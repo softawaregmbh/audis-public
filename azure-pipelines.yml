@@ -42,6 +42,12 @@ steps:
 - script: dotnet test --no-build --configuration $(buildConfiguration) src/Audis.Primitives/Audis.Primitives.sln
   displayName: Test Audis.Primitives
 
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testResultsFormat: VSTest
+    testResultsFiles: '**/*.trx'
+
 - task: CopyFiles@2
   displayName: Publish NuGet Packages to Artifacts
   inputs:
