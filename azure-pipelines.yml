@@ -39,7 +39,7 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration) src/Audis.Primitives/Audis.Primitives.sln
   displayName: Build Audis.Primitives
 
-- script: dotnet test --no-build --configuration $(buildConfiguration) src/Audis.Primitives/Audis.Primitives.sln
+- script: dotnet test --no-build --configuration $(buildConfiguration) --logger trx src/Audis.Primitives/Audis.Primitives.sln
   displayName: Test Audis.Primitives
 
 - task: PublishTestResults@2
