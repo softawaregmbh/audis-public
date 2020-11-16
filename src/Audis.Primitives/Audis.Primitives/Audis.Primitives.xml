@@ -35,5 +35,24 @@
             Identifies an answer with <see cref="P:Audis.Primitives.AnswerId.QuestionId" /> and <see cref="P:Audis.Primitives.AnswerId.LineNumber"/> ("questionCatalogName:questionLineNumber/answerLineNumber").
             </summary>
         </member>
+        <member name="T:Audis.Primitives.PrimitiveStringTypeConverter`1">
+            <summary>
+            Type converter for <see cref="T:Audis.Primitives.Primitive`1" /> where TValue is <see langword="string"/> to allow seamingless serialization and deserialization.
+            Use this type as parameter for the <see cref="T:System.ComponentModel.TypeConverterAttribute" /> for subclasses of <see cref="T:Audis.Primitives.Primitive`1" />.
+            </summary>
+            <typeparam name="TPrimitive">The primitive type inherited from <see cref="T:Audis.Primitives.Primitive`1"/>.</typeparam>
+        </member>
+        <member name="M:Audis.Primitives.PrimitiveStringTypeConverter`1.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Audis.Primitives.PrimitiveStringTypeConverter`1.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Audis.Primitives.PrimitiveStringTypeConverter`1.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Audis.Primitives.PrimitiveStringTypeConverter`1.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <inheritdoc/>
+        </member>
     </members>
 </doc>
