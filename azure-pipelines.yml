@@ -15,6 +15,12 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: UseDotNet@2
+  displayName: 'Use .NET 5'
+  inputs:
+    packageType: sdk
+    version: '5.0.x'
+
 - script: dotnet build --configuration $(buildConfiguration) src/Audis.Analyzer.Common/Audis.Analyzer.Common.sln
   displayName: Build Audis.Analyzer.Common
 
@@ -32,6 +38,15 @@ steps:
 
 - script: dotnet build --configuration $(buildConfiguration) src/Audis.Primitives/Audis.Primitives.sln
   displayName: Build Audis.Primitives
+
+- script: dotnet test --no-build --configuration $(buildConfiguration) --logger trx src/Audis.Primitives/Audis.Primitives.sln
+  displayName: Test Audis.Primitives
+
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testResultsFormat: VSTest
+    testResultsFiles: '**/*.trx'
 
 - task: CopyFiles@2
   displayName: Publish NuGet Packages to Artifacts
