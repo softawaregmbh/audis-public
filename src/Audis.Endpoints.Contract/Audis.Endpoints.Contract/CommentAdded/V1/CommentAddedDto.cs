@@ -12,6 +12,6 @@ namespace Audis.Endpoints.Contract.CommentAdded.V1
         public TenantId TenantId { get; set; } = default!;
         public RevisionId RevisionId { get; set; } = default!;
         public string? ExternalId { get; set; }
-        public string? UserId { get; set; };
+        public string? UserId { get; set; }
     }
 }
