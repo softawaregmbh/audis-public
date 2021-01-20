@@ -1,7 +1,5 @@
-﻿using Audis.Primitives;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using Audis.Primitives;
 
 namespace Audis.Endpoints.Contract.IntermediateDisposition.V1
 {
