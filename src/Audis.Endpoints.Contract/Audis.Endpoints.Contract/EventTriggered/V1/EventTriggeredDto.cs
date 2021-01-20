@@ -1,5 +1,6 @@
 ﻿using System;
 using Audis.Primitives;
+using Newtonsoft.Json.Linq;
 
 namespace Audis.Endpoints.Contract.EventTriggered.V1
 {
@@ -20,5 +21,7 @@ namespace Audis.Endpoints.Contract.EventTriggered.V1
         public string? ExternalId { get; set; }
 
         public string? UserId { get; set; }
+
+        public JObject? Data { get; set; }
     }
 }
