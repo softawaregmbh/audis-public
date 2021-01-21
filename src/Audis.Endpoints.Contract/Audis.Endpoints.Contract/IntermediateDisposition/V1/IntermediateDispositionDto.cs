@@ -3,7 +3,7 @@ using Audis.Primitives;
 
 namespace Audis.Endpoints.Contract.IntermediateDisposition.V1
 {
-    public class DispositionedIntermediatelyDto
+    public class IntermediateDispositionDto
     {
         public Guid InterrogationId { get; set; }
 
