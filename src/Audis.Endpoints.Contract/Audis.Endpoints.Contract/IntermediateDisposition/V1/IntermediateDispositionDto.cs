@@ -1,16 +1,13 @@
 ﻿using System;
 using Audis.Primitives;
-using Newtonsoft.Json.Linq;
 
-namespace Audis.Endpoints.Contract.EventTriggered.V1
+namespace Audis.Endpoints.Contract.IntermediateDisposition.V1
 {
-    public class EventTriggeredDto
+    public class IntermediateDispositionDto
     {
-        public Guid EventId { get; set; }
-
-        public string EventName { get; set; } = default!;
-
         public Guid InterrogationId { get; set; }
+
+        public int CurrentProcessStepId { get; set; }
 
         public DateTime Timestamp { get; set; }
 
@@ -22,6 +19,10 @@ namespace Audis.Endpoints.Contract.EventTriggered.V1
 
         public string? UserId { get; set; }
 
-        public JObject? Data { get; set; }
+        public string KnowledgeSummary { get; set; } = default!;
+
+        public string? CurrentScenarioIdentifier { get; set; }
+        
+        public string? CurrentScenarioName { get; set; }
     }
 }
