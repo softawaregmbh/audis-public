@@ -9,6 +9,10 @@ namespace Audis.Endpoints.Contract.IntermediateDisposition.V1
 
         public int CurrentProcessStepId { get; set; }
 
+        public string IntermediateDispositionName { get; set; } = default!;
+
+        public string? IntermediateDispositionExternalIdentifier { get; set; }
+
         public DateTime Timestamp { get; set; }
 
         public TenantId TenantId { get; set; } = default!;
