@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Audis.Authorization
+﻿namespace Audis.OpenID.Authorization.Configuration
 {
-    public class ResourceAuthorizationSettings
+    public class AuthorizationSettings
     {
         public string Issuer { get; set; }
 
         public string Audience { get; set; }
 
         public string ClientId { get; set; }
-
-        public string ScopeApiPath { get; set; }
 
         public void Deconstruct(out string issuer, out string audience)
         {

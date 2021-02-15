@@ -1,25 +1,25 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Audis.OpenID.Authorization.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Audis.Authorization.Resource
+namespace Audis.Authorization.OpenID.Resource
 {
-    public static class AuthorizationResourceExtensions
+    public static class AuthorizationExtensions
     {
-
-        public static void AddResourceAuthentication(this IServiceCollection services)
+        public static void AddResourceAuthorization(this IServiceCollection services)
         {
             var serviceProvider = services.BuildServiceProvider();
             var configuration = serviceProvider.GetRequiredService<IConfiguration>();
             var authorizationSettings = configuration.GetAuthorizationSettings();
 
-            services.AddResourceAuthentication(authorizationSettings);
+            services.AddResourceAuthorization(authorizationSettings);
         }
 
-        public static void AddResourceAuthentication(this IServiceCollection services, AuthorizationSettings authorizationSettings)
+        public static void AddResourceAuthorization(this IServiceCollection services, AuthorizationSettings authorizationSettings)
         {
-            var (issuer, audience) = authorizationSettings.Resource;
+            var (issuer, audience) = authorizationSettings;
 
             services
                 .AddAuthorization()
@@ -35,7 +35,7 @@ namespace Audis.Authorization.Resource
                 });
         }
 
-        public static void ConfigureResourceAuthentication(this IApplicationBuilder app)
+        public static void ConfigureResourceAuthorization(this IApplicationBuilder app)
         {
             app.UseAuthentication();
             app.UseAuthorization();

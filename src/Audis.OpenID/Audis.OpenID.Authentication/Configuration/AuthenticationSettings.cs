@@ -1,6 +1,6 @@
-﻿namespace Audis.Authorization
+﻿namespace Audis.OpenID.Authentication
 {
-    public class ClientAuthorizationSettings
+    public class AuthenticationSettings
     {
         public string Issuer { get; set; }
 

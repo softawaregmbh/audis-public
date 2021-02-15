@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Audis.Authorization
+namespace Audis.OpenID.Authorization.Exceptions
 {
     [Serializable]
     public class AuthorizationSettingsException : Exception

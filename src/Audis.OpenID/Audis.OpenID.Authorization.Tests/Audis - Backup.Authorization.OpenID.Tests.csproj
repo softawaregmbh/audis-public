@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Audis.Authorization\Audis.Authorization.csproj" />
+    <ProjectReference Include="..\Audis.Authorization.OpenID.Audis.Authorization.OpenID.OpenID.csproj" />
   </ItemGroup>
 
 </Project>
