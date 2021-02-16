@@ -26,6 +26,7 @@ namespace Audis.Analyzer.Common.V1
         public int InterrogationProcessStepId { get; set; }
         public Question CurrentQuestion { get; set; }
         public IEnumerable<KnowledgeDto> Knowledge { get; set; }
+        public TenantId TenantId { get; set; }
 
         /// <summary>
         /// Unstructured data object which can be used for information exchange between multiple process steps for a specific analyzer.
