@@ -7,11 +7,11 @@ using Microsoft.Extensions.Primitives;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RichardSzalay.MockHttp;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Audis.OpenID.Authentication.Tests
@@ -79,7 +79,8 @@ namespace Audis.OpenID.Authentication.Tests
 
             var authorizationHandler = new AuthenticationHandler(mockConfiguration, mockHttpClientFactory, mockHttpContextAccessor);
 
-            await Assert.ThrowsExceptionAsync<AuthenticationException>(() => authorizationHandler.GetDiscoveryDocumentAsync(), "Could not fetch discovery document at URL: http://test.openiddict.com/.well-known/openid-configuration");
+            var exception = await Assert.ThrowsExceptionAsync<AuthenticationException>(() => authorizationHandler.GetDiscoveryDocumentAsync());
+            Assert.AreEqual("Could not fetch discovery document at URL: http://test.openiddict.com/.well-known/openid-configuration", exception.Message);
         }
 
         [TestMethod]
@@ -136,7 +137,8 @@ namespace Audis.OpenID.Authentication.Tests
 
             var authorizationHandler = new AuthenticationHandler(mockConfiguration, mockHttpClientFactory, mockHttpContextAccessor);
 
-            await Assert.ThrowsExceptionAsync<AuthenticationException>(() => authorizationHandler.GetScopesForTenantAsync(tenantId), "Could not fetch scope for tenant \"TestTenant\" at URL: http://somewhere.else.com/scope/TestTenant");
+            var exception = await Assert.ThrowsExceptionAsync<AuthenticationException>(() => authorizationHandler.GetScopesForTenantAsync(tenantId));
+            Assert.AreEqual("Could not fetch scope for tenant \"TestTenant\" at URL: http://somewhere.else.com/scope/TestTenant", exception.Message);
         }
 
         [TestMethod]
@@ -233,6 +235,41 @@ namespace Audis.OpenID.Authentication.Tests
             var token = await authorizationHandler.GetOrCreateTokenAsync(tenantId);
 
             Assert.AreEqual(new StringValues("Bearer TestAccessToken"), token);
+        }
+
+        [TestMethod]
+        public async Task GetOrCreateTokenAsync_NoAccessTokenPresent_404RequestTokenError()
+        {
+            var tenantId = TenantId.From("TestTenant");
+            var issuer = "http://test.openiddict.com";
+            var scopeApiPath = "http://somewhere.else.com/scope/{{tenantId}}";
+
+            var mockConfiguration = GetMockConfiguration(issuer: issuer, scopeApiPath: scopeApiPath);
+            var mockHttpClientFactory = GetMockHttpClientFactory((mockHttp) =>
+            {
+                mockHttp.Expect($"{issuer}/.well-known/openid-configuration")
+                    .Respond("application/json", @"{ ""token_endpoint"": """ + $"{issuer}/connect/token" + @""" }");
+
+                mockHttp.Expect($"http://somewhere.else.com/scope/{tenantId}")
+                    .Respond("application/json", @"[ ""audis.analyzer.prod"" ]");
+
+                mockHttp.Expect($"{issuer}/connect/token")
+                    .Respond(System.Net.HttpStatusCode.NotFound, new[] { new KeyValuePair<string, string>("ReasonPhrase", "TestError") } , "application/json", string.Empty);
+            });
+
+            var mockHttpContext = A.Fake<HttpContext>();
+            StringValues ignored = StringValues.Empty;
+            A.CallTo(() => mockHttpContext.Request.Headers.TryGetValue("Authorization", out ignored))
+                .Returns(false);
+
+            var mockHttpContextAccessor = A.Fake<IHttpContextAccessor>();
+            A.CallTo(() => mockHttpContextAccessor.HttpContext)
+                .Returns(mockHttpContext);
+
+            var authorizationHandler = new AuthenticationHandler(mockConfiguration, mockHttpClientFactory, mockHttpContextAccessor);
+
+            var exception = await Assert.ThrowsExceptionAsync<AuthenticationException>(() => authorizationHandler.GetOrCreateTokenAsync(tenantId));
+            Assert.AreEqual($"Could not fetch access token from endpoint {issuer}/connect/token: Not Found", exception.Message);
         }
 
         public static IConfiguration GetMockConfiguration(

@@ -50,7 +50,8 @@ namespace Audis.OpenID.Authentication.Configuration.Tests
                 .AddJsonStream(new MemoryStream(Encoding.ASCII.GetBytes(json)))
                 .Build();
 
-            Assert.ThrowsException<AuthenticationSettingsException>(() => configurationRoot.GetAuthenticationSettings(), "Authentication settings are missing");
+            var exception = Assert.ThrowsException<AuthenticationSettingsException>(() => configurationRoot.GetAuthenticationSettings());
+            Assert.AreEqual("Failed to setup authentication: Configuration is missing", exception.Message);
         }
 
         [TestMethod]
@@ -73,7 +74,8 @@ namespace Audis.OpenID.Authentication.Configuration.Tests
                 .AddJsonStream(new MemoryStream(Encoding.ASCII.GetBytes(json)))
                 .Build();
 
-            Assert.ThrowsException<AuthenticationSettingsException>(() => configurationRoot.GetAuthenticationSettings(), "Failed to setup authentication: Property 'Issuer' is not configured");
+            var exception = Assert.ThrowsException<AuthenticationSettingsException>(() => configurationRoot.GetAuthenticationSettings());
+            Assert.AreEqual("Failed to setup authentication: Property 'Issuer' is not configured", exception.Message);
         }
 
         [TestMethod]
@@ -96,7 +98,8 @@ namespace Audis.OpenID.Authentication.Configuration.Tests
                 .AddJsonStream(new MemoryStream(Encoding.ASCII.GetBytes(json)))
                 .Build();
 
-            Assert.ThrowsException<AuthenticationSettingsException>(() => configurationRoot.GetAuthenticationSettings(), "Failed to setup authentication: Property 'ClientId' is not configured");
+            var exception = Assert.ThrowsException<AuthenticationSettingsException>(() => configurationRoot.GetAuthenticationSettings());
+            Assert.AreEqual("Failed to setup authentication: Property 'ClientId' is not configured", exception.Message);
         }
 
         [TestMethod]
@@ -119,7 +122,8 @@ namespace Audis.OpenID.Authentication.Configuration.Tests
                 .AddJsonStream(new MemoryStream(Encoding.ASCII.GetBytes(json)))
                 .Build();
 
-            Assert.ThrowsException<AuthenticationSettingsException>(() => configurationRoot.GetAuthenticationSettings(), "Failed to setup authentication: Property 'ClientSecret' is not configured");
+            var exception = Assert.ThrowsException<AuthenticationSettingsException>(() => configurationRoot.GetAuthenticationSettings());
+            Assert.AreEqual("Failed to setup authentication: Property 'ClientSecret' is not configured", exception.Message);
         }
 
         [TestMethod]
@@ -142,7 +146,8 @@ namespace Audis.OpenID.Authentication.Configuration.Tests
                 .AddJsonStream(new MemoryStream(Encoding.ASCII.GetBytes(json)))
                 .Build();
 
-            Assert.ThrowsException<AuthenticationSettingsException>(() => configurationRoot.GetAuthenticationSettings(), "Failed to setup authentication: Property 'ScopeApiPath' is not configured");
+            var exception = Assert.ThrowsException<AuthenticationSettingsException>(() => configurationRoot.GetAuthenticationSettings());
+            Assert.AreEqual("Failed to setup authentication: Property 'ScopeApiPath' is not configured", exception.Message);
         }
     }
 }

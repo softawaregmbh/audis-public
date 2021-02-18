@@ -52,6 +52,12 @@ namespace Audis.OpenID.Authentication
 
             using var httpClient = this.httpClientFactory.CreateClient();
             var response = await httpClient.PostAsync(discoveryDocument.TokenEndpoint, tokenRequest, cancellationToken);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new AuthenticationException($"Could not fetch access token from endpoint {discoveryDocument.TokenEndpoint}: {response.ReasonPhrase}");
+            }
+
             var content = await response.Content.ReadFromJsonAsync<OpenIddictResponse>(cancellationToken: cancellationToken);
 
             return content.AccessToken ?? StringValues.Empty;

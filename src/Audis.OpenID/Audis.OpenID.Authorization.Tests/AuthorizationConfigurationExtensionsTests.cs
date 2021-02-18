@@ -47,7 +47,8 @@ namespace Audis.OpenID.Authorization.Configuration.Tests
                 .AddJsonStream(new MemoryStream(Encoding.ASCII.GetBytes(json)))
                 .Build();
 
-            Assert.ThrowsException<AuthorizationSettingsException>(() => configurationRoot.GetAuthorizationSettings(), "Authorization settings are missing");
+            var exception = Assert.ThrowsException<AuthorizationSettingsException>(() => configurationRoot.GetAuthorizationSettings());
+            Assert.AreEqual("Failed to setup authorization: Configuration is missing", exception.Message);
         }
 
         [TestMethod]
@@ -68,7 +69,8 @@ namespace Audis.OpenID.Authorization.Configuration.Tests
                 .AddJsonStream(new MemoryStream(Encoding.ASCII.GetBytes(json)))
                 .Build();
 
-            Assert.ThrowsException<AuthorizationSettingsException>(() => configurationRoot.GetAuthorizationSettings(), "Failed to setup authorization: Property 'Issuer' is not configured");
+            var exception = Assert.ThrowsException<AuthorizationSettingsException>(() => configurationRoot.GetAuthorizationSettings());
+            Assert.AreEqual("Failed to setup authorization: Property 'Issuer' is not configured", exception.Message);
         }
 
         [TestMethod]
@@ -89,7 +91,8 @@ namespace Audis.OpenID.Authorization.Configuration.Tests
                 .AddJsonStream(new MemoryStream(Encoding.ASCII.GetBytes(json)))
                 .Build();
 
-            Assert.ThrowsException<AuthorizationSettingsException>(() => configurationRoot.GetAuthorizationSettings(), "Failed to setup authorization: Property 'ClientId' is not configured");
+            var exception = Assert.ThrowsException<AuthorizationSettingsException>(() => configurationRoot.GetAuthorizationSettings());
+            Assert.AreEqual("Failed to setup authorization: Property 'ClientId' is not configured", exception.Message);
         }
 
         [TestMethod]
@@ -110,7 +113,8 @@ namespace Audis.OpenID.Authorization.Configuration.Tests
                 .AddJsonStream(new MemoryStream(Encoding.ASCII.GetBytes(json)))
                 .Build();
 
-            Assert.ThrowsException<AuthorizationSettingsException>(() => configurationRoot.GetAuthorizationSettings(), "Failed to setup authorization: Property 'Audience' is not configured");
+            var exception = Assert.ThrowsException<AuthorizationSettingsException>(() => configurationRoot.GetAuthorizationSettings());
+            Assert.AreEqual("Failed to setup authorization: Property 'Audience' is not configured", exception.Message);
         }
     }
 }
