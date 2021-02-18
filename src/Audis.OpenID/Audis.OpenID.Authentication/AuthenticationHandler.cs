@@ -15,13 +15,13 @@ namespace Audis.OpenID.Authentication
 {
     public class AuthenticationHandler
     {
-        private readonly AuthenticationSettings authorizationSettings;
+        private readonly AuthenticationSettings authenticationSettings;
         private readonly IHttpClientFactory httpClientFactory;
         private readonly IHttpContextAccessor httpContextAccessor;
 
         public AuthenticationHandler(IConfiguration configuration, IHttpClientFactory httpClientFactory, IHttpContextAccessor httpContextAccessor)
         {
-            this.authorizationSettings = configuration.GetAuthenticationSettings();
+            this.authenticationSettings = configuration.GetAuthenticationSettings();
             this.httpClientFactory = httpClientFactory ?? throw new System.ArgumentNullException(nameof(httpClientFactory));
             this.httpContextAccessor = httpContextAccessor ?? throw new System.ArgumentNullException(nameof(httpContextAccessor));
         }
@@ -38,9 +38,7 @@ namespace Audis.OpenID.Authentication
 
         public async Task<StringValues> RequestClientCredentialsTokenAsync(TenantId tenantId, CancellationToken cancellationToken = default)
         {
-            var (clientId, clientSecret) = this.authorizationSettings;
-
-
+            var (clientId, clientSecret) = this.authenticationSettings;
             var discoveryDocument = await this.GetDiscoveryDocumentAsync(cancellationToken);
             var scope = await this.GetScopesForTenantAsync(tenantId, cancellationToken);
 
@@ -61,7 +59,7 @@ namespace Audis.OpenID.Authentication
 
         public async Task<string> GetScopesForTenantAsync(TenantId tenantId, CancellationToken cancellationToken = default)
         {
-            var scopeApiUrl = this.authorizationSettings.ScopeApiPath
+            var scopeApiUrl = this.authenticationSettings.ScopeApiPath
                 .Replace(" ", string.Empty)
                 .Replace("{{tenantId}}", tenantId.Value);
             
@@ -80,7 +78,7 @@ namespace Audis.OpenID.Authentication
 
         public async Task<OpenIddictDiscoveryDocument> GetDiscoveryDocumentAsync(CancellationToken cancellationToken = default)
         {
-            var issuer = this.authorizationSettings.Issuer.TrimEnd('/');
+            var issuer = this.authenticationSettings.Issuer.TrimEnd('/');
             var discoveryDocumentRequestUrl = $"{issuer}/.well-known/openid-configuration";
 
             using var httpClient = this.httpClientFactory.CreateClient();
