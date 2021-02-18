@@ -35,7 +35,7 @@ namespace Audis.Authorization.OpenID.Resource
                 });
         }
 
-        public static void ConfigureResourceAuthorization(this IApplicationBuilder app)
+        public static void UseResourceAuthorization(this IApplicationBuilder app)
         {
             app.UseAuthentication();
             app.UseAuthorization();
