@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using Audis.OpenID.Authentication.Configuration;
 using Audis.OpenID.Authentication.Domain;
 using Audis.OpenID.Authentication.Exceptions;
 using Audis.Primitives;
@@ -74,7 +75,7 @@ namespace Audis.OpenID.Authentication
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new AuthenticationException($"Could not fetch scope for tenant \"{tenantId}\" at URL: {scopeApiUrl}");
+                throw new AuthenticationException($"Could not fetch scope for tenant \"{tenantId.Value}\" at URL: {scopeApiUrl}");
             }
 
             var scopes = await response.Content.ReadFromJsonAsync<string[]>(cancellationToken: cancellationToken);

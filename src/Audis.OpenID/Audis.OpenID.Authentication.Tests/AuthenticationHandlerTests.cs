@@ -57,7 +57,7 @@ namespace Audis.OpenID.Authentication.Tests
         [TestMethod]
         public async Task GetDiscoveryDocumentAsync_ResponseCode404_Throws()
         {
-            var tenantId = TenantId.From("TestTenant");
+            var tenantId = new TenantId("TestTenant");
             var issuer = "http://test.openiddict.com";
             var scopeApiPath = "http://somewhere.else.com/scope/{{tenantId}}";
 
@@ -86,14 +86,14 @@ namespace Audis.OpenID.Authentication.Tests
         [TestMethod]
         public async Task GetScopesForTenantAsync()
         {
-            var tenantId = TenantId.From("TestTenant");
+            var tenantId = new TenantId("TestTenant");
             var issuer = "http://test.openiddict.com";
             var scopeApiPath = "http://somewhere.else.com/scope/{{tenantId}}";
 
             var mockConfiguration = GetMockConfiguration(issuer: issuer, scopeApiPath: scopeApiPath);
             var mockHttpClientFactory = GetMockHttpClientFactory((mockHttp) =>
             {
-                mockHttp.Expect($"http://somewhere.else.com/scope/{tenantId}")
+                mockHttp.Expect($"http://somewhere.else.com/scope/{tenantId.Value}")
                     .Respond("application/json", @"[ ""scope1"", ""scope2"" ]");
             });
 
@@ -115,14 +115,14 @@ namespace Audis.OpenID.Authentication.Tests
         [TestMethod]
         public async Task GetScopesForTenantAsync_ResponseCode404_Throws()
         {
-            var tenantId = TenantId.From("TestTenant");
+            var tenantId = new TenantId("TestTenant");
             var issuer = "http://test.openiddict.com";
             var scopeApiPath = "http://somewhere.else.com/scope/{{tenantId}}";
 
             var mockConfiguration = GetMockConfiguration(issuer: issuer, scopeApiPath: scopeApiPath);
             var mockHttpClientFactory = GetMockHttpClientFactory((mockHttp) =>
             {
-                mockHttp.Expect($"http://somewhere.else.com/scope/{tenantId}")
+                mockHttp.Expect($"http://somewhere.else.com/scope/{tenantId.Value}")
                     .Respond(System.Net.HttpStatusCode.NotFound, "application/json", string.Empty);
             });
 
@@ -144,7 +144,7 @@ namespace Audis.OpenID.Authentication.Tests
         [TestMethod]
         public async Task RequestClientCredentialsTokenAsync()
         {
-            var tenantId = TenantId.From("TestTenant");
+            var tenantId = new TenantId("TestTenant");
             var issuer = "http://test.openiddict.com";
             var scopeApiPath = "http://somewhere.else.com/scope/{{tenantId}}";
 
@@ -154,7 +154,7 @@ namespace Audis.OpenID.Authentication.Tests
                 mockHttp.Expect($"{issuer}/.well-known/openid-configuration")
                     .Respond("application/json", @"{ ""token_endpoint"": """ + $"{issuer}/connect/token" + @""" }");
 
-                mockHttp.Expect($"http://somewhere.else.com/scope/{tenantId}")
+                mockHttp.Expect($"http://somewhere.else.com/scope/{tenantId.Value}")
                     .Respond("application/json", @"[ ""audis.analyzer.prod"" ]");
 
                 mockHttp.Expect($"{issuer}/connect/token")
@@ -192,7 +192,7 @@ namespace Audis.OpenID.Authentication.Tests
             A.CallTo(() => mockHttpContextAccessor.HttpContext)
                 .Returns(mockHttpContext);
 
-            var tenantId = TenantId.From("TestTenant");
+            var tenantId = new TenantId("TestTenant");
             
             var authorizationHandler = new AuthenticationHandler(mockConfiguration, mockHttpClientFactory, mockHttpContextAccessor);
 
@@ -204,7 +204,7 @@ namespace Audis.OpenID.Authentication.Tests
         [TestMethod]
         public async Task GetOrCreateTokenAsync_NoAccessTokenPresent_UsesClientCredentialFlow()
         {
-            var tenantId = TenantId.From("TestTenant");
+            var tenantId = new TenantId("TestTenant");
             var issuer = "http://test.openiddict.com";
             var scopeApiPath = "http://somewhere.else.com/scope/{{tenantId}}";
 
@@ -214,7 +214,7 @@ namespace Audis.OpenID.Authentication.Tests
                 mockHttp.Expect($"{issuer}/.well-known/openid-configuration")
                     .Respond("application/json", @"{ ""token_endpoint"": """ + $"{issuer}/connect/token" + @""" }");
 
-                mockHttp.Expect($"http://somewhere.else.com/scope/{tenantId}")
+                mockHttp.Expect($"http://somewhere.else.com/scope/{tenantId.Value}")
                     .Respond("application/json", @"[ ""audis.analyzer.prod"" ]");
 
                 mockHttp.Expect($"{issuer}/connect/token")
@@ -240,7 +240,7 @@ namespace Audis.OpenID.Authentication.Tests
         [TestMethod]
         public async Task GetOrCreateTokenAsync_NoAccessTokenPresent_404RequestTokenError()
         {
-            var tenantId = TenantId.From("TestTenant");
+            var tenantId = new TenantId("TestTenant");
             var issuer = "http://test.openiddict.com";
             var scopeApiPath = "http://somewhere.else.com/scope/{{tenantId}}";
 
@@ -250,7 +250,7 @@ namespace Audis.OpenID.Authentication.Tests
                 mockHttp.Expect($"{issuer}/.well-known/openid-configuration")
                     .Respond("application/json", @"{ ""token_endpoint"": """ + $"{issuer}/connect/token" + @""" }");
 
-                mockHttp.Expect($"http://somewhere.else.com/scope/{tenantId}")
+                mockHttp.Expect($"http://somewhere.else.com/scope/{tenantId.Value}")
                     .Respond("application/json", @"[ ""audis.analyzer.prod"" ]");
 
                 mockHttp.Expect($"{issuer}/connect/token")
