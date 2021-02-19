@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Audis.Authorization.OpenID.Resource
+namespace Audis.OpenID.Authorization
 {
     public static class AuthorizationExtensions
     {

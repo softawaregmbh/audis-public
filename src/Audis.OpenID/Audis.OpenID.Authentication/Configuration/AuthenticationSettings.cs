@@ -1,4 +1,4 @@
-﻿namespace Audis.OpenID.Authentication
+﻿namespace Audis.OpenID.Authentication.Configuration
 {
     public class AuthenticationSettings
     {

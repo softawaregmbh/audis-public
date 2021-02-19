@@ -26,11 +26,6 @@ namespace Audis.OpenID.Authorization.Configuration
                 ThrowPropertyMissingException(nameof(settings.Issuer));
             }
 
-            if (settings.ClientId == null)
-            {
-                ThrowPropertyMissingException(nameof(settings.ClientId));
-            }
-
             if (settings.Audience == null)
             {
                 ThrowPropertyMissingException(nameof(settings.Audience));

@@ -1,7 +1,7 @@
 ﻿using Audis.OpenID.Authorization.Exceptions;
 using Microsoft.Extensions.Configuration;
 
-namespace Audis.OpenID.Authentication
+namespace Audis.OpenID.Authentication.Configuration
 {
     public static class ConfigurationExtensions
     {

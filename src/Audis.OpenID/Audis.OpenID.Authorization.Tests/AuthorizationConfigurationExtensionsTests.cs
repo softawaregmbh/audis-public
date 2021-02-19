@@ -13,15 +13,13 @@ namespace Audis.OpenID.Authorization.Configuration.Tests
         public void TestGetResourceAuthorizationSettings()
         {
             var issuer = "TestIssuer";
-            var clientId = "TestClientId";
             var audience = "TestAudience";
 
             var json = @"
             {
                 ""Authorization"": {
                     ""Issuer"": """ + issuer + @""",
-                    ""Audience"": """ + audience + @""",
-                    ""ClientId"": """ + clientId + @""",
+                    ""Audience"": """ + audience + @"""
                 }
             }";
 
@@ -32,7 +30,6 @@ namespace Audis.OpenID.Authorization.Configuration.Tests
             var authorizationSettings = configurationRoot.GetAuthorizationSettings();
             Assert.AreEqual(issuer, authorizationSettings.Issuer);
             Assert.AreEqual(audience, authorizationSettings.Audience);
-            Assert.AreEqual(clientId, authorizationSettings.ClientId);
         }
 
         [TestMethod]
@@ -60,7 +57,6 @@ namespace Audis.OpenID.Authorization.Configuration.Tests
             var json = @"
             {
                 ""Authorization"": {
-                    ""ClientId"": """ + clientId + @""",
                     ""Audience"": """ + audience + @"""
                 }
             }";
@@ -74,38 +70,14 @@ namespace Audis.OpenID.Authorization.Configuration.Tests
         }
 
         [TestMethod]
-        public void TestGetResourceAuthorizationSettings_ClientIdMissing_ThrowsAuthorizationSettingsException()
-        {
-            var issuer = "TestIssuer";
-            var audience = "TestAudience";
-
-            var json = @"
-            {
-                ""Authorization"": {
-                    ""Issuer"": """ + issuer + @""",
-                    ""Audience"": """ + audience + @"""
-                }
-            }";
-
-            var configurationRoot = new ConfigurationBuilder()
-                .AddJsonStream(new MemoryStream(Encoding.ASCII.GetBytes(json)))
-                .Build();
-
-            var exception = Assert.ThrowsException<AuthorizationSettingsException>(() => configurationRoot.GetAuthorizationSettings());
-            Assert.AreEqual("Failed to setup authorization: Property 'ClientId' is not configured", exception.Message);
-        }
-
-        [TestMethod]
         public void TestGetResourceAuthorizationSettings_AudienceMissing_ThrowsAuthorizationSettingsException()
         {
             var issuer = "TestIssuer";
-            var clientId = "TestClientId";
 
             var json = @"
             {
                 ""Authorization"": {
-                    ""Issuer"": """ + issuer + @""",
-                    ""ClientId"": """ + clientId + @""",
+                    ""Issuer"": """ + issuer + @"""
                 }
             }";
 
