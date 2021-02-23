@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using Audis.OpenID.Authentication.Configuration;
 using Audis.OpenID.Authentication.Domain;
 using Audis.OpenID.Authentication.Exceptions;
@@ -66,20 +67,20 @@ namespace Audis.OpenID.Authentication
 
         public async Task<string> GetScopesForTenantAsync(TenantId tenantId, CancellationToken cancellationToken = default)
         {
-            var scopeApiUrl = this.authenticationSettings.ScopeApiPath
+            var requestUrl = this.authenticationSettings.ScopeApiPath
                 .Replace(" ", string.Empty)
-                .Replace("{{tenantId}}", tenantId.Value);
+                .Replace("{{tenantId}}", HttpUtility.UrlEncode(tenantId.Value))
+                .Replace("{{clientId}}", HttpUtility.UrlEncode(this.authenticationSettings.ClientId));
             
             using var httpClient = this.httpClientFactory.CreateClient();
-            var response = await httpClient.GetAsync(scopeApiUrl, cancellationToken);
-
+            
+            var response = await httpClient.GetAsync(requestUrl, cancellationToken);
             if (!response.IsSuccessStatusCode)
             {
-                throw new AuthenticationException($"Could not fetch scope for tenant \"{tenantId.Value}\" at URL: {scopeApiUrl}");
+                throw new AuthenticationException($"Could not fetch scope for tenant \"{tenantId.Value}\" at URL: {requestUrl}");
             }
 
             var scopes = await response.Content.ReadFromJsonAsync<string[]>(cancellationToken: cancellationToken);
-
             if (scopes == null)
             {
                 return string.Empty;

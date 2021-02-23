@@ -88,12 +88,13 @@ namespace Audis.OpenID.Authentication.Tests
         {
             var tenantId = new TenantId("TestTenant");
             var issuer = "http://test.openiddict.com";
-            var scopeApiPath = "http://somewhere.else.com/scope/{{tenantId}}";
+            var clientId = "TestClientId";
+            var scopeApiPath = "http://somewhere.else.com/scope/{{tenantId}}?clientId={{clientId}}";
 
-            var mockConfiguration = GetMockConfiguration(issuer: issuer, scopeApiPath: scopeApiPath);
+            var mockConfiguration = GetMockConfiguration(issuer: issuer, clientId: clientId, scopeApiPath: scopeApiPath);
             var mockHttpClientFactory = GetMockHttpClientFactory((mockHttp) =>
             {
-                mockHttp.Expect($"http://somewhere.else.com/scope/{tenantId.Value}")
+                mockHttp.Expect($"http://somewhere.else.com/scope/{tenantId.Value}?clientId={clientId}")
                     .Respond("application/json", @"[ ""scope1"", ""scope2"" ]");
             });
 
@@ -117,12 +118,13 @@ namespace Audis.OpenID.Authentication.Tests
         {
             var tenantId = new TenantId("TestTenant");
             var issuer = "http://test.openiddict.com";
-            var scopeApiPath = "http://somewhere.else.com/scope/{{tenantId}}";
+            var clientId = "TestClientId";
+            var scopeApiPath = "http://somewhere.else.com/scope/{{tenantId}}?clientId={{clientId}}";
 
-            var mockConfiguration = GetMockConfiguration(issuer: issuer, scopeApiPath: scopeApiPath);
+            var mockConfiguration = GetMockConfiguration(issuer: issuer, clientId: clientId, scopeApiPath: scopeApiPath);
             var mockHttpClientFactory = GetMockHttpClientFactory((mockHttp) =>
             {
-                mockHttp.Expect($"http://somewhere.else.com/scope/{tenantId.Value}")
+                mockHttp.Expect($"http://somewhere.else.com/scope/{tenantId.Value}?clientId={clientId}")
                     .Respond(System.Net.HttpStatusCode.NotFound, "application/json", string.Empty);
             });
 
@@ -138,7 +140,7 @@ namespace Audis.OpenID.Authentication.Tests
             var authorizationHandler = new AuthenticationHandler(mockConfiguration, mockHttpClientFactory, mockHttpContextAccessor);
 
             var exception = await Assert.ThrowsExceptionAsync<AuthenticationException>(() => authorizationHandler.GetScopesForTenantAsync(tenantId));
-            Assert.AreEqual("Could not fetch scope for tenant \"TestTenant\" at URL: http://somewhere.else.com/scope/TestTenant", exception.Message);
+            Assert.AreEqual("Could not fetch scope for tenant \"TestTenant\" at URL: http://somewhere.else.com/scope/TestTenant?clientId=TestClientId", exception.Message);
         }
 
         [TestMethod]
