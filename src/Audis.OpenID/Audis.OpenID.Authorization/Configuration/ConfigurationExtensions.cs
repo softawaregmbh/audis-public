@@ -21,12 +21,12 @@ namespace Audis.OpenID.Authorization.Configuration
                 ThrowConfigurationMissingException();
             }
 
-            if (settings.Issuer == null)
+            if (settings?.Issuer == null)
             {
                 ThrowPropertyMissingException(nameof(settings.Issuer));
             }
 
-            if (settings.Audience == null)
+            if (settings?.Audience == null)
             {
                 ThrowPropertyMissingException(nameof(settings.Audience));
             }

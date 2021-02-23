@@ -21,22 +21,22 @@ namespace Audis.OpenID.Authentication.Configuration
                 ThrowConfigurationMissingException();
             }
 
-            if (settings.Issuer == null)
+            if (settings?.Issuer == null)
             {
                 ThrowPropertyMissingException(nameof(settings.Issuer));
             }
 
-            if (settings.ClientId == null)
+            if (settings?.ClientId == null)
             {
                 ThrowPropertyMissingException(nameof(settings.ClientId));
             }
 
-            if (settings.ClientSecret == null)
+            if (settings?.ClientSecret == null)
             {
                 ThrowPropertyMissingException(nameof(settings.ClientSecret));
             }
 
-            if (settings.ScopeApiPath == null)
+            if (settings?.ScopeApiPath == null)
             {
                 ThrowPropertyMissingException(nameof(settings.ScopeApiPath));
             }

@@ -61,7 +61,7 @@ namespace Audis.OpenID.Authentication
 
             var content = await response.Content.ReadFromJsonAsync<OpenIddictResponse>(cancellationToken: cancellationToken);
 
-            return content.AccessToken ?? StringValues.Empty;
+            return content?.AccessToken ?? StringValues.Empty;
         }
 
         public async Task<string> GetScopesForTenantAsync(TenantId tenantId, CancellationToken cancellationToken = default)
@@ -80,6 +80,11 @@ namespace Audis.OpenID.Authentication
 
             var scopes = await response.Content.ReadFromJsonAsync<string[]>(cancellationToken: cancellationToken);
 
+            if (scopes == null)
+            {
+                return string.Empty;
+            }
+
             return string.Join(" ", scopes);
         }
 
@@ -89,14 +94,18 @@ namespace Audis.OpenID.Authentication
             var discoveryDocumentRequestUrl = $"{issuer}/.well-known/openid-configuration";
 
             using var httpClient = this.httpClientFactory.CreateClient();
+            
             var response = await httpClient.GetAsync(discoveryDocumentRequestUrl, cancellationToken);
-
             if (!response.IsSuccessStatusCode)
             {
                 throw new AuthenticationException($"Could not fetch discovery document at URL: {discoveryDocumentRequestUrl}");
             }
 
             var discoveryDocument = await response.Content.ReadFromJsonAsync<OpenIddictDiscoveryDocument>(cancellationToken: cancellationToken);
+            if (discoveryDocument == null)
+            {
+                throw new AuthenticationException($"Could not fetch discovery document at URL: {discoveryDocumentRequestUrl}");
+            }
 
             return discoveryDocument;
         }

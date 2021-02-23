@@ -2,13 +2,13 @@
 {
     public class AuthenticationSettings
     {
-        public string Issuer { get; set; }
+        public string Issuer { get; set; } = default!;
 
-        public string ClientId { get; set; }
+        public string ClientId { get; set; } = default!;
 
-        public string ClientSecret { get; set; }
+        public string ClientSecret { get; set; } = default!;
 
-        public string ScopeApiPath { get; set; }
+        public string ScopeApiPath { get; set; } = default!;
 
         public void Deconstruct(out string clientId, out string clientSecret)
         {

@@ -51,7 +51,6 @@ namespace Audis.OpenID.Authorization.Configuration.Tests
         [TestMethod]
         public void TestGetResourceAuthorizationSettings_IssuerMissing_ThrowsAuthorizationSettingsException()
         {
-            var clientId = "TestClientId";
             var audience = "TestAudience";
 
             var json = @"
