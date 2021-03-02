@@ -7,7 +7,6 @@ using System.Web;
 using Audis.OpenID.Authentication.Configuration;
 using Audis.OpenID.Authentication.Domain;
 using Audis.OpenID.Authentication.Exceptions;
-using Audis.Primitives;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
@@ -28,7 +27,7 @@ namespace Audis.OpenID.Authentication
             this.httpContextAccessor = httpContextAccessor ?? throw new System.ArgumentNullException(nameof(httpContextAccessor));
         }
 
-        public async Task<StringValues> GetOrCreateTokenAsync(TenantId tenantId, CancellationToken cancellationToken = default)
+        public async Task<StringValues> GetOrCreateTokenAsync(string tenantId, CancellationToken cancellationToken = default)
         {
             if (!this.httpContextAccessor.HttpContext.Request.TryGetAuthorizationCodeToken(out var accessToken))
             {
@@ -38,7 +37,7 @@ namespace Audis.OpenID.Authentication
             return accessToken;
         }
 
-        public async Task<StringValues> RequestClientCredentialsTokenAsync(TenantId tenantId, CancellationToken cancellationToken = default)
+        public async Task<StringValues> RequestClientCredentialsTokenAsync(string tenantId, CancellationToken cancellationToken = default)
         {
             var (clientId, clientSecret) = this.authenticationSettings;
             var discoveryDocument = await this.GetDiscoveryDocumentAsync(cancellationToken);
@@ -65,11 +64,11 @@ namespace Audis.OpenID.Authentication
             return content?.AccessToken ?? StringValues.Empty;
         }
 
-        public async Task<string> GetScopesForTenantAsync(TenantId tenantId, CancellationToken cancellationToken = default)
+        public async Task<string> GetScopesForTenantAsync(string tenantId, CancellationToken cancellationToken = default)
         {
             var requestUrl = this.authenticationSettings.ScopeApiPath
                 .Replace(" ", string.Empty)
-                .Replace("{{tenantId}}", HttpUtility.UrlEncode(tenantId.Value))
+                .Replace("{{tenantId}}", HttpUtility.UrlEncode(tenantId))
                 .Replace("{{clientId}}", HttpUtility.UrlEncode(this.authenticationSettings.ClientId));
             
             using var httpClient = this.httpClientFactory.CreateClient();
@@ -77,7 +76,7 @@ namespace Audis.OpenID.Authentication
             var response = await httpClient.GetAsync(requestUrl, cancellationToken);
             if (!response.IsSuccessStatusCode)
             {
-                throw new AuthenticationException($"Could not fetch scope for tenant \"{tenantId.Value}\" at URL: {requestUrl}");
+                throw new AuthenticationException($"Could not fetch scope for tenant \"{tenantId}\" at URL: {requestUrl}");
             }
 
             var scopes = await response.Content.ReadFromJsonAsync<string[]>(cancellationToken: cancellationToken);
