@@ -36,6 +36,12 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration) src/Audis.Location/Audis.Location.sln
   displayName: Build Audis.Location
 
+- script: dotnet build --configuration $(buildConfiguration) src/Audis.OpenID/Audis.OpenID.sln
+  displayName: Build Audis.OpenID
+
+- script: dotnet test --no-build --configuration $(buildConfiguration) --logger trx src/Audis.OpenID/Audis.OpenID.sln
+  displayName: Test Audis.OpenID
+
 - script: dotnet build --configuration $(buildConfiguration) src/Audis.Primitives/Audis.Primitives.sln
   displayName: Build Audis.Primitives
 
