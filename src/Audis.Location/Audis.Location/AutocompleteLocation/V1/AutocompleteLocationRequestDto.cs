@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Audis.Location.AutocompleteLocation.V1
+﻿namespace Audis.Location.AutocompleteLocation.V1
 {
     public class AutocompleteLocationRequestDto
     {
