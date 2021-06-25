@@ -2,7 +2,7 @@
 {
     public class PlaceAddressRequestDto
     {
-        public string PlaceId { get; set; }
+        public string PlaceId { get; set; } = default!;
         public string LocationProvider { get; set; } = default!;
     }
 }

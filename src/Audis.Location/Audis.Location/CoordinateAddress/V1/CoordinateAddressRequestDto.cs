@@ -2,8 +2,8 @@
 {
     public class CoordinateAddressRequestDto
     {
-        public double? Latitude { get; set; }
-        public double? Longitude { get; set; }
+        public double Latitude { get; set; } = default!;
+        public double Longitude { get; set; } = default!;
         public string LocationProvider { get; set; } = default!;
     }
 }
