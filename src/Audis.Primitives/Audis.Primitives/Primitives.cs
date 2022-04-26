@@ -143,4 +143,23 @@ namespace Audis.Primitives
             }
         }
     }
+
+    [TypeConverter(typeof(PrimitiveStringTypeConverter<TagIdentifier>))]
+    public record TagIdentifier
+       : CaseInsensitiveStringPrimitive
+    {
+        public TagIdentifier(string value)
+            : base(value)
+        {
+            if (value[0] == '~')
+            {
+                if (value.Length == 1)
+                {
+                    throw new ArgumentNullException("value must not be empty.");
+                }
+
+                this.Value = value.Substring(1);
+            }
+        }
+    }
 }
