@@ -185,5 +185,12 @@ namespace Audis.Primitives.Tests
             Assert.AreEqual(equals, value1.Equals(value2));
             Assert.AreEqual(equals, value1.GetHashCode() == value2.GetHashCode());
         }
+
+        [Test]
+        public void AssertToStringReturnsValue()
+        {
+            var name = new QuestionCatalogName("test");
+            Assert.AreEqual(name.Value, name.ToString());
+        }
     }
 }

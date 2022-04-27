@@ -7,7 +7,7 @@
     /// <typeparam name="TValue">The type of the wrapped value.</typeparam>
     public record Primitive<TValue>(TValue Value)
     {
-        public override string? ToString()
+        public sealed override string? ToString()
         {
             return this.Value?.ToString();
         }

@@ -13,9 +13,9 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/softawaregmbh/audis-public</RepositoryUrl>
     <PackageTags>Audis</PackageTags>
-    <AssemblyVersion>6.0.0.0</AssemblyVersion>
-    <FileVersion>6.0.0.0</FileVersion>
-    <Version>6.0.0</Version>
+    <AssemblyVersion>6.0.1.0</AssemblyVersion>
+    <FileVersion>6.0.1.0</FileVersion>
+    <Version>6.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -33,7 +33,7 @@
 
   <ItemGroup>
     <PackageReference Include="AdaptiveCards.Templating" Version="1.0.0" />
-    <PackageReference Include="Audis.Analyzer.Contract" Version="2.0.0" />
+    <PackageReference Include="Audis.Analyzer.Contract" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
