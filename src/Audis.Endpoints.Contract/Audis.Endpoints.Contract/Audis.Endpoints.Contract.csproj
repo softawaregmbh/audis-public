@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>softaware gmbh</Authors>
     <Company>softaware gmbh</Company>
@@ -16,22 +16,13 @@
     <FileVersion>1.0.0.0</FileVersion>
     <LangVersion>Latest</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>1.0.0-beta15</Version>
+    <Version>1.0.0-beta16</Version>
   </PropertyGroup>
 
   <PropertyGroup>
     <CodeAnalysisRuleSet>$(SolutionDir)..\StyleCop\audis.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Development\audis-public\src\Audis.Endpoints.Contract\Audis.Endpoints.Contract.xml</DocumentationFile>
-    <NoWarn>1701;1702;1591</NoWarn>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\Development\audis-public\src\Audis.Endpoints.Contract\Audis.Endpoints.Contract.xml</DocumentationFile>
-    <NoWarn>1701;1702;1591</NoWarn>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -43,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Audis.Primitives" Version="1.0.1" />
+    <PackageReference Include="Audis.Primitives" Version="2.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>

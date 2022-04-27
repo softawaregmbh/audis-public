@@ -25,6 +25,18 @@
             </summary>
             <typeparam name="TValue">The type of the wrapped value.</typeparam>
         </member>
+        <member name="T:Audis.Primitives.KnowledgeValue">
+            <summary>
+            When you want to store a <see cref="T:System.DateTime"/> instance as <see cref="T:Audis.Primitives.KnowledgeValue"/>,
+            make sure it is serialized conforming to ISO_8601 (DateTime.ToString("o")).
+            </summary>
+        </member>
+        <member name="M:Audis.Primitives.KnowledgeValue.#ctor(System.String)">
+            <summary>
+            When you want to store a <see cref="T:System.DateTime"/> instance as <see cref="T:Audis.Primitives.KnowledgeValue"/>,
+            make sure it is serialized conforming to ISO_8601 (DateTime.ToString("o")).
+            </summary>
+        </member>
         <member name="T:Audis.Primitives.QuestionId">
             <summary>
             Identifies a question with <see cref="P:Audis.Primitives.QuestionId.QuestionCatalogName"/> and <see cref="P:Audis.Primitives.QuestionId.LineNumber"/> ("questionCatalogName:LineNumber").

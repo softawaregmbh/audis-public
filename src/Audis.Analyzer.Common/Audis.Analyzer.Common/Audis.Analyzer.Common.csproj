@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;</TargetFrameworks>
+    <TargetFrameworks>net6.0;</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Authors>softaware gmbh</Authors>
     <Company>softaware gmbh</Company>
     <Product>Audis</Product>
@@ -12,24 +13,14 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/softawaregmbh/audis-public</RepositoryUrl>
     <PackageTags>Audis</PackageTags>
-    <AssemblyVersion>5.2.1.0</AssemblyVersion>
-    <FileVersion>5.2.1.0</FileVersion>
-    <Version>5.2.1</Version>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <FileVersion>6.0.0.0</FileVersion>
+    <Version>6.0.0</Version>
   </PropertyGroup>
 
   <PropertyGroup>
     <CodeAnalysisRuleSet>$(SolutionDir)..\StyleCop\audis.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
-    <DocumentationFile>Audis.Analyzer.Common.xml</DocumentationFile>
-    <NoWarn>1701;1702;1591</NoWarn>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
-    <DocumentationFile>Audis.Analyzer.Common.xml</DocumentationFile>
-    <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -42,10 +33,10 @@
 
   <ItemGroup>
     <PackageReference Include="AdaptiveCards.Templating" Version="1.0.0" />
-    <PackageReference Include="Audis.Analyzer.Contract" Version="1.0.1" />
+    <PackageReference Include="Audis.Analyzer.Contract" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.2" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

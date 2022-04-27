@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Audis.Analyzer.Contract.V1;
 using Audis.Primitives;
 
@@ -12,12 +10,12 @@ namespace Audis.Analyzer.Contract.Extensions.V1
         {
             return new SuggestedKnowledgeDto()
             {
-                KnowledgeIdentifier = KnowledgeIdentifier.From(knowledgeIdentifier),
+                KnowledgeIdentifier = new KnowledgeIdentifier(knowledgeIdentifier),
                 Values = new HashSet<KnowledgeValueDto>()
                 {
                     new KnowledgeValueDto()
                     {
-                        KnowledgeValue = KnowledgeValue.From(value)
+                        KnowledgeValue = new KnowledgeValue(value)
                     }
                 }
             };

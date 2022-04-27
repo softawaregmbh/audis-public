@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>softaware gmbh</Authors>
     <Company>softaware gmbh</Company>
@@ -16,7 +16,7 @@
     <FileVersion>1.0.0.0</FileVersion>
     <LangVersion>Latest</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>1.0.0-beta3</Version>
+    <Version>1.0.0-beta4</Version>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -34,7 +34,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Audis.Primitives" Version="1.0.1" />
+    <PackageReference Include="Audis.Primitives" Version="2.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
