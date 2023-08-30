@@ -61,9 +61,9 @@
             Unstructured data object which can be used for information exchange between multiple process steps for a specific analyzer.
             </summary>
         </member>
-        <member name="P:Audis.Analyzer.Common.V1.AnalyzerResultDto.SuggestedKnowledges">
+        <member name="P:Audis.Analyzer.Common.V1.AnalyzerResultDto.SuggestedKnowledge">
             <summary>
-            Optional knowledges, which can be suggested by the analyzer.
+            Optional knowledge, which can be suggested by the analyzer.
             Each suggested knowledge has a <see cref="P:Audis.Analyzer.Contract.V1.SuggestedKnowledgeDto.Probability"/>.
             </summary>
         </member>

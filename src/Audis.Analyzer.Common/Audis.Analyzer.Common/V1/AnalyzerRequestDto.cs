@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Audis.Analyzer.Contract.V1;
 using Audis.Primitives;
 using Newtonsoft.Json.Linq;
