@@ -15,6 +15,12 @@ namespace Audis.Analyzer.Common.V1
     {
         Task<ActionResult<IEnumerable<AnalyzerResultDto>>> GetAnalyzerResult(
             [FromRoute] TenantId tenantId,
+            [FromQuery(Name = "identifiersToListen")] string[] identifiersToListen,
+            [FromBody] AnalyzerRequestDto analyzerRequestDto,
+            CancellationToken cancellationToken);
+
+        Task<ActionResult<IEnumerable<AnalyzerResultDto>>> GetAnalyzerResult(
+            [FromRoute] TenantId tenantId,
             [FromBody] AnalyzerRequestDto analyzerRequestDto,
             CancellationToken cancellationToken);
     }
