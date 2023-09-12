@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Audis.Analyzer.Contract.V1;
 using Newtonsoft.Json.Linq;
 
@@ -13,7 +12,7 @@ namespace Audis.Analyzer.Common.V1
         public DateTime Timestamp { get; set; }
 
         /// <summary>
-        /// Optional knowledges, which can be suggested by the analyzer.
+        /// Optional knowledge, which can be suggested by the analyzer.
         /// Each suggested knowledge has a <see cref="SuggestedKnowledgeDto.Probability"/>.
         /// </summary>
         public IEnumerable<SuggestedKnowledgeDto> SuggestedKnowledges { get; set; }
