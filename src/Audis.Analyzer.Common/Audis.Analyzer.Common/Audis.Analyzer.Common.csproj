@@ -13,9 +13,9 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/softawaregmbh/audis-public</RepositoryUrl>
     <PackageTags>Audis</PackageTags>
-    <AssemblyVersion>6.0.1.0</AssemblyVersion>
-    <FileVersion>6.0.1.0</FileVersion>
-    <Version>6.0.1</Version>
+    <AssemblyVersion>6.1.1.0</AssemblyVersion>
+    <FileVersion>6.1.1.0</FileVersion>
+    <Version>6.1.1</Version>
   </PropertyGroup>
 
   <PropertyGroup>
