@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Audis.Primitives;
+﻿using Audis.Primitives;
 
 namespace Audis.Endpoints.Contract.InterrogationUpdated.V2
 {

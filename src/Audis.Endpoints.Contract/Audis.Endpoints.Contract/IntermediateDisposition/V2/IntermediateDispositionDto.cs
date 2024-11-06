@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using Audis.Endpoints.Contract.InterrogationUpdated.V2;
 using Audis.Primitives;
 
-namespace Audis.Endpoints.Contract.IntermediateDisposition.V1
+namespace Audis.Endpoints.Contract.IntermediateDisposition.V2
 {
     public class IntermediateDispositionDto
     {
@@ -9,24 +11,26 @@ namespace Audis.Endpoints.Contract.IntermediateDisposition.V1
 
         public int CurrentProcessStepId { get; set; }
 
-        public string IntermediateDispositionName { get; set; } = default!;
+        required public string IntermediateDispositionName { get; set; }
 
         public string? IntermediateDispositionExternalIdentifier { get; set; }
 
         public DateTime Timestamp { get; set; }
 
-        public TenantId TenantId { get; set; } = default!;
+        required public TenantId TenantId { get; set; }
 
-        public RevisionId RevisionId { get; set; } = default!;
+        required public RevisionId RevisionId { get; set; }
 
         public string? ExternalId { get; set; }
 
         public string? UserId { get; set; }
 
-        public string KnowledgeSummary { get; set; } = default!;
+        required public string KnowledgeSummary { get; set; }
 
         public string? CurrentScenarioIdentifier { get; set; }
 
         public string? CurrentScenarioName { get; set; }
+
+        public IReadOnlyCollection<KnowledgeDto> Knowledge { get; set; } = new List<KnowledgeDto>();
     }
 }

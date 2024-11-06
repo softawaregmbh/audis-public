@@ -36,11 +36,11 @@ namespace Audis.Analyzer.Common.Utils
             }
 
             var baseCardString = @"
-{
-  ""type"": ""AdaptiveCard"",
-  ""$schema"": ""http://adaptivecards.io/schemas/adaptive-card.json"",
-  ""version"": ""1.2""
-}";
+            {
+                ""type"": ""AdaptiveCard"",
+                ""$schema"": ""http://adaptivecards.io/schemas/adaptive-card.json"",
+                ""version"": ""1.2""
+            }";
 
             var adaptiveCard = JObject.Parse(baseCardString);
             adaptiveCard["body"] = body;
