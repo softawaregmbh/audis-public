@@ -15,7 +15,7 @@ namespace Audis.Analyzer.Common.V1
         /// Optional knowledge, which can be suggested by the analyzer.
         /// Each suggested knowledge has a <see cref="SuggestedKnowledgeDto.Probability"/>.
         /// </summary>
-        public IEnumerable<SuggestedKnowledgeDto> SuggestedKnowledges { get; set; }
+        public IEnumerable<SuggestedKnowledgeDto> SuggestedKnowledge { get; set; }
 
         /// <summary>
         /// Unstructured data object which can be used for information exchange between multiple process steps for a specific analyzer.
