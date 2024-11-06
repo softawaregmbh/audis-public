@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using Audis.Endpoints.Contract.InterrogationUpdated.V2;
 using Audis.Primitives;
 
-namespace Audis.Endpoints.Contract.IntermediateDisposition.V1
+namespace Audis.Endpoints.Contract.IntermediateDisposition.V2
 {
     public class IntermediateDispositionDto
     {
@@ -28,5 +30,7 @@ namespace Audis.Endpoints.Contract.IntermediateDisposition.V1
         public string? CurrentScenarioIdentifier { get; set; }
 
         public string? CurrentScenarioName { get; set; }
+
+        public IReadOnlyCollection<KnowledgeDto> Knowledge { get; set; } = new List<KnowledgeDto>();
     }
 }
