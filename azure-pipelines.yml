@@ -19,7 +19,7 @@ steps:
   displayName: 'Use .NET'
   inputs:
     packageType: sdk
-    version: '6.x'
+    version: '8.x'
 
 - script: dotnet build --configuration $(buildConfiguration) src/Audis.Analyzer.Common/Audis.Analyzer.Common.sln
   displayName: Build Audis.Analyzer.Common
