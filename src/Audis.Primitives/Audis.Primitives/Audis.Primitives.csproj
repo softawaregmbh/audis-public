@@ -1,42 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	<GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Authors>softaware gmbh</Authors>
-    <Company>softaware gmbh</Company>
-    <Product>Audis</Product>
-    <Description>An Audis library which contains common primitive data types.</Description>
-    <PackageIcon>package-icon.png</PackageIcon>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/softawaregmbh/audis-public</RepositoryUrl>
-    <PackageTags>Audis</PackageTags>
-    <AssemblyVersion>4.1.0.0</AssemblyVersion>
-    <FileVersion>4.1.0.0</FileVersion>
-    <Version>4.1.0</Version>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <Authors>softaware gmbh</Authors>
+        <Company>softaware gmbh</Company>
+        <Product>Audis</Product>
+        <Description>An Audis library which contains common primitive data types.</Description>
+        <PackageIcon>package-icon.png</PackageIcon>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/softawaregmbh/audis-public</RepositoryUrl>
+        <PackageTags>Audis</PackageTags>
+        <AssemblyVersion>5.0.0.0</AssemblyVersion>
+        <FileVersion>5.0.0.0</FileVersion>
+        <Version>5.0.0</Version>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
 
-  <PropertyGroup>
-    <CodeAnalysisRuleSet>$(SolutionDir)..\StyleCop\audis.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
-  </PropertyGroup>
+    <PropertyGroup>
+        <CodeAnalysisRuleSet>$(SolutionDir)..\StyleCop\audis.ruleset</CodeAnalysisRuleSet>
+        <RunCodeAnalysis>false</RunCodeAnalysis>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <AdditionalFiles Include="..\..\StyleCop\stylecop.json" Link="stylecop.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="..\..\Assets\package-icon.png" Link="package-icon.png" Pack="true" PackagePath="/" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.261">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+    <ItemGroup>
+        <Content Include="..\..\Assets\package-icon.png" Link="package-icon.png" Pack="true" PackagePath="/"/>
+    </ItemGroup>
 
 </Project>
