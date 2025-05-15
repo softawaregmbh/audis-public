@@ -33,6 +33,7 @@ namespace Audis.Primitives
         public static readonly Operator OrOperator = new Operator("||");
         public static readonly Operator EqualsOperator = new Operator("=");
         public static readonly Operator UnequalsOperator = new Operator("!=");
+        public static readonly Operator StrictUnequalsOperator = new Operator("!==");
     }
 
     [TypeConverter(typeof(PrimitiveStringTypeConverter<KnowledgeIdentifier>))]
