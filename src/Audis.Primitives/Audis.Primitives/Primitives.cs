@@ -34,6 +34,7 @@ namespace Audis.Primitives
         public static readonly Operator EqualsOperator = new Operator("=");
         public static readonly Operator UnequalsOperator = new Operator("!=");
         public static readonly Operator StrictUnequalsOperator = new Operator("!==");
+        public static readonly Operator ImplicationOperator = new Operator("=>");
     }
 
     [TypeConverter(typeof(PrimitiveStringTypeConverter<KnowledgeIdentifier>))]
@@ -99,7 +100,7 @@ namespace Audis.Primitives
         }
 
         public AnswerId(QuestionId questionId, int lineNumber)
-            : this($"{questionId.Value}/{lineNumber}") 
+            : this($"{questionId.Value}/{lineNumber}")
         {
         }
 
