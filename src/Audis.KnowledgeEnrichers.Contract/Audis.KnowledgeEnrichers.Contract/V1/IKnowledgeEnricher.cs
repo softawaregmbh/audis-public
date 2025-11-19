@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
 
 namespace Audis.KnowledgeEnrichers.Contract.V1
 {
@@ -19,6 +19,6 @@ namespace Audis.KnowledgeEnrichers.Contract.V1
         Task<IReadOnlyCollection<KnowledgeDto>> EnrichKnowledgeAsync(
             IReadOnlyCollection<KnowledgeDto> knowledge,
             bool isStartOfInterrogation,
-            JObject? configuration = null);
+            JsonElement? configuration = null);
     }
 }
