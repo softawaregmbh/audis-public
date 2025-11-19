@@ -2,7 +2,6 @@
 using System.Text.Json;
 using Audis.Primitives;
 
-
 namespace Audis.Endpoints.Contract.EventTriggered.V1
 {
     public class EventTriggeredDto

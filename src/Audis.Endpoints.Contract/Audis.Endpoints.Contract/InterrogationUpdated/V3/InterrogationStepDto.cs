@@ -4,7 +4,6 @@ using System.Text.Json;
 using Audis.Endpoints.Contract.InterrogationUpdated.V2;
 using Audis.Primitives;
 
-
 namespace Audis.Endpoints.Contract.InterrogationUpdated.V3
 {
     public class InterrogationStepDto

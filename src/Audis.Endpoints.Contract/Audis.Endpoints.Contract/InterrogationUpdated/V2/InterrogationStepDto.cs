@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text.Json;
 using Audis.Primitives;
 
-
 namespace Audis.Endpoints.Contract.InterrogationUpdated.V2
 {
     public class InterrogationStepDto
