@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using AdaptiveCards.Templating;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Audis.Analyzer.Common.Utils
 {
@@ -21,7 +21,7 @@ namespace Audis.Analyzer.Common.Utils
         /// </returns>
         public static async Task<string> ConstructAsync(IEnumerable<AbstractedAdaptiveCard> cardTemplates)
         {
-            var body = new JArray();
+            var body = new JsonArray();
             foreach (var abstractedCard in cardTemplates)
             {
                 string cardString;
@@ -32,19 +32,25 @@ namespace Audis.Analyzer.Common.Utils
                         .Expand(abstractedCard.EvaluationContext);
                 }
 
-                body.Merge(JArray.Parse(cardString));
+                var cardArray = JsonNode.Parse(cardString) as JsonArray;
+                if (cardArray != null)
+                {
+                    foreach (var item in cardArray)
+                    {
+                        body.Add(item?.DeepClone());
+                    }
+                }
             }
 
-            var baseCardString = @"
+            var adaptiveCard = new JsonObject
             {
-                ""type"": ""AdaptiveCard"",
-                ""$schema"": ""http://adaptivecards.io/schemas/adaptive-card.json"",
-                ""version"": ""1.2""
-            }";
+                ["type"] = "AdaptiveCard",
+                ["$schema"] = "http://adaptivecards.io/schemas/adaptive-card.json",
+                ["version"] = "1.2",
+                ["body"] = body
+            };
 
-            var adaptiveCard = JObject.Parse(baseCardString);
-            adaptiveCard["body"] = body;
-            return JsonConvert.SerializeObject(adaptiveCard);
+            return JsonSerializer.Serialize(adaptiveCard);
         }
     }
 }

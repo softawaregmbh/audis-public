@@ -9,7 +9,7 @@
             Takes some knowledge and returns inherited knowledge.
             </summary>
         </member>
-        <member name="M:Audis.KnowledgeEnrichers.Contract.V1.IKnowledgeEnricher.EnrichKnowledgeAsync(System.Collections.Generic.IReadOnlyCollection{Audis.KnowledgeEnrichers.Contract.V1.KnowledgeDto},System.Boolean,Newtonsoft.Json.Linq.JObject)">
+        <member name="M:Audis.KnowledgeEnrichers.Contract.V1.IKnowledgeEnricher.EnrichKnowledgeAsync(System.Collections.Generic.IReadOnlyCollection{Audis.KnowledgeEnrichers.Contract.V1.KnowledgeDto},System.Boolean)">
             <summary>
             Takes some knowledge and returns only the inherited knowlege if the knowledge enricher has anything to add for the given knowledge.
             </summary>

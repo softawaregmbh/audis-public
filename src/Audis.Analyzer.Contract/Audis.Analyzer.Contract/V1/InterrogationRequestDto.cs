@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+
 
 namespace Audis.Analyzer.Contract.V1
 {
@@ -15,6 +16,6 @@ namespace Audis.Analyzer.Contract.V1
         /// Free data object where implementation-specific data/identification/... can be stored.
         /// Adapters to concrete implementations may use this field for their specific data structure.
         /// </summary>
-        public JObject Data { get; set; }
+        public JsonElement? Data { get; set; }
     }
 }

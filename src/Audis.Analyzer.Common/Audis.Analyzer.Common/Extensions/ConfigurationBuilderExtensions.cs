@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using System.Text.Json;
+using Json.Path;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json.Linq;
+
 
 namespace Audis.Analyzer.Common.Extensions
 {
@@ -49,8 +51,14 @@ namespace Audis.Analyzer.Common.Extensions
                 return builder;
             }
 
-            var content = JObject.Parse(File.ReadAllText(filePath));
-            var section = content.SelectToken(jsonPath)?.ToString() ?? "{}";
+            using var document = JsonDocument.Parse(File.ReadAllText(filePath));
+            var path = JsonPath.Parse(jsonPath);
+            var result = path.Evaluate(document.RootElement);
+            
+            var section = result.Matches?.Count > 0 
+                ? JsonSerializer.Serialize(result.Matches[0].Value) 
+                : "{}";
+            
             var stream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(section));
             return builder.AddJsonStream(stream);
         }
