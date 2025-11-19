@@ -2,23 +2,22 @@
 using Audis.Analyzer.Contract.V1;
 using Audis.Primitives;
 
-namespace Audis.Analyzer.Contract.Extensions.V1
+namespace Audis.Analyzer.Contract.Extensions.V1;
+
+public static class KnowledgeDtoExtensions
 {
-    public static class KnowledgeDtoExtensions
+    public static SuggestedKnowledgeDto From(string knowledgeIdentifier, string value)
     {
-        public static SuggestedKnowledgeDto From(string knowledgeIdentifier, string value)
+        return new SuggestedKnowledgeDto
         {
-            return new SuggestedKnowledgeDto()
+            KnowledgeIdentifier = new KnowledgeIdentifier(knowledgeIdentifier),
+            Values = new HashSet<KnowledgeValueDto>
             {
-                KnowledgeIdentifier = new KnowledgeIdentifier(knowledgeIdentifier),
-                Values = new HashSet<KnowledgeValueDto>()
+                new ()
                 {
-                    new KnowledgeValueDto()
-                    {
-                        KnowledgeValue = new KnowledgeValue(value)
-                    }
+                    KnowledgeValue = new KnowledgeValue(value)
                 }
-            };
-        }
+            }
+        };
     }
 }

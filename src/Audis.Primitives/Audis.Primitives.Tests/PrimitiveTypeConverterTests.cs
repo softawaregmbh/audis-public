@@ -18,8 +18,8 @@ public class PrimitiveTypeConverterTests
         var knowledgeValue = new KnowledgeValue("asdf");
         var dto = new StringDto { Primitive = knowledgeValue };
 
-        var json = JsonSerializer.Serialize(dto, this.options);
-        var newDto = JsonSerializer.Deserialize<StringDto>(json, this.options);
+        var json = JsonSerializer.Serialize(dto, options);
+        var newDto = JsonSerializer.Deserialize<StringDto>(json, options);
 
         Assert.That(json, Is.EqualTo("{\"Primitive\":\"asdf\"}"));
         Assert.That(newDto.Primitive, Is.EqualTo(dto.Primitive));
@@ -31,9 +31,9 @@ public class PrimitiveTypeConverterTests
     {
         var date = new DateTime(2020, 11, 11, 11, 11, 11);
         var knowledgeValue = new KnowledgeValue(date.ToString("o"));
-        var json = JsonSerializer.Serialize(knowledgeValue, this.options);
+        var json = JsonSerializer.Serialize(knowledgeValue, options);
 
-        var deserializedKnowledegeValue = JsonSerializer.Deserialize<KnowledgeValue>(json, this.options);
+        var deserializedKnowledegeValue = JsonSerializer.Deserialize<KnowledgeValue>(json, options);
 
         Assert.That(json, Is.EqualTo("\"2020-11-11T11:11:11.0000000\""));
         Assert.That(deserializedKnowledegeValue, Is.EqualTo(knowledgeValue));

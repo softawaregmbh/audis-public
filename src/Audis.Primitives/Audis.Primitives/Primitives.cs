@@ -10,8 +10,8 @@ public record TenantId(string Value)
     : CaseInsensitiveStringPrimitive(Value);
 
 /// <summary>
-/// When you want to store a <see cref="DateTime"/> instance as <see cref="KnowledgeValue"/>,
-/// make sure it is serialized conforming to ISO_8601 (DateTime.ToString("o")).
+///     When you want to store a <see cref="DateTime" /> instance as <see cref="KnowledgeValue" />,
+///     make sure it is serialized conforming to ISO_8601 (DateTime.ToString("o")).
 /// </summary>
 [TypeConverter(typeof(PrimitiveStringTypeConverter<KnowledgeValue>))]
 public record KnowledgeValue(string Value)
@@ -34,7 +34,7 @@ public record Operator(string Value)
     public static readonly Operator EqualsOperator = new("=");
     public static readonly Operator UnequalsOperator = new("!=");
     public static readonly Operator StrictUnequalsOperator = new("!==");
-    public static readonly Operator ImplicationOperator = new Operator("=>");
+    public static readonly Operator ImplicationOperator = new("=>");
 }
 
 [TypeConverter(typeof(PrimitiveStringTypeConverter<KnowledgeIdentifier>))]
@@ -43,16 +43,15 @@ public record KnowledgeIdentifier : CaseInsensitiveStringPrimitive
     public KnowledgeIdentifier(string value)
         : base(value)
     {
-        if (!this.Value.StartsWith("#"))
-        {
+        if (!Value.StartsWith("#"))
             throw new ArgumentException(
-                $"The {nameof(KnowledgeIdentifier)} has an invalid format: \"{this.Value}\", Expected starting with #.");
-        }
+                $"The {nameof(KnowledgeIdentifier)} has an invalid format: \"{Value}\", Expected starting with #.");
     }
 }
 
 /// <summary>
-/// Identifies a question with <see cref="QuestionCatalogName"/> and <see cref="LineNumber"/> ("questionCatalogName:LineNumber").
+///     Identifies a question with <see cref="QuestionCatalogName" /> and <see cref="LineNumber" />
+///     ("questionCatalogName:LineNumber").
 /// </summary>
 [TypeConverter(typeof(PrimitiveStringTypeConverter<QuestionId>))]
 public record QuestionId
@@ -61,15 +60,13 @@ public record QuestionId
     public QuestionId(string value)
         : base(value)
     {
-        if (!Regex.IsMatch(this.Value, @"[\wäüöß-]+:[1-9]\d*")) // configurationName:anyNonZeroDigit
-        {
+        if (!Regex.IsMatch(Value, @"[\wäüöß-]+:[1-9]\d*")) // configurationName:anyNonZeroDigit
             throw new ArgumentException(
-                $"The {nameof(QuestionId)} has an invalid format: \"{this.Value}\", Expected \"<question-catalog-name>:<lineNumber>\".");
-        }
+                $"The {nameof(QuestionId)} has an invalid format: \"{Value}\", Expected \"<question-catalog-name>:<lineNumber>\".");
 
-        var split = this.Value.Split(':');
-        this.QuestionCatalogName = new QuestionCatalogName(split[0]);
-        this.LineNumber = int.Parse(split[1]);
+        var split = Value.Split(':');
+        QuestionCatalogName = new QuestionCatalogName(split[0]);
+        LineNumber = int.Parse(split[1]);
     }
 
     public QuestionId(QuestionCatalogName questionCatalogName, int lineNumber)
@@ -82,7 +79,8 @@ public record QuestionId
 }
 
 /// <summary>
-/// Identifies an answer with <see cref="QuestionId" /> and <see cref="LineNumber"/> ("questionCatalogName:questionLineNumber/answerLineNumber").
+///     Identifies an answer with <see cref="QuestionId" /> and <see cref="LineNumber" />
+///     ("questionCatalogName:questionLineNumber/answerLineNumber").
 /// </summary>
 [TypeConverter(typeof(PrimitiveStringTypeConverter<AnswerId>))]
 public record AnswerId
@@ -91,15 +89,13 @@ public record AnswerId
     public AnswerId(string value)
         : base(value)
     {
-        if (!Regex.IsMatch(this.Value, @"[\wäüöß-]+:[1-9]\d*\/\d+")) // e.g. "abcde:10/3
-        {
+        if (!Regex.IsMatch(Value, @"[\wäüöß-]+:[1-9]\d*\/\d+")) // e.g. "abcde:10/3
             throw new ArgumentException(
-                $"The {nameof(AnswerId)} has an invalid format: \"{this.Value}\", Expected \"<question-catalog-name>:<questionLineNumber>/<answerLineNumber>\".");
-        }
+                $"The {nameof(AnswerId)} has an invalid format: \"{Value}\", Expected \"<question-catalog-name>:<questionLineNumber>/<answerLineNumber>\".");
 
-        var split = this.Value.Split('/');
-        this.QuestionId = new QuestionId(split[0]);
-        this.LineNumber = int.Parse(split[1]);
+        var split = Value.Split('/');
+        QuestionId = new QuestionId(split[0]);
+        LineNumber = int.Parse(split[1]);
     }
 
     public AnswerId(QuestionId questionId, int lineNumber)
@@ -120,12 +116,9 @@ public record DispositionCode
     {
         if (value[0] == '@')
         {
-            if (value.Length == 1)
-            {
-                throw new ArgumentNullException("value must not be empty.");
-            }
+            if (value.Length == 1) throw new ArgumentNullException("value must not be empty.");
 
-            this.Value = value.Substring(1);
+            Value = value.Substring(1);
         }
     }
 }
@@ -139,12 +132,9 @@ public record ScenarioIdentifier
     {
         if (value[0] == '@')
         {
-            if (value.Length == 1)
-            {
-                throw new ArgumentNullException("value must not be empty.");
-            }
+            if (value.Length == 1) throw new ArgumentNullException("value must not be empty.");
 
-            this.Value = value.Substring(1);
+            Value = value.Substring(1);
         }
     }
 }
@@ -158,12 +148,9 @@ public record TagIdentifier
     {
         if (value[0] == '~')
         {
-            if (value.Length == 1)
-            {
-                throw new ArgumentNullException("value must not be empty.");
-            }
+            if (value.Length == 1) throw new ArgumentNullException("value must not be empty.");
 
-            this.Value = value.Substring(1);
+            Value = value.Substring(1);
         }
     }
 }

@@ -9,21 +9,27 @@ public class PrimitivesTests
     [TestCase("RD4", "RD4")]
     [TestCase("@RD4", "RD4")]
     [TestCase("@rd4", "rd4")]
-    public void TestDispositionCode(string input, string expected) =>
+    public void TestDispositionCode(string input, string expected)
+    {
         Assert.That(new DispositionCode(input).Value, Is.EqualTo(expected), string.Empty);
+    }
 
     [TestCase(null)]
     [TestCase("")]
     [TestCase("  ")]
     [TestCase("@")]
-    public void TestEmptyDispositionCodeThrows(string? input) =>
+    public void TestEmptyDispositionCodeThrows(string? input)
+    {
         Assert.Throws<ArgumentNullException>(() => new DispositionCode(input));
+    }
 
     [TestCase(null)]
     [TestCase("")]
     [TestCase("  ")]
-    public void TestEmptyKnowledgeIdentifierThrows(string? input) =>
+    public void TestEmptyKnowledgeIdentifierThrows(string? input)
+    {
         Assert.Throws<ArgumentNullException>(() => new KnowledgeIdentifier(input));
+    }
 
     [Test]
     public void TestKnowledgeIdentifierInvalidFormat()
@@ -37,14 +43,18 @@ public class PrimitivesTests
     [TestCase(null)]
     [TestCase("")]
     [TestCase("  ")]
-    public void TestEmptyKnowledgeValueThrows(string? input) =>
+    public void TestEmptyKnowledgeValueThrows(string? input)
+    {
         Assert.Throws<ArgumentNullException>(() => new KnowledgeValue(input));
+    }
 
     [TestCase(null)]
     [TestCase("")]
     [TestCase("  ")]
-    public void TestEmptyQuestionIdThrows(string? input) =>
+    public void TestEmptyQuestionIdThrows(string? input)
+    {
         Assert.Throws<ArgumentNullException>(() => new QuestionId(input));
+    }
 
     [TestCase("invalid-format", true)]
     [TestCase("abcde:", true)]
@@ -82,8 +92,10 @@ public class PrimitivesTests
     [TestCase(null)]
     [TestCase("")]
     [TestCase("  ")]
-    public void TestEmptyAnswerIdThrows(string? input) =>
+    public void TestEmptyAnswerIdThrows(string? input)
+    {
         Assert.Throws<ArgumentNullException>(() => new AnswerId(input));
+    }
 
     [TestCase("invalid-format", true)]
     [TestCase("abcde:", true)]

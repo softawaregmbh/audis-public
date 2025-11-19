@@ -8,10 +8,12 @@ using System.Reflection;
 namespace Audis.Primitives;
 
 /// <summary>
-/// Type converter for <see cref="Primitive{TValue}" /> where TValue is <see langword="string"/> to allow seamingless serialization and deserialization.
-/// Use this type as parameter for the <see cref="TypeConverterAttribute" /> for subclasses of <see cref="Primitive{TValue}" />.
+///     Type converter for <see cref="Primitive{TValue}" /> where TValue is <see langword="string" /> to allow seamingless
+///     serialization and deserialization.
+///     Use this type as parameter for the <see cref="TypeConverterAttribute" /> for subclasses of
+///     <see cref="Primitive{TValue}" />.
 /// </summary>
-/// <typeparam name="TPrimitive">The primitive type inherited from <see cref="Primitive{TValue}"/>.</typeparam>
+/// <typeparam name="TPrimitive">The primitive type inherited from <see cref="Primitive{TValue}" />.</typeparam>
 public class PrimitiveStringTypeConverter<TPrimitive> : TypeConverter
     where TPrimitive : Primitive<string>
 {
@@ -32,52 +34,39 @@ public class PrimitiveStringTypeConverter<TPrimitive> : TypeConverter
         PrimitiveTypeInstanceCreator = (Func<string, TPrimitive>)lambda.Compile();
     }
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
     {
-        if (sourceType == typeof(string) || sourceType == typeof(DateTime))
-        {
-            return true;
-        }
+        if (sourceType == typeof(string) || sourceType == typeof(DateTime)) return true;
 
         return base.CanConvertFrom(context, sourceType);
     }
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
     {
-        if (value is string stringValue)
-        {
-            return PrimitiveTypeInstanceCreator(stringValue);
-        }
+        if (value is string stringValue) return PrimitiveTypeInstanceCreator(stringValue);
 
         if (value is DateTime date && date.ToString("o") is string dateStringValue)
-        {
             return PrimitiveTypeInstanceCreator(dateStringValue);
-        }
 
         return base.ConvertFrom(context, culture, value);
     }
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
     {
-        if (destinationType == typeof(string))
-        {
-            return true;
-        }
+        if (destinationType == typeof(string)) return true;
 
         return base.CanConvertTo(context, destinationType);
     }
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value,
         Type destinationType)
     {
-        if (value is Primitive<string> t && (destinationType == typeof(string) || destinationType == typeof(DateTime)))
-        {
-            return t.Value;
-        }
+        if (value is Primitive<string> t &&
+            (destinationType == typeof(string) || destinationType == typeof(DateTime))) return t.Value;
 
         return base.ConvertTo(context, culture, value, destinationType);
     }
