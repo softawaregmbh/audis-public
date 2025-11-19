@@ -21,6 +21,12 @@ steps:
     packageType: sdk
     version: '8.x'
 
+- task: UseDotNet@2
+  displayName: 'Use .NET 10'
+  inputs:
+    packageType: sdk
+    version: '10.x'
+
 - script: dotnet build --configuration $(buildConfiguration) src/Audis.Analyzer.Common/Audis.Analyzer.Common.sln
   displayName: Build Audis.Analyzer.Common
 
