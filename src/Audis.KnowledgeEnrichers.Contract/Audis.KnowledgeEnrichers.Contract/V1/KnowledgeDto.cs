@@ -8,7 +8,7 @@ namespace Audis.KnowledgeEnrichers.Contract.V1
     {
         public KnowledgeIdentifier KnowledgeIdentifier { get; set; } = default!;
 
-        public HashSet<KnowledgeValueDto> Values { get; set; } = new HashSet<KnowledgeValueDto>();
+        public HashSet<KnowledgeValueDto> Values { get; set; } = new ();
 
         public KnowledgeOrigin Origin { get; set; }
 
