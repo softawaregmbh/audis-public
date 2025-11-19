@@ -5,5 +5,6 @@ namespace Audis.Analyzer.Contract.V1;
 public class NominatedScenarioDto
 {
     public ScenarioIdentifier ScenarioIdentifier { get; set; }
+    
     public int NominatedAtProcessStepId { get; set; }
 }

@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Text.Json;
 
-
 namespace Audis.Analyzer.Contract.V1
 {
     public class InterrogationRequestDto
     {
         public Guid Id { get; set; }
+        
         public int ProcessStepId { get; set; }
+        
         public IEnumerable<KnowledgeDto> Knowledge { get; set; }
+        
         public IEnumerable<NominatedScenarioDto> NominatedScenarios { get; set; }
 
         /// <summary>
