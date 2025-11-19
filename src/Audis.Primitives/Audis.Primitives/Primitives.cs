@@ -34,6 +34,7 @@ public record Operator(string Value)
     public static readonly Operator EqualsOperator = new("=");
     public static readonly Operator UnequalsOperator = new("!=");
     public static readonly Operator StrictUnequalsOperator = new("!==");
+    public static readonly Operator ImplicationOperator = new Operator("=>");
 }
 
 [TypeConverter(typeof(PrimitiveStringTypeConverter<KnowledgeIdentifier>))]
