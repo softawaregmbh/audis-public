@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Audis.Endpoints.Contract.InterrogationUpdated.V2;
+using Audis.Endpoints.Contract.Shared.V1;
 using Audis.Primitives;
 using Newtonsoft.Json.Linq;
 

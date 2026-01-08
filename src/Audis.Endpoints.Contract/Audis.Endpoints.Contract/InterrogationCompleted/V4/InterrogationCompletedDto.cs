@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Audis.Endpoints.Contract.InterrogationUpdated.V2;
-using Audis.Endpoints.Contract.InterrogationUpdated.V3;
+using Audis.Endpoints.Contract.Shared.V1;
 using Audis.Primitives;
 
 namespace Audis.Endpoints.Contract.InterrogationCompleted.V4
@@ -26,7 +25,7 @@ namespace Audis.Endpoints.Contract.InterrogationCompleted.V4
         
         required public string KnowledgeSummary { get; set; }
         
-        required public IReadOnlyCollection<string> KnowledgeSummaryItems { get; set; } = new List<string>();
+        required public IReadOnlyCollection<KnowledgeSummaryDto> KnowledgeSummaryItems { get; set; } = new List<KnowledgeSummaryDto>();
 
         public bool Cancelled { get; set; }
 

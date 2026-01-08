@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using Audis.Endpoints.Contract.InterrogationUpdated.V2;
+using Audis.Primitives;
+
+namespace Audis.Endpoints.Contract.Shared.V1
+{
+    public class KnowledgeDto
+    {
+        public KnowledgeIdentifier KnowledgeIdentifier { get; set; } = default!;
+
+        public IReadOnlyCollection<KnowledgeValueDto> Values { get; set; } = new HashSet<KnowledgeValueDto>();
+
+        public KnowledgeOrigin Origin { get; set; }
+
+        public DateTime? LastUpdated { get; set; }
+    }
+}

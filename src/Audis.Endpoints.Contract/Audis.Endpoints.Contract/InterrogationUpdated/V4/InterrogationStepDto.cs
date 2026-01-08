@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Audis.Endpoints.Contract.InterrogationUpdated.V2;
+using Audis.Endpoints.Contract.Shared.V1;
 using Audis.Primitives;
 using Newtonsoft.Json.Linq;
-using AnswerDto = Audis.Endpoints.Contract.InterrogationUpdated.V3.AnswerDto;
-using QuestionDto = Audis.Endpoints.Contract.InterrogationUpdated.V3.QuestionDto;
-using ScenarioDto = Audis.Endpoints.Contract.InterrogationUpdated.V3.ScenarioDto;
 
 namespace Audis.Endpoints.Contract.InterrogationUpdated.V4
 {
@@ -33,7 +30,7 @@ namespace Audis.Endpoints.Contract.InterrogationUpdated.V4
 
         public string? KnowledgeSummary { get; set; }
 
-        public IReadOnlyCollection<string>? KnowledgeSummaryItems { get; set; }
+        public IReadOnlyCollection<KnowledgeSummaryDto>? KnowledgeSummaryItems { get; set; }
 
         public IReadOnlyCollection<AnswerDto> SelectedAnswers { get; set; } = new List<AnswerDto>();
 
