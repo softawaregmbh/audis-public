@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Audis.Endpoints.Contract.InterrogationUpdated.V2;
 using Audis.Primitives;
 
 namespace Audis.Endpoints.Contract.Shared.V1
