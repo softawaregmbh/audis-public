@@ -4,8 +4,12 @@ namespace Audis.Endpoints.Contract.Shared.V1
 {
     public class QuestionDto
     {
-        public QuestionId Id { get; set; } = default!;
-        public string Text { get; set; } = default!;
-        public string Type { get; set; } = default!;
+        required public QuestionId Id { get; set; }
+
+        required public string Text { get; set; }
+
+        required public string Type { get; set; }
+
+        public string? KnowledgeSummary { get; set; }
     }
 }

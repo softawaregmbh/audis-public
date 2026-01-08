@@ -1,8 +1,13 @@
-﻿namespace Audis.Endpoints.Contract.Shared.V1
+﻿using System.Collections.Generic;
+
+namespace Audis.Endpoints.Contract.Shared.V1
 {
     public class ScenarioDto
     {
-        public string Identifier { get; set; } = default!;
-        public string Name { get; set; } = default!;
+        required public string Identifier { get; set; }
+
+        required public string Name { get; set; }
+
+        public IEnumerable<string> DispositionCodes { get; set; } = new List<string>();
     }
 }
