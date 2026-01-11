@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.Json;
+using Audis.Endpoints.Contract.Shared.V1;
 using Audis.Primitives;
 
-namespace Audis.Endpoints.Contract.EventTriggered.V1;
+namespace Audis.Endpoints.Contract.EventTriggered.V2;
 
 public class EventTriggeredDto
 {
@@ -20,7 +22,11 @@ public class EventTriggeredDto
 
     public string? ExternalId { get; set; }
 
-    public string? UserId { get; set; }
+    public string? Logon { get; set; }
+
+    public string? UserName { get; set; }
+
+    public IReadOnlyCollection<KnowledgeDto> Knowledge { get; set; } = new List<KnowledgeDto>();
 
     public JsonElement? Data { get; set; }
 }

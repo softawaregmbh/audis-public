@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Audis.Endpoints.Contract.InterrogationUpdated.V3;
+namespace Audis.Endpoints.Contract.Shared.V1;
 
 public class ScenarioDto
 {

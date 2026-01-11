@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json;
-using Audis.Endpoints.Contract.InterrogationUpdated.V2;
+using Audis.Endpoints.Contract.Shared.V1;
 using Audis.Primitives;
 
-namespace Audis.Endpoints.Contract.InterrogationUpdated.V3;
+namespace Audis.Endpoints.Contract.InterrogationUpdated.V4;
 
 public class InterrogationStepDto
 {
@@ -20,13 +20,17 @@ public class InterrogationStepDto
 
     public string? ExternalId { get; set; }
 
-    public string? UserId { get; set; }
+    public string? Logon { get; set; }
+
+    public string? UserName { get; set; }
 
     public QuestionDto? CurrentQuestion { get; set; }
 
     public QuestionDto? PreviousQuestion { get; set; }
 
     public string? KnowledgeSummary { get; set; }
+
+    public IReadOnlyCollection<KnowledgeSummaryDto>? KnowledgeSummaryItems { get; set; }
 
     public IReadOnlyCollection<AnswerDto> SelectedAnswers { get; set; } = new List<AnswerDto>();
 

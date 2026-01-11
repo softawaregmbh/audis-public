@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Audis.Endpoints.Contract.InterrogationUpdated.V2;
 
-namespace Audis.Endpoints.Contract.InterrogationUpdated.V2
+public class ScenarioDto
 {
-    public class ScenarioDto
-    {
-        public string Identifier { get; set; } = default!;
-        public string Name { get; set; } = default!;
-    }
+    public string Identifier { get; set; } = default!;
+    public string Name { get; set; } = default!;
 }

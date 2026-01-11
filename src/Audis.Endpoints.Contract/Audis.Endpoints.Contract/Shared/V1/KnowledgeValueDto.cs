@@ -1,6 +1,6 @@
 ﻿using Audis.Primitives;
 
-namespace Audis.Endpoints.Contract.InterrogationUpdated.V2;
+namespace Audis.Endpoints.Contract.Shared.V1;
 
 public class KnowledgeValueDto
 {

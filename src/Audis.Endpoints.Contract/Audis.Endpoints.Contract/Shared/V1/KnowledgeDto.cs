@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Audis.Primitives;
 
-namespace Audis.Endpoints.Contract.InterrogationUpdated.V1;
+namespace Audis.Endpoints.Contract.Shared.V1;
 
 public class KnowledgeDto
 {

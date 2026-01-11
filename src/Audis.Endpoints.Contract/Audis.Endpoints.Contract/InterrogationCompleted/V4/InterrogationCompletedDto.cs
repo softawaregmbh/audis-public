@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Audis.Endpoints.Contract.InterrogationUpdated.V2;
+using Audis.Endpoints.Contract.Shared.V1;
 using Audis.Primitives;
 
-namespace Audis.Endpoints.Contract.InterrogationCompleted.V3;
+namespace Audis.Endpoints.Contract.InterrogationCompleted.V4;
 
 public class InterrogationCompletedDto
 {
@@ -19,9 +19,14 @@ public class InterrogationCompletedDto
 
     public string? ExternalId { get; set; }
 
-    public string? UserId { get; set; }
+    public string? Logon { get; set; }
+
+    public string? UserName { get; set; }
 
     required public string KnowledgeSummary { get; set; }
+
+    required public IReadOnlyCollection<KnowledgeSummaryDto> KnowledgeSummaryItems { get; set; } =
+        new List<KnowledgeSummaryDto>();
 
     public bool Cancelled { get; set; }
 
