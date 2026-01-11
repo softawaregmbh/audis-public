@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using Audis.Endpoints.Contract.InterrogationUpdated.V2;
 using Audis.Primitives;
-using Newtonsoft.Json.Linq;
 
 namespace Audis.Endpoints.Contract.InterrogationUpdated.V3
 {
@@ -37,6 +37,6 @@ namespace Audis.Endpoints.Contract.InterrogationUpdated.V3
         /// <summary>
         /// Free data object where implementation-specific data/identification/... can be stored.
         /// </summary>
-        public JObject? Data { get; set; }
+        public JsonElement? Data { get; set; }
     }
 }

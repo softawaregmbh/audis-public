@@ -13,3 +13,21 @@ The repository contains the following packages, also available on [NuGet](https:
 [`Audis.OpenID.Authentication`](src/Audis.OpenID/Audis.OpenID.Authentication) | Provides methods and classes to easily authenticate against an OpenID authentication provider. |
 [`Audis.OpenID.Authorization`](src/Audis.OpenID/Audis.OpenID.Authorization) | Provides methods and classes to easily protect endpoints using an OpenID authentication provider. |
 [`Audis.Location`](src/Audis.Location) | Defines DTOs for the location endpoint called by Audis. |
+
+## Package Dependencies
+
+The following diagram shows the internal dependencies between Audis packages:
+
+```
+Audis.Primitives (base package)
+├── Audis.Analyzer.Contract
+│   └── Audis.Analyzer.Common
+├── Audis.Endpoints.Contract
+└── Audis.KnowledgeEnrichers.Contract
+
+Audis.OpenID.Authentication (independent)
+
+Audis.OpenID.Authorization (independent)
+
+Audis.Location (independent)
+```

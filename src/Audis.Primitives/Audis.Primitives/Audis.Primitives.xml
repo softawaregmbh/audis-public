@@ -6,53 +6,74 @@
     <members>
         <member name="T:Audis.Primitives.CaseInsensitiveStringPrimitive">
             <summary>
-            A <see cref="T:Audis.Primitives.Primitive`1" /> where the underlying type is a <see cref="T:System.String" />.
-            The comparision with other strings is case-insensitive.
-            Values must not be <see langword="null" />.
+                A
+                <see cref="T:Audis.Primitives.Primitive`1"/>
+                where the underlying type is a<see cref="T:System.String"/>.
+                The comparision with other strings is case-insensitive.
+                Values must not be<see langword="null"/>.
             </summary>
         </member>
         <member name="T:Audis.Primitives.Primitive`1">
             <summary>
-            Base record for wrapping primitive types.
-            Used to prevent primitive obsession, see https://refactoring.guru/smells/primitive-obsession.
+                Base record for wrapping primitive types.
+                Used to prevent primitive obsession, see https://refactoring.guru/smells/primitive-obsession.
             </summary>
             <typeparam name="TValue">The type of the wrapped value.</typeparam>
         </member>
         <member name="M:Audis.Primitives.Primitive`1.#ctor(`0)">
             <summary>
-            Base record for wrapping primitive types.
-            Used to prevent primitive obsession, see https://refactoring.guru/smells/primitive-obsession.
+                Base record for wrapping primitive types.
+                Used to prevent primitive obsession, see https://refactoring.guru/smells/primitive-obsession.
             </summary>
             <typeparam name="TValue">The type of the wrapped value.</typeparam>
         </member>
         <member name="T:Audis.Primitives.KnowledgeValue">
             <summary>
-            When you want to store a <see cref="T:System.DateTime"/> instance as <see cref="T:Audis.Primitives.KnowledgeValue"/>,
-            make sure it is serialized conforming to ISO_8601 (DateTime.ToString("o")).
+                When you want to store a
+                <see cref="T:System.DateTime"/>
+                instance as<see cref="T:Audis.Primitives.KnowledgeValue"/>,
+                make sure it is serialized conforming to ISO_8601 (DateTime.ToString("o")).
             </summary>
         </member>
         <member name="M:Audis.Primitives.KnowledgeValue.#ctor(System.String)">
             <summary>
-            When you want to store a <see cref="T:System.DateTime"/> instance as <see cref="T:Audis.Primitives.KnowledgeValue"/>,
-            make sure it is serialized conforming to ISO_8601 (DateTime.ToString("o")).
+                When you want to store a
+                <see cref="T:System.DateTime"/>
+                instance as<see cref="T:Audis.Primitives.KnowledgeValue"/>,
+                make sure it is serialized conforming to ISO_8601 (DateTime.ToString("o")).
             </summary>
         </member>
         <member name="T:Audis.Primitives.QuestionId">
             <summary>
-            Identifies a question with <see cref="P:Audis.Primitives.QuestionId.QuestionCatalogName"/> and <see cref="P:Audis.Primitives.QuestionId.LineNumber"/> ("questionCatalogName:LineNumber").
+                Identifies a question with
+                <see cref="P:Audis.Primitives.QuestionId.QuestionCatalogName"/>
+                and
+                <see cref="P:Audis.Primitives.QuestionId.LineNumber"/>
+                ("questionCatalogName:LineNumber").
             </summary>
         </member>
         <member name="T:Audis.Primitives.AnswerId">
             <summary>
-            Identifies an answer with <see cref="P:Audis.Primitives.AnswerId.QuestionId" /> and <see cref="P:Audis.Primitives.AnswerId.LineNumber"/> ("questionCatalogName:questionLineNumber/answerLineNumber").
+                Identifies an answer with
+                <see cref="P:Audis.Primitives.AnswerId.QuestionId"/>
+                and
+                <see cref="P:Audis.Primitives.AnswerId.LineNumber"/>
+                ("questionCatalogName:questionLineNumber/answerLineNumber").
             </summary>
         </member>
         <member name="T:Audis.Primitives.PrimitiveStringTypeConverter`1">
             <summary>
-            Type converter for <see cref="T:Audis.Primitives.Primitive`1" /> where TValue is <see langword="string"/> to allow seamingless serialization and deserialization.
-            Use this type as parameter for the <see cref="T:System.ComponentModel.TypeConverterAttribute" /> for subclasses of <see cref="T:Audis.Primitives.Primitive`1" />.
+                Type converter for
+                <see cref="T:Audis.Primitives.Primitive`1"/>
+                where TValue is
+                <see langword="string"/>
+                to allow seamingless serialization and deserialization.
+                Use this type as parameter for the
+                <see cref="T:System.ComponentModel.TypeConverterAttribute"/>
+                for subclasses of<see cref="T:Audis.Primitives.Primitive`1"/>.
             </summary>
-            <typeparam name="TPrimitive">The primitive type inherited from <see cref="T:Audis.Primitives.Primitive`1"/>.</typeparam>
+            <typeparam name="TPrimitive">The primitive type inherited from<see cref="T:Audis.Primitives.Primitive`1"/>.
+            </typeparam>
         </member>
         <member name="M:Audis.Primitives.PrimitiveStringTypeConverter`1.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
             <inheritdoc/>
