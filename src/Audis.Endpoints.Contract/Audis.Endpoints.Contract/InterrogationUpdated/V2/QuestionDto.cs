@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Audis.Primitives;
+﻿using Audis.Primitives;
 
-namespace Audis.Endpoints.Contract.InterrogationUpdated.V2
+namespace Audis.Endpoints.Contract.InterrogationUpdated.V2;
+
+public class QuestionDto
 {
-    public class QuestionDto
-    {
-        public QuestionId Id { get; set; } = default!;
-        public string Text { get; set; } = default!;
-        public string Type { get; set; } = default!;
-    }
+    public QuestionId Id { get; set; } = default!;
+    public string Text { get; set; } = default!;
+    public string Type { get; set; } = default!;
 }

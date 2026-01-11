@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace Audis.Endpoints.Contract.Shared.V1
+namespace Audis.Endpoints.Contract.Shared.V1;
+
+public class ScenarioDto
 {
-    public class ScenarioDto
-    {
-        required public string Identifier { get; set; }
+    required public string Identifier { get; set; }
 
-        required public string Name { get; set; }
+    required public string Name { get; set; }
 
-        public IEnumerable<string> DispositionCodes { get; set; } = new List<string>();
-    }
+    public IEnumerable<string> DispositionCodes { get; set; } = new List<string>();
 }
