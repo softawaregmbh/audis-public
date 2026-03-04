@@ -1,8 +1,7 @@
-﻿namespace Audis.Analyzer.Common.V1
+﻿namespace Audis.Analyzer.Common.V1;
+
+public enum AdaptiveCardType
 {
-    public enum AdaptiveCardType
-    {
-        General,
-        Instruction
-    }
+    General,
+    Instruction
 }

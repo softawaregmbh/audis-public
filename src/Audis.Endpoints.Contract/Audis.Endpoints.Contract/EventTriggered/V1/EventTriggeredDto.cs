@@ -1,27 +1,26 @@
 ﻿using System;
+using System.Text.Json;
 using Audis.Primitives;
-using Newtonsoft.Json.Linq;
 
-namespace Audis.Endpoints.Contract.EventTriggered.V1
+namespace Audis.Endpoints.Contract.EventTriggered.V1;
+
+public class EventTriggeredDto
 {
-    public class EventTriggeredDto
-    {
-        public Guid EventId { get; set; }
+    public Guid EventId { get; set; }
 
-        public string EventName { get; set; } = default!;
+    public string EventName { get; set; } = default!;
 
-        public Guid InterrogationId { get; set; }
+    public Guid InterrogationId { get; set; }
 
-        public DateTime Timestamp { get; set; }
+    public DateTime Timestamp { get; set; }
 
-        public TenantId TenantId { get; set; } = default!;
+    public TenantId TenantId { get; set; } = default!;
 
-        public RevisionId RevisionId { get; set; } = default!;
+    public RevisionId RevisionId { get; set; } = default!;
 
-        public string? ExternalId { get; set; }
+    public string? ExternalId { get; set; }
 
-        public string? UserId { get; set; }
+    public string? UserId { get; set; }
 
-        public JObject? Data { get; set; }
-    }
+    public JsonElement? Data { get; set; }
 }

@@ -1,11 +1,10 @@
 ﻿using Audis.Primitives;
 
-namespace Audis.Endpoints.Contract.Shared.V1
-{
-    public class AnswerDto
-    {
-        required public AnswerId Id { get; set; }
+namespace Audis.Endpoints.Contract.Shared.V1;
 
-        required public string Text { get; set; }
-    }
+public class AnswerDto
+{
+    required public AnswerId Id { get; set; }
+
+    required public string Text { get; set; }
 }
