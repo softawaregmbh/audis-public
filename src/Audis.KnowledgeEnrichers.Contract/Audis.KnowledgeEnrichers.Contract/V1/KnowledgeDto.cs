@@ -14,7 +14,5 @@ namespace Audis.KnowledgeEnrichers.Contract.V1
         public KnowledgeOrigin Origin { get; set; }
 
         public DateTime? LastUpdated { get; set; }
-        
-        public KnowledgeMetadata? Metadata { get; set; }
     }
 }
