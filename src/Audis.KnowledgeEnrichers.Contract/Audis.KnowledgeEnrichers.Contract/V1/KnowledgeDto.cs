@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Audis.Contract.V1;
 using Audis.Primitives;
 
 namespace Audis.KnowledgeEnrichers.Contract.V1
