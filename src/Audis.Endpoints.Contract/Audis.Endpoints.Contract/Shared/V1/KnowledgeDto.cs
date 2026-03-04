@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Audis.Contract.V1;
 using Audis.Primitives;
 
 namespace Audis.Endpoints.Contract.Shared.V1
@@ -13,5 +14,7 @@ namespace Audis.Endpoints.Contract.Shared.V1
         public KnowledgeOrigin Origin { get; set; }
 
         public DateTime? LastUpdated { get; set; }
+        
+        public KnowledgeMetadata? Metadata { get; set; }
     }
 }

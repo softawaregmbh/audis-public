@@ -12,11 +12,11 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/softawaregmbh/audis-public</RepositoryUrl>
     <PackageTags>Audis</PackageTags>
-    <AssemblyVersion>2.5.0.0</AssemblyVersion>
-    <FileVersion>2.5.0.0</FileVersion>
+    <AssemblyVersion>2.6.0.0</AssemblyVersion>
+    <FileVersion>2.6.0.0</FileVersion>
     <LangVersion>Latest</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>2.5.0</Version>
+    <Version>2.6.0</Version>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -34,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Audis.Contract" Version="1.0.0" />
     <PackageReference Include="Audis.Primitives" Version="4.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
