@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Audis.Primitives", "Audis.P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Audis.Primitives.Tests", "Audis.Primitives.Tests\Audis.Primitives.Tests.csproj", "{E5CB482D-89B5-4172-857F-546F358D3A49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Audis.Contract", "Audis.Contract\Audis.Contract.csproj", "{4470FB28-2F51-4B0A-9648-B6A41EC45EFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E5CB482D-89B5-4172-857F-546F358D3A49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5CB482D-89B5-4172-857F-546F358D3A49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5CB482D-89B5-4172-857F-546F358D3A49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4470FB28-2F51-4B0A-9648-B6A41EC45EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4470FB28-2F51-4B0A-9648-B6A41EC45EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4470FB28-2F51-4B0A-9648-B6A41EC45EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4470FB28-2F51-4B0A-9648-B6A41EC45EFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
