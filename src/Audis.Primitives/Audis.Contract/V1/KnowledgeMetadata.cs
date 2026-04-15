@@ -20,6 +20,10 @@ public class KnowledgeMetadata
     public bool ShouldIgnoreInSummary => this.Flags.HasFlag(KnowledgeFlags.IgnoreInSummary);
     public bool IsInputAnswerKnowledge => this.Flags.HasFlag(KnowledgeFlags.InputAnswerKnowledge);
 
+    public bool IsStandaloneKnowledge => this.Flags.HasFlag(KnowledgeFlags.StandaloneKnowledge);
+
+    public bool IsProtectedFromVolatileSource => this.Flags.HasFlag(KnowledgeFlags.ProtectedFromVolatileSource);
+
     public int Priority { get; init; }
 
     public KnowledgeMetadata Clone() =>
