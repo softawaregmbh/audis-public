@@ -5,5 +5,8 @@ public enum KnowledgeOrigin
     Inherited,
     Client,
     Analyzer,
-    ControlCenter
+    ControlCenter,
+    InjectionButton,
+    Enricher,
+    Standalone
 }

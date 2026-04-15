@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Audis.Primitives.Tests;
@@ -249,5 +250,25 @@ public class PrimitivesTests
                     $"Operator {operators[i].Value} should not equal {operators[j].Value}");
             }
         }
+    }
+
+    [TestCase(KnowledgeOrigin.Inherited, 0)]
+    [TestCase(KnowledgeOrigin.Client, 1)]
+    [TestCase(KnowledgeOrigin.Analyzer, 2)]
+    [TestCase(KnowledgeOrigin.ControlCenter, 3)]
+    [TestCase(KnowledgeOrigin.InjectionButton, 4)]
+    [TestCase(KnowledgeOrigin.Enricher, 5)]
+    [TestCase(KnowledgeOrigin.Standalone, 6)]
+    public void AssertKnowledgeOriginValues(KnowledgeOrigin origin, int expectedValue)
+    {
+        Assert.That((int)origin, Is.EqualTo(expectedValue));
+    }
+
+    [Test]
+    public void AssertAllKnowledgeOriginValuesAreDistinct()
+    {
+        var values = Enum.GetValues<KnowledgeOrigin>();
+        var distinctValues = values.Select(v => (int)v).Distinct().ToArray();
+        Assert.That(distinctValues.Length, Is.EqualTo(values.Length));
     }
 }
