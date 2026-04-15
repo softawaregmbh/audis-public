@@ -199,4 +199,55 @@ public class PrimitivesTests
         var name = new QuestionCatalogName("test");
         Assert.That(name.ToString(), Is.EqualTo(name.Value));
     }
+
+    [Test]
+    public void AssertLessThanOperatorValue()
+    {
+        Assert.That(Operator.LessThanOperator.Value, Is.EqualTo("<"));
+    }
+
+    [Test]
+    public void AssertGreaterThanOperatorValue()
+    {
+        Assert.That(Operator.GreaterThanOperator.Value, Is.EqualTo(">"));
+    }
+
+    [Test]
+    public void AssertLessThanOrEqualOperatorValue()
+    {
+        Assert.That(Operator.LessThanOrEqualOperator.Value, Is.EqualTo("<="));
+    }
+
+    [Test]
+    public void AssertGreaterThanOrEqualOperatorValue()
+    {
+        Assert.That(Operator.GreaterThanOrEqualOperator.Value, Is.EqualTo(">="));
+    }
+
+    [Test]
+    public void AssertNumericOperatorsAreDistinct()
+    {
+        var operators = new[]
+        {
+            Operator.LessThanOperator,
+            Operator.GreaterThanOperator,
+            Operator.LessThanOrEqualOperator,
+            Operator.GreaterThanOrEqualOperator,
+            Operator.EqualsOperator,
+            Operator.UnequalsOperator,
+            Operator.StrictUnequalsOperator,
+            Operator.ImplicationOperator,
+            Operator.AndOperator,
+            Operator.OrOperator
+        };
+
+        for (var i = 0; i < operators.Length; i++)
+        {
+            for (var j = i + 1; j < operators.Length; j++)
+            {
+                Assert.That(operators[i], Is.Not.EqualTo(operators[j]),
+                    $"Operator {operators[i].Value} should not equal {operators[j].Value}");
+            }
+        }
+    }
 }

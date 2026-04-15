@@ -35,6 +35,10 @@ public record Operator(string Value)
     public static readonly Operator UnequalsOperator = new("!=");
     public static readonly Operator StrictUnequalsOperator = new("!==");
     public static readonly Operator ImplicationOperator = new("=>");
+    public static readonly Operator LessThanOperator = new("<");
+    public static readonly Operator GreaterThanOperator = new(">");
+    public static readonly Operator LessThanOrEqualOperator = new("<=");
+    public static readonly Operator GreaterThanOrEqualOperator = new(">=");
 }
 
 [TypeConverter(typeof(PrimitiveStringTypeConverter<KnowledgeIdentifier>))]
