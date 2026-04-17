@@ -9,5 +9,7 @@ public enum KnowledgeFlags : long
     KnowledgeSummaryAnswerKnowledge = 2,
     IgnoreInTimeLine = 4,
     IgnoreInSummary = 8,
-    InputAnswerKnowledge = 16
+    InputAnswerKnowledge = 16,
+    StandaloneKnowledge = 32,
+    ProtectedFromVolatileSource = 64
 }

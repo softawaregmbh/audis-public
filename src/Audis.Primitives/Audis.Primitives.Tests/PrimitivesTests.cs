@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Audis.Primitives.Tests;
@@ -198,5 +199,114 @@ public class PrimitivesTests
     {
         var name = new QuestionCatalogName("test");
         Assert.That(name.ToString(), Is.EqualTo(name.Value));
+    }
+
+    [Test]
+    public void AssertLessThanOperatorValue()
+    {
+        Assert.That(Operator.LessThanOperator.Value, Is.EqualTo("<"));
+    }
+
+    [Test]
+    public void AssertGreaterThanOperatorValue()
+    {
+        Assert.That(Operator.GreaterThanOperator.Value, Is.EqualTo(">"));
+    }
+
+    [Test]
+    public void AssertLessThanOrEqualOperatorValue()
+    {
+        Assert.That(Operator.LessThanOrEqualOperator.Value, Is.EqualTo("<="));
+    }
+
+    [Test]
+    public void AssertGreaterThanOrEqualOperatorValue()
+    {
+        Assert.That(Operator.GreaterThanOrEqualOperator.Value, Is.EqualTo(">="));
+    }
+
+    [Test]
+    public void AssertNumericOperatorsAreDistinct()
+    {
+        var operators = new[]
+        {
+            Operator.LessThanOperator,
+            Operator.GreaterThanOperator,
+            Operator.LessThanOrEqualOperator,
+            Operator.GreaterThanOrEqualOperator,
+            Operator.EqualsOperator,
+            Operator.UnequalsOperator,
+            Operator.StrictUnequalsOperator,
+            Operator.ImplicationOperator,
+            Operator.AndOperator,
+            Operator.OrOperator
+        };
+
+        for (var i = 0; i < operators.Length; i++)
+        {
+            for (var j = i + 1; j < operators.Length; j++)
+            {
+                Assert.That(operators[i], Is.Not.EqualTo(operators[j]),
+                    $"Operator {operators[i].Value} should not equal {operators[j].Value}");
+            }
+        }
+    }
+
+    [TestCase("user")]
+    [TestCase("control-center")]
+    [TestCase("some.nested.value")]
+    public void TestInitialKnowledgeIdentifierValidSuffix(string suffix)
+    {
+        var identifier = new InitialKnowledgeIdentifier(suffix);
+        Assert.That(identifier.Value, Is.EqualTo($"#audis.initial.{suffix}"));
+    }
+
+    [TestCase(null)]
+    [TestCase("")]
+    [TestCase("  ")]
+    public void TestEmptyInitialKnowledgeIdentifierSuffixThrows(string? suffix)
+    {
+        Assert.Throws<ArgumentNullException>(() => new InitialKnowledgeIdentifier(suffix));
+    }
+
+    [TestCase("#invalid")]
+    [TestCase(".starts-with-dot")]
+    [TestCase("-starts-with-hyphen")]
+    public void TestInitialKnowledgeIdentifierInvalidSuffixThrows(string suffix)
+    {
+        var ex = Assert.Throws<ArgumentException>(() => new InitialKnowledgeIdentifier(suffix));
+        Assert.That(ex.Message, Does.Contain("invalid format"));
+    }
+
+    [TestCase("user", "USER", true)]
+    [TestCase("user", "user", true)]
+    [TestCase("user", "admin", false)]
+    public void AssertInitialKnowledgeIdentifierCaseInsensitiveEqualsAndGetHashCode(string suffix1, string suffix2, bool equals)
+    {
+        var value1 = new InitialKnowledgeIdentifier(suffix1);
+        var value2 = new InitialKnowledgeIdentifier(suffix2);
+
+        Assert.That(value1.Equals(value2), Is.EqualTo(equals));
+        Assert.That(value1.GetHashCode() == value2.GetHashCode(), Is.EqualTo(equals));
+    }
+
+    [TestCase(KnowledgeOrigin.Inherited, 0)]
+    [TestCase(KnowledgeOrigin.Client, 1)]
+    [TestCase(KnowledgeOrigin.Analyzer, 2)]
+    [TestCase(KnowledgeOrigin.ControlCenter, 3)]
+    [TestCase(KnowledgeOrigin.InjectionButton, 4)]
+    [TestCase(KnowledgeOrigin.Enricher, 5)]
+    [TestCase(KnowledgeOrigin.Standalone, 6)]
+    public void AssertKnowledgeOriginValues(KnowledgeOrigin origin, int expectedValue)
+    {
+        Assert.That((int)origin, Is.EqualTo(expectedValue));
+    }
+
+    [Test]
+    public void AssertAllKnowledgeOriginValuesAreDistinct()
+    {
+        var values = Enum.GetValues<KnowledgeOrigin>();
+        var distinctValues = values.Select(v => (int)v).Distinct().ToArray();
+        Assert.That(distinctValues.Length, Is.EqualTo(values.Length));
     }
 }
