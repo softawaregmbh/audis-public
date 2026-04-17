@@ -252,6 +252,44 @@ public class PrimitivesTests
         }
     }
 
+    [TestCase("user")]
+    [TestCase("control-center")]
+    [TestCase("some.nested.value")]
+    public void TestInitialKnowledgeIdentifierValidSuffix(string suffix)
+    {
+        var identifier = new InitialKnowledgeIdentifier(suffix);
+        Assert.That(identifier.Value, Is.EqualTo($"#audis.initial.{suffix}"));
+    }
+
+    [TestCase(null)]
+    [TestCase("")]
+    [TestCase("  ")]
+    public void TestEmptyInitialKnowledgeIdentifierSuffixThrows(string? suffix)
+    {
+        Assert.Throws<ArgumentNullException>(() => new InitialKnowledgeIdentifier(suffix));
+    }
+
+    [TestCase("#invalid")]
+    [TestCase(".starts-with-dot")]
+    [TestCase("-starts-with-hyphen")]
+    public void TestInitialKnowledgeIdentifierInvalidSuffixThrows(string suffix)
+    {
+        var ex = Assert.Throws<ArgumentException>(() => new InitialKnowledgeIdentifier(suffix));
+        Assert.That(ex.Message, Does.Contain("invalid format"));
+    }
+
+    [TestCase("user", "USER", true)]
+    [TestCase("user", "user", true)]
+    [TestCase("user", "admin", false)]
+    public void AssertInitialKnowledgeIdentifierCaseInsensitiveEqualsAndGetHashCode(string suffix1, string suffix2, bool equals)
+    {
+        var value1 = new InitialKnowledgeIdentifier(suffix1);
+        var value2 = new InitialKnowledgeIdentifier(suffix2);
+
+        Assert.That(value1.Equals(value2), Is.EqualTo(equals));
+        Assert.That(value1.GetHashCode() == value2.GetHashCode(), Is.EqualTo(equals));
+    }
+
     [TestCase(KnowledgeOrigin.Inherited, 0)]
     [TestCase(KnowledgeOrigin.Client, 1)]
     [TestCase(KnowledgeOrigin.Analyzer, 2)]
