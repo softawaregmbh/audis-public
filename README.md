@@ -9,6 +9,8 @@ The repository contains the following packages, also available on [NuGet](https:
 [`Audis.Analyzer.Common`](src/Audis.Analyzer.Common) | Provides DTOs and interfaces for implementing analyzers. |
 [`Audis.Analyzer.Contract`](src/Audis.Analyzer.Contract) | Provides common DTOs and extension methods for Analyzers. |
 [`Audis.Endpoints.Contract`](src/Audis.Endpoints.Contract) | Defines DTOs for endpoints which are called or consumed by Audis. |
+[`Audis.ContextSearch.Contract`](src/Audis.ContextSearch.Contract) | Defines interfaces and models for pluggable context search logic. |
+[`Audis.AI.Relay.Contract`](src/Audis.AI.Relay.Contract) | Defines request/response DTOs for the Audis AI Relay API. |
 [`Audis.KnowledgeEnrichers.Contract`](src/Audis.KnowledgeEnrichers.Contract) | Provides an interface and DTOs for knowledge enrichers. |
 [`Audis.OpenID.Authentication`](src/Audis.OpenID/Audis.OpenID.Authentication) | Provides methods and classes to easily authenticate against an OpenID authentication provider. |
 [`Audis.OpenID.Authorization`](src/Audis.OpenID/Audis.OpenID.Authorization) | Provides methods and classes to easily protect endpoints using an OpenID authentication provider. |
@@ -24,6 +26,10 @@ Audis.Primitives (base package)
 │   └── Audis.Analyzer.Common
 ├── Audis.Endpoints.Contract
 └── Audis.KnowledgeEnrichers.Contract
+
+Audis.ContextSearch.Contract (independent)
+
+Audis.AI.Relay.Contract (independent)
 
 Audis.OpenID.Authentication (independent)
 
