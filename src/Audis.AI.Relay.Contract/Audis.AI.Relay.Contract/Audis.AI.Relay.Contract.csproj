@@ -6,7 +6,7 @@
         <Authors>softaware gmbh</Authors>
         <Company>softaware gmbh</Company>
         <Product>Audis</Product>
-        <Description>An Audis library which defines request/response DTOs for the AI Relay API.</Description>
+        <Description>An Audis library which defines request/response DTOs for the Audis AI Relay API (InterrogationSummarized/process and CaseDetermination).</Description>
         <PackageIcon>package-icon.png</PackageIcon>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryType>git</RepositoryType>

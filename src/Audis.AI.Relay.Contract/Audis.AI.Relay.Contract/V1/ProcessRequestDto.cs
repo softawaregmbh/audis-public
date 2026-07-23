@@ -2,6 +2,17 @@ using System.Text.Json;
 
 namespace Audis.AI.Relay.Contract.V1;
 
+/// <summary>
+///     Request body for the AI Relay <c>/process</c> endpoint.
+///     Also the inbound format Audis posts to <c>Endpoints.InterrogationSummarized</c>
+///     when generating an AI knowledge summary (KnowledgeSummary / InterrogationSummarized path).
+///     Pair with <see cref="ProcessResponseDto"/>.
+/// </summary>
+/// <remarks>
+///     Distinct from the outbound push notification
+///     <c>Audis.Endpoints.Contract.KnowledgeSummaryGenerated</c>, which Audis sends after a summary
+///     exists. This type is the synchronous relay call Audis makes to obtain the AI result.
+/// </remarks>
 public class ProcessRequestDto
 {
     required public string Input { get; init; }

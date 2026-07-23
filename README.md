@@ -8,8 +8,8 @@ The repository contains the following packages, also available on [NuGet](https:
 [`Audis.Primitives`](src/Audis.Primitives) | Provides primitive data types used in Audis, e.g. KnowlegeIdentifiers, KnowledgeValues, DispositionLevels, ScenarioIdentifier, ... |
 [`Audis.Analyzer.Common`](src/Audis.Analyzer.Common) | Provides DTOs and interfaces for implementing analyzers. |
 [`Audis.Analyzer.Contract`](src/Audis.Analyzer.Contract) | Provides common DTOs and extension methods for Analyzers. |
-[`Audis.Endpoints.Contract`](src/Audis.Endpoints.Contract) | Defines DTOs for endpoints which are called or consumed by Audis. |
-[`Audis.AI.Relay.Contract`](src/Audis.AI.Relay.Contract) | Defines request/response DTOs for the Audis AI Relay API. |
+[`Audis.Endpoints.Contract`](src/Audis.Endpoints.Contract) | Defines outbound notification DTOs for endpoints Audis calls (including KnowledgeSummaryGenerated and RecordingCompleted). Synchronous AI relay request/response pairs live in Audis.AI.Relay.Contract. |
+[`Audis.AI.Relay.Contract`](src/Audis.AI.Relay.Contract) | Defines request/response DTOs for the Audis AI Relay API (`/process`, pipeline, and CaseDetermination / case-record suggestion). |
 [`Audis.Catalog.Contract`](src/Audis.Catalog.Contract) | Defines request/response DTOs for the Catalog API (question access and text enrichment). |
 [`Audis.Search.Contract`](src/Audis.Search.Contract) | Defines request/response DTOs for external answer-search endpoints (wire format only). |
 [`Audis.KnowledgeEnrichers.Contract`](src/Audis.KnowledgeEnrichers.Contract) | Provides an interface and DTOs for knowledge enrichers. |

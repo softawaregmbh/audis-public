@@ -7,7 +7,9 @@ using Audis.Primitives;
 namespace Audis.Endpoints.Contract.RecordingCompleted.V1;
 
 /// <summary>
-///     Payload for the RecordingCompleted / StoreRecording endpoint notification.
+///     Outbound push notification payload for RecordingCompleted / StoreRecording
+///     (<c>Endpoints.RecordingCompleted</c>). Audis delivers this asynchronously;
+///     no response body is expected (fire-and-forget aside from HTTP success status).
 /// </summary>
 public class RecordingCompletedDto
 {

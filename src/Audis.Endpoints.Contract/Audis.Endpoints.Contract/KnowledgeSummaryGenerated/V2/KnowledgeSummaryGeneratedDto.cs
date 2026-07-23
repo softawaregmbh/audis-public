@@ -6,6 +6,16 @@ using Audis.Primitives;
 
 namespace Audis.Endpoints.Contract.KnowledgeSummaryGenerated.V2;
 
+/// <summary>
+///     Outbound push notification payload for KnowledgeSummaryGenerated.
+///     Audis sends this to configured endpoint URLs after a knowledge summary exists.
+/// </summary>
+/// <remarks>
+///     Separate from the synchronous AI relay call on <c>Endpoints.InterrogationSummarized</c>,
+///     which uses <c>Audis.AI.Relay.Contract.V1.ProcessRequestDto</c> /
+///     <c>ProcessResponseDto</c> (Audis posts a request and expects a result back).
+///     This DTO is outbound-only; no response body is required from the receiver.
+/// </remarks>
 public class KnowledgeSummaryGeneratedDto
 {
     /// <summary>
