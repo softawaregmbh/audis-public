@@ -35,7 +35,10 @@ public class CommentAddedDto
 
     public string? UserId { get; set; }
 
-    public IReadOnlyCollection<TagDto> Tags { get; set; } = new List<TagDto>();
+    /// <summary>
+    ///     ExternalApiIdentifier values (fallback: Name/TagIdentifier).
+    /// </summary>
+    public IReadOnlyCollection<string> Tags { get; set; } = new List<string>();
 
     public IReadOnlyCollection<KnowledgeDto> Knowledge { get; set; } = new List<KnowledgeDto>();
 

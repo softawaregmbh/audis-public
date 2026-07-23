@@ -49,7 +49,10 @@ public class InterrogationStepDto
 
     public ScenarioDto? SuggestedScenario { get; set; }
 
-    public IReadOnlyCollection<TagDto> Tags { get; set; } = new List<TagDto>();
+    /// <summary>
+    ///     ExternalApiIdentifier values (fallback: Name/TagIdentifier).
+    /// </summary>
+    public IReadOnlyCollection<string> Tags { get; set; } = new List<string>();
 
     /// <summary>
     ///     Free data object where implementation-specific data/identification/... can be stored.
