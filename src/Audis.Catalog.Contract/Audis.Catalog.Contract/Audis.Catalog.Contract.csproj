@@ -7,15 +7,15 @@
         <Authors>softaware gmbh</Authors>
         <Company>softaware gmbh</Company>
         <Product>Audis</Product>
-        <Description>An Audis library which defines request/response DTOs for the Catalog API (question access and text enrichment).</Description>
+        <Description>An Audis library which defines request/response DTOs for the Catalog API (question access including answers/synonyms for AI training, and text enrichment).</Description>
         <PackageIcon>package-icon.png</PackageIcon>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/softawaregmbh/audis-public</RepositoryUrl>
         <PackageTags>Audis</PackageTags>
-        <AssemblyVersion>1.0.0.0</AssemblyVersion>
-        <FileVersion>1.0.0.0</FileVersion>
-        <Version>1.0.0</Version>
+        <AssemblyVersion>1.1.0.0</AssemblyVersion>
+        <FileVersion>1.1.0.0</FileVersion>
+        <Version>1.1.0</Version>
         <LangVersion>Latest</LangVersion>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>

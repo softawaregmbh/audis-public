@@ -20,6 +20,12 @@ public class EnrichQuestionRequestDto
     public KnowledgeIdentifier? KnowledgeIdentifier { get; set; }
 
     /// <summary>
+    ///     Optional interrogation id for correlation across parallel multilingual interrogations.
+    ///     Catalog export for training may omit this; live translation should send it.
+    /// </summary>
+    public Guid? InterrogationId { get; set; }
+
+    /// <summary>
     ///     Replacement question text. When null, the existing question text is left unchanged.
     /// </summary>
     public string? Text { get; set; }
