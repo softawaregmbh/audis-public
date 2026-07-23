@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Authors>softaware gmbh</Authors>
+        <Company>softaware gmbh</Company>
+        <Product>Audis</Product>
+        <Description>An Audis library which defines the contract for pluggable context search logic.</Description>
+        <PackageIcon>package-icon.png</PackageIcon>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/softawaregmbh/audis-public</RepositoryUrl>
+        <PackageTags>Audis</PackageTags>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <FileVersion>1.0.0.0</FileVersion>
+        <Version>1.0.0</Version>
+        <LangVersion>Latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <CodeAnalysisRuleSet>$(SolutionDir)..\StyleCop\audis.ruleset</CodeAnalysisRuleSet>
+        <RunCodeAnalysis>false</RunCodeAnalysis>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="..\..\StyleCop\stylecop.json" Link="stylecop.json"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\..\Assets\package-icon.png" Link="package-icon.png" Pack="true" PackagePath="/"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+</Project>
