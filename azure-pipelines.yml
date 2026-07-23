@@ -45,6 +45,9 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration) src/Audis.Catalog.Contract/Audis.Catalog.Contract.sln
   displayName: Build Audis.Catalog.Contract
 
+- script: dotnet build --configuration $(buildConfiguration) src/Audis.Search.Contract/Audis.Search.Contract.sln
+  displayName: Build Audis.Search.Contract
+
 - script: dotnet build --configuration $(buildConfiguration) src/Audis.KnowledgeEnrichers.Contract/Audis.KnowledgeEnrichers.Contract.sln
   displayName: Build Audis.KnowledgeEnrichers.Contract
 
