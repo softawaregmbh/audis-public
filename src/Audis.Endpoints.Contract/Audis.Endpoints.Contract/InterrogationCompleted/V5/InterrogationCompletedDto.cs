@@ -1,18 +1,29 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Audis.Endpoints.Contract.Shared.V1;
 using Audis.Primitives;
 
-namespace Audis.Endpoints.Contract.InterrogationCompleted.V4;
+namespace Audis.Endpoints.Contract.InterrogationCompleted.V5;
 
 public class InterrogationCompletedDto
 {
+    /// <summary>
+    ///     Stable id for this endpoint event across delivery retries.
+    /// </summary>
+    public Guid RequestId { get; set; }
+
     public Guid InterrogationId { get; set; }
 
     public int FinalProcessStepId { get; set; }
 
     public DateTime Timestamp { get; set; }
+
+    /// <summary>
+    ///     Timestamp of the current delivery attempt. Updated on retry so container logs can
+    ///     correlate retry intervals for the same <see cref="RequestId"/>.
+    /// </summary>
+    public DateTime OriginTimestamp { get; set; }
 
     required public TenantId TenantId { get; set; }
 
@@ -44,6 +55,8 @@ public class InterrogationCompletedDto
     public string? SelectedScenarioReason { get; set; }
 
     public IEnumerable<string> CurrentScenarioDispositionCodes { get; set; } = new List<string>();
+
+    public IReadOnlyCollection<TagDto> Tags { get; set; } = new List<TagDto>();
 
     public IReadOnlyCollection<KnowledgeDto> Knowledge { get; set; } = new List<KnowledgeDto>();
 
