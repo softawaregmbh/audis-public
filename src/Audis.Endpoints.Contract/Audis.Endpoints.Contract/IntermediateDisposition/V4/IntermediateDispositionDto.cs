@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json;
 using Audis.Endpoints.Contract.Shared.V1;
 using Audis.Primitives;
 
@@ -40,9 +39,4 @@ public class IntermediateDispositionDto
     public IEnumerable<string> CurrentScenarioDispositionCodes { get; set; } = new List<string>();
 
     public IReadOnlyCollection<KnowledgeDto> Knowledge { get; set; } = new List<KnowledgeDto>();
-
-    /// <summary>
-    ///     Free data object where implementation-specific data/identification/... can be stored.
-    /// </summary>
-    public JsonElement? Data { get; set; }
 }
