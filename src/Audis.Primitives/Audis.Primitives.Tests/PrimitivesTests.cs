@@ -107,6 +107,8 @@ public class PrimitivesTests
     [TestCase("abcde:7/1", false)]
     [TestCase("abcde:7/3", false)]
     [TestCase("abcde:10/3", false)]
+    [TestCase("Hilfe/Hilfestellung Bolus:10/5", false)]
+    [TestCase("FW/FW-BS/BS Fahrzeug:8/2", false)]
     public void TestAnswerIdInvalidFormat(string input, bool throws)
     {
         if (throws)
@@ -120,8 +122,9 @@ public class PrimitivesTests
         {
             var answerId = new AnswerId(input);
             Assert.That(answerId.Value, Is.EqualTo(input));
-            var split = input.Split('/');
-            Assert.That(answerId.QuestionId.Value, Is.EqualTo(split[0]));
+            var separatorIndex = input.LastIndexOf('/');
+            Assert.That(answerId.QuestionId.Value, Is.EqualTo(input[..separatorIndex]));
+            Assert.That(answerId.LineNumber, Is.EqualTo(int.Parse(input[(separatorIndex + 1)..])));
         }
     }
 
@@ -130,8 +133,21 @@ public class PrimitivesTests
     {
         var answerId = new AnswerId(new QuestionId(new QuestionCatalogName("question-catalog"), 10), 12);
         Assert.That(answerId.Value, Is.EqualTo("question-catalog:10/12"));
-        Assert.That(answerId.QuestionId, Is.EqualTo(new QuestionId(answerId.Value.Split('/')[0])));
-        Assert.That(answerId.LineNumber, Is.EqualTo(int.Parse(answerId.Value.Split('/')[1])));
+        var separatorIndex = answerId.Value.LastIndexOf('/');
+        Assert.That(answerId.QuestionId, Is.EqualTo(new QuestionId(answerId.Value[..separatorIndex])));
+        Assert.That(answerId.LineNumber, Is.EqualTo(int.Parse(answerId.Value[(separatorIndex + 1)..])));
+    }
+
+    [Test]
+    public void TestAnswerIdWithNestedCatalogPath()
+    {
+        var questionId = new QuestionId(new QuestionCatalogName("Hilfe/Hilfestellung Bolus"), 10);
+        var answerId = new AnswerId(questionId, 5);
+
+        Assert.That(answerId.Value, Is.EqualTo("Hilfe/Hilfestellung Bolus:10/5"));
+        Assert.That(answerId.QuestionId, Is.EqualTo(questionId));
+        Assert.That(answerId.LineNumber, Is.EqualTo(5));
+        Assert.That(answerId.QuestionId.QuestionCatalogName.Value, Is.EqualTo("Hilfe/Hilfestellung Bolus"));
     }
 
     [TestCase("#audis.schmerzen", "#audis.schmerzen", true)]

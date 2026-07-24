@@ -97,9 +97,10 @@ public record AnswerId
             throw new ArgumentException(
                 $"The {nameof(AnswerId)} has an invalid format: \"{Value}\", Expected \"<question-catalog-name>:<questionLineNumber>/<answerLineNumber>\".");
 
-        var split = Value.Split('/');
-        QuestionId = new QuestionId(split[0]);
-        LineNumber = int.Parse(split[1]);
+        // Use the last '/' so catalog names may contain path segments (e.g. "Hilfe/Hilfestellung:10/5").
+        var separatorIndex = Value.LastIndexOf('/');
+        QuestionId = new QuestionId(Value[..separatorIndex]);
+        LineNumber = int.Parse(Value[(separatorIndex + 1)..]);
     }
 
     public AnswerId(QuestionId questionId, int lineNumber)
