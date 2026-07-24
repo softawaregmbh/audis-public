@@ -10,9 +10,12 @@ public class ProcessResponseDto
 {
     required public string Result { get; init; }
 
-    required public string Model { get; init; }
+    /// <summary>Optional model metadata from the relay.</summary>
+    public string? Model { get; init; }
 
-    required public string Provider { get; init; }
+    /// <summary>Optional provider metadata from the relay.</summary>
+    public string? Provider { get; init; }
 
-    required public long DurationMs { get; init; }
+    /// <summary>Optional processing duration in milliseconds.</summary>
+    public long? DurationMs { get; init; }
 }

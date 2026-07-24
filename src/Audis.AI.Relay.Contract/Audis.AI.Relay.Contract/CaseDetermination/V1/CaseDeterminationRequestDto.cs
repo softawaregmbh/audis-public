@@ -9,9 +9,9 @@ public class CaseDeterminationRequestDto
 {
     required public string KnowledgeJson { get; init; }
 
-    required public string FinalScenario { get; init; }
+    required public string Scenario { get; init; }
 
-    required public string Summary { get; init; }
+    required public string KnowledgeSummary { get; init; }
 
     /// <summary>Optional model override. Falls back to the relay's configured default model.</summary>
     public string? Model { get; init; }

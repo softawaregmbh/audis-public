@@ -24,5 +24,7 @@ public class AnswerDto
     /// </summary>
     public string? Type { get; set; }
 
-    public IReadOnlyCollection<string> Synonyms { get; set; } = Array.Empty<string>();
+#pragma warning disable SA1010 // Collection expression; StyleCop 1.1 treats [] as indexer
+    public IReadOnlyCollection<string> Synonyms { get; set; } = [];
+#pragma warning restore SA1010
 }

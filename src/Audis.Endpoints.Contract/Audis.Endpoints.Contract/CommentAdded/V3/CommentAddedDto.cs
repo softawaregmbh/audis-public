@@ -19,6 +19,10 @@ public class CommentAddedDto
 
     public Guid InterrogationId { get; set; }
 
+    /// <summary>
+    ///     When the comment was originally added. Stable across delivery retries
+    ///     (same value for the same <see cref="RequestId"/>).
+    /// </summary>
     public DateTime Timestamp { get; set; }
 
     /// <summary>
