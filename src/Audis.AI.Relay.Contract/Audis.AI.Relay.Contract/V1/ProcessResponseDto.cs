@@ -6,8 +6,13 @@ namespace Audis.AI.Relay.Contract.V1;
 ///     (KnowledgeSummary / InterrogationSummarized path).
 ///     Pair with <see cref="ProcessRequestDto"/>.
 /// </summary>
-public record ProcessResponseDto(
-    string Result,
-    string Model,
-    string Provider,
-    long DurationMs);
+public class ProcessResponseDto
+{
+    required public string Result { get; init; }
+
+    required public string Model { get; init; }
+
+    required public string Provider { get; init; }
+
+    required public long DurationMs { get; init; }
+}

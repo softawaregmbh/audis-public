@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
-using Audis.Endpoints.Contract.Shared.V1;
 using Audis.Primitives;
 
 namespace Audis.Endpoints.Contract.RecordingCompleted.V1;
