@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Text.Json;
 using Audis.Endpoints.Contract.Shared.V1;
 using Audis.Primitives;
+using ScenarioDto = Audis.Endpoints.Contract.Shared.V2.ScenarioDto;
+using SelectedScenarioDto = Audis.Endpoints.Contract.Shared.V2.SelectedScenarioDto;
+using TagDto = Audis.Endpoints.Contract.Shared.V2.TagDto;
 
-namespace Audis.Endpoints.Contract.InterrogationCompleted.V5;
+namespace Audis.Endpoints.Contract.InterrogationCompleted.V6;
 
 public class InterrogationCompletedDto
 {
@@ -44,22 +47,22 @@ public class InterrogationCompletedDto
 
     public string? CancellationReason { get; set; }
 
-    public string? SuggestedScenarioIdentifier { get; set; }
-
-    public string? SuggestedScenarioName { get; set; }
-
-    public string? SelectedScenarioIdentifier { get; set; }
-
-    public string? SelectedScenarioName { get; set; }
-
-    public string? SelectedScenarioReason { get; set; }
-
-    public IReadOnlyCollection<string> CurrentScenarioDispositionCodes { get; set; } = new List<string>();
+    /// <summary>
+    ///     Engine suggestion per active domain.
+    /// </summary>
+    public IReadOnlyCollection<ScenarioDto> SuggestedScenarios { get; set; } = new List<ScenarioDto>();
 
     /// <summary>
-    ///     ExternalApiIdentifier values (fallback: Name/TagIdentifier).
+    ///     Dispatcher selection per active domain (override stays inside that domain).
+    ///     Reason lives on each item, not as a single interrogation-wide string.
     /// </summary>
-    public IReadOnlyCollection<string> Tags { get; set; } = new List<string>();
+    public IReadOnlyCollection<SelectedScenarioDto> SelectedScenarios { get; set; } =
+        new List<SelectedScenarioDto>();
+
+    /// <summary>
+    ///     Additional dispatch hints. Domain is optional (e.g. turntable ladder → Fw).
+    /// </summary>
+    public IReadOnlyCollection<TagDto> Tags { get; set; } = new List<TagDto>();
 
     public IReadOnlyCollection<KnowledgeDto> Knowledge { get; set; } = new List<KnowledgeDto>();
 

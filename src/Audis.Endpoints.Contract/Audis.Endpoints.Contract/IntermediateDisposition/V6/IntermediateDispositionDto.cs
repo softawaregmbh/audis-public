@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Text.Json;
 using Audis.Endpoints.Contract.Shared.V1;
 using Audis.Primitives;
+using ScenarioDto = Audis.Endpoints.Contract.Shared.V2.ScenarioDto;
+using TagDto = Audis.Endpoints.Contract.Shared.V2.TagDto;
 
-namespace Audis.Endpoints.Contract.IntermediateDisposition.V5;
+namespace Audis.Endpoints.Contract.IntermediateDisposition.V6;
 
 public class IntermediateDispositionDto
 {
@@ -21,7 +23,22 @@ public class IntermediateDispositionDto
 
     public string? IntermediateDispositionExternalIdentifier { get; set; }
 
+    /// <summary>
+    ///     When the intermediate disposition actually fired (button press or automatic).
+    ///     Distinct from <see cref="InitiatedAt"/> and <see cref="OriginTimestamp"/>.
+    /// </summary>
     public DateTime Timestamp { get; set; }
+
+    /// <summary>
+    ///     When this intermediate disposition first became available
+    ///     (e.g. button appeared). Null when unknown or when it fired immediately.
+    /// </summary>
+    public DateTime? InitiatedAt { get; set; }
+
+    /// <summary>
+    ///     How it fired: <c>User</c> or <c>Automatic</c>. Null when not distinguished.
+    /// </summary>
+    public string? TriggerSource { get; set; }
 
     /// <summary>
     ///     Timestamp of the current delivery attempt. Updated on retry so container logs can
@@ -44,16 +61,15 @@ public class IntermediateDispositionDto
     required public IReadOnlyCollection<KnowledgeSummaryDto> KnowledgeSummaryItems { get; set; } =
         new List<KnowledgeSummaryDto>();
 
-    public string? CurrentScenarioIdentifier { get; set; }
-
-    public string? CurrentScenarioName { get; set; }
-
-    public IReadOnlyCollection<string> CurrentScenarioDispositionCodes { get; set; } = new List<string>();
+    /// <summary>
+    ///     Current winner per active domain at the time of the intermediate disposition.
+    /// </summary>
+    public IReadOnlyCollection<ScenarioDto> CurrentScenarios { get; set; } = new List<ScenarioDto>();
 
     /// <summary>
-    ///     ExternalApiIdentifier values (fallback: Name/TagIdentifier).
+    ///     Additional dispatch hints. Domain is optional (e.g. turntable ladder → Fw).
     /// </summary>
-    public IReadOnlyCollection<string> Tags { get; set; } = new List<string>();
+    public IReadOnlyCollection<TagDto> Tags { get; set; } = new List<TagDto>();
 
     public IReadOnlyCollection<KnowledgeDto> Knowledge { get; set; } = new List<KnowledgeDto>();
 

@@ -37,7 +37,7 @@ public class InterrogationCompletedDto
 
     public string? SelectedScenarioReason { get; set; }
 
-    public IEnumerable<string> CurrentScenarioDispositionCodes { get; set; } = new List<string>();
+    public IReadOnlyCollection<string> CurrentScenarioDispositionCodes { get; set; } = new List<string>();
 
     public IReadOnlyCollection<KnowledgeDto> Knowledge { get; set; } = new List<KnowledgeDto>();
 }
