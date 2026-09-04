@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Audis.Endpoints.Contract.Shared.V1;
-using Audis.Endpoints.Contract.Shared.V2;
 using Audis.Primitives;
+using ScenarioDto = Audis.Endpoints.Contract.Shared.V2.ScenarioDto;
+using SelectedScenarioDto = Audis.Endpoints.Contract.Shared.V2.SelectedScenarioDto;
+using TagDto = Audis.Endpoints.Contract.Shared.V2.TagDto;
 
 namespace Audis.Endpoints.Contract.InterrogationCompleted.V6;
 
