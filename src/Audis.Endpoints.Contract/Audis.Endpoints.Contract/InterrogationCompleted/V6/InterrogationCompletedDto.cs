@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Audis.Endpoints.Contract.Shared.V1;
+using Audis.Endpoints.Contract.Shared.V2;
 using Audis.Primitives;
-using ScenarioDto = Audis.Endpoints.Contract.Shared.V2.ScenarioDto;
 
 namespace Audis.Endpoints.Contract.InterrogationCompleted.V6;
 
@@ -52,15 +52,15 @@ public class InterrogationCompletedDto
 
     /// <summary>
     ///     Dispatcher selection per active domain (override stays inside that domain).
+    ///     Reason lives on each item, not as a single interrogation-wide string.
     /// </summary>
-    public IReadOnlyCollection<ScenarioDto> SelectedScenarios { get; set; } = new List<ScenarioDto>();
-
-    public string? SelectedScenarioReason { get; set; }
+    public IReadOnlyCollection<SelectedScenarioDto> SelectedScenarios { get; set; } =
+        new List<SelectedScenarioDto>();
 
     /// <summary>
-    ///     ExternalApiIdentifier values (fallback: Name/TagIdentifier).
+    ///     Additional dispatch hints. Domain is optional (e.g. turntable ladder → Fw).
     /// </summary>
-    public IReadOnlyCollection<string> Tags { get; set; } = new List<string>();
+    public IReadOnlyCollection<TagDto> Tags { get; set; } = new List<TagDto>();
 
     public IReadOnlyCollection<KnowledgeDto> Knowledge { get; set; } = new List<KnowledgeDto>();
 

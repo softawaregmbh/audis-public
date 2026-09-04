@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using Audis.Endpoints.Contract.Shared.V1;
+using Audis.Endpoints.Contract.Shared.V2;
 using Audis.Primitives;
-using ScenarioDto = Audis.Endpoints.Contract.Shared.V2.ScenarioDto;
 
 namespace Audis.Endpoints.Contract.InterrogationUpdated.V6;
 
@@ -54,9 +54,9 @@ public class InterrogationStepDto
     public IReadOnlyCollection<ScenarioDto> SuggestedScenarios { get; set; } = new List<ScenarioDto>();
 
     /// <summary>
-    ///     ExternalApiIdentifier values (fallback: Name/TagIdentifier).
+    ///     Additional dispatch hints. Domain is optional (e.g. turntable ladder → Fw).
     /// </summary>
-    public IReadOnlyCollection<string> Tags { get; set; } = new List<string>();
+    public IReadOnlyCollection<TagDto> Tags { get; set; } = new List<TagDto>();
 
     /// <summary>
     ///     Free data object where implementation-specific data/identification/... can be stored.
