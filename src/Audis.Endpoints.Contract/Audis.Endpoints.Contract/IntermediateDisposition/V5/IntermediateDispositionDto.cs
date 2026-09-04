@@ -48,7 +48,7 @@ public class IntermediateDispositionDto
 
     public string? CurrentScenarioName { get; set; }
 
-    public IEnumerable<string> CurrentScenarioDispositionCodes { get; set; } = new List<string>();
+    public IReadOnlyCollection<string> CurrentScenarioDispositionCodes { get; set; } = new List<string>();
 
     /// <summary>
     ///     ExternalApiIdentifier values (fallback: Name/TagIdentifier).
