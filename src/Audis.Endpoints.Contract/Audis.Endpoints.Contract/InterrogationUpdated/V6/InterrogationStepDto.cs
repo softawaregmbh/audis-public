@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Text.Json;
 using Audis.Endpoints.Contract.Shared.V1;
 using Audis.Primitives;
+using ScenarioDto = Audis.Endpoints.Contract.Shared.V2.ScenarioDto;
+using TagDto = Audis.Endpoints.Contract.Shared.V2.TagDto;
 
-namespace Audis.Endpoints.Contract.InterrogationCompleted.V5;
+namespace Audis.Endpoints.Contract.InterrogationUpdated.V6;
 
-public class InterrogationCompletedDto
+public class InterrogationStepDto
 {
     /// <summary>
     ///     Stable id for this endpoint event across delivery retries.
@@ -15,7 +17,7 @@ public class InterrogationCompletedDto
 
     public Guid InterrogationId { get; set; }
 
-    public int FinalProcessStepId { get; set; }
+    public int ProcessStepId { get; set; }
 
     public DateTime Timestamp { get; set; }
 
@@ -35,33 +37,27 @@ public class InterrogationCompletedDto
 
     public string? UserName { get; set; }
 
-    required public string KnowledgeSummary { get; set; }
+    public QuestionDto? CurrentQuestion { get; set; }
 
-    required public IReadOnlyCollection<KnowledgeSummaryDto> KnowledgeSummaryItems { get; set; } =
-        new List<KnowledgeSummaryDto>();
+    public QuestionDto? PreviousQuestion { get; set; }
 
-    public bool Cancelled { get; set; }
+    public string? KnowledgeSummary { get; set; }
 
-    public string? CancellationReason { get; set; }
+    public IReadOnlyCollection<KnowledgeSummaryDto>? KnowledgeSummaryItems { get; set; }
 
-    public string? SuggestedScenarioIdentifier { get; set; }
-
-    public string? SuggestedScenarioName { get; set; }
-
-    public string? SelectedScenarioIdentifier { get; set; }
-
-    public string? SelectedScenarioName { get; set; }
-
-    public string? SelectedScenarioReason { get; set; }
-
-    public IReadOnlyCollection<string> CurrentScenarioDispositionCodes { get; set; } = new List<string>();
-
-    /// <summary>
-    ///     ExternalApiIdentifier values (fallback: Name/TagIdentifier).
-    /// </summary>
-    public IReadOnlyCollection<string> Tags { get; set; } = new List<string>();
+    public IReadOnlyCollection<AnswerDto> SelectedAnswers { get; set; } = new List<AnswerDto>();
 
     public IReadOnlyCollection<KnowledgeDto> Knowledge { get; set; } = new List<KnowledgeDto>();
+
+    /// <summary>
+    ///     Current winner per active domain (empty when none nominated yet).
+    /// </summary>
+    public IReadOnlyCollection<ScenarioDto> SuggestedScenarios { get; set; } = new List<ScenarioDto>();
+
+    /// <summary>
+    ///     Additional dispatch hints. Domain is optional (e.g. turntable ladder → Fw).
+    /// </summary>
+    public IReadOnlyCollection<TagDto> Tags { get; set; } = new List<TagDto>();
 
     /// <summary>
     ///     Free data object where implementation-specific data/identification/... can be stored.

@@ -8,5 +8,5 @@ public class ScenarioDto
 
     required public string Name { get; set; }
 
-    public IEnumerable<string> DispositionCodes { get; set; } = new List<string>();
+    public IReadOnlyCollection<string> DispositionCodes { get; set; } = new List<string>();
 }
