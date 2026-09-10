@@ -1,7 +1,59 @@
 # audis-public
+
+[![CodeScene Code Health](https://codescene.softaware.at/8/status-badges/code-health)](https://codescene.softaware.at/8/analyses/latest)
+
 An Audis library which includes shared data types, DTOs, ...
 
 The repository contains the following packages, also available on [NuGet](https://www.nuget.org/packages?q=Audis).
+
+## Branching
+
+- `master` is the stable, release-ready line (protected; changes via pull request).
+- `dev` is the integration branch for ongoing work (protected; changes via pull request).
+- Use `feat/`, `fix/`, or `chore/` branches and open pull requests into `dev`.
+
+## Continuous integration
+
+- `azure-pipelines.yml` builds and tests all solutions on pushes to `master` and `dev`.
+- CodeScene analyzes pull requests for code health; comment `/codescene` on a PR to run the refactoring agent.
+
+## NuGet releases (nuget.org)
+
+Packages are published **independently** from this repository. Pushes to `master` or `dev` do **not** publish to nuget.org.
+
+To release a package, create and push a git tag in the form:
+
+```text
+<package-prefix>/<version>
+```
+
+Example:
+
+```bash
+git tag endpoints-contract/3.5.0
+git push origin endpoints-contract/3.5.0
+```
+
+The pipeline `azure-pipelines-nuget.yml` packs the matching project, runs configured tests, and pushes to [nuget.org](https://www.nuget.org/) (requires `NuGetOrgApiKey` in the `Global-None-KeyVault-Variables` variable group).
+
+### Package tag prefixes
+
+| NuGet package | Git tag prefix | Example tag |
+| --- | --- | --- |
+| `Audis.Primitives` | `primitives/` | `primitives/5.1.1` |
+| `Audis.Contract` | `contract/` | `contract/1.2.0` |
+| `Audis.Analyzer.Common` | `analyzer-common/` | `analyzer-common/8.0.1` |
+| `Audis.Analyzer.Contract` | `analyzer-contract/` | `analyzer-contract/4.1.1` |
+| `Audis.Endpoints.Contract` | `endpoints-contract/` | `endpoints-contract/3.5.0` |
+| `Audis.AI.Relay.Contract` | `ai-relay-contract/` | `ai-relay-contract/1.0.0` |
+| `Audis.Catalog.Contract` | `catalog-contract/` | `catalog-contract/1.0.1` |
+| `Audis.Search.Contract` | `search-contract/` | `search-contract/1.0.1` |
+| `Audis.KnowledgeEnrichers.Contract` | `knowledge-enrichers-contract/` | `knowledge-enrichers-contract/3.2.1` |
+| `Audis.OpenID.Authentication` | `openid-authentication/` | `openid-authentication/1.0.0` |
+| `Audis.OpenID.Authorization` | `openid-authorization/` | `openid-authorization/1.0.0` |
+| `Audis.Location` | `location/` | `location/1.3.0` |
+
+To release multiple packages from the same commit, create one tag per package and push them separately. Each tag triggers its own pipeline run.
 
 | Package | Description |
 | --- | --- |
