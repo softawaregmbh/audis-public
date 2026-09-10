@@ -1,86 +1,281 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# Build and test on master/dev; publish NuGet packages to nuget.org on release tags.
+# Release tags: <package-prefix>/<version> on master (see README.md).
 
 name: $(Build.DefinitionName)_$(Build.SourceBranchName)_$(date:yyyy).$(date:MM).$(date:dd)$(Rev:.r)
 
 trigger:
-- master
-
-pool:
-  vmImage: windows-latest
+  branches:
+    include:
+      - master
+      - dev
+  tags:
+    include:
+      - primitives/*
+      - contract/*
+      - analyzer-common/*
+      - analyzer-contract/*
+      - endpoints-contract/*
+      - ai-relay-contract/*
+      - catalog-contract/*
+      - search-contract/*
+      - knowledge-enrichers-contract/*
+      - openid-authentication/*
+      - openid-authorization/*
+      - location/*
 
 variables:
-  buildConfiguration: 'Release'
+  buildConfiguration: Release
 
-steps:
-- task: UseDotNet@2
-  displayName: 'Use .NET 8'
-  inputs:
-    packageType: sdk
-    version: '8.x'
+jobs:
+  - job: CI
+    displayName: Build and test
+    condition: not(startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
+    pool:
+      vmImage: windows-latest
+    steps:
+      - task: UseDotNet@2
+        displayName: Use .NET 8
+        inputs:
+          packageType: sdk
+          version: 8.x
 
-- task: UseDotNet@2
-  displayName: 'Use .NET 10'
-  inputs:
-    packageType: sdk
-    version: '10.x'
+      - task: UseDotNet@2
+        displayName: Use .NET 10
+        inputs:
+          packageType: sdk
+          version: 10.x
 
-- script: dotnet build --configuration $(buildConfiguration) src/Audis.Primitives/Audis.Primitives.sln
-  displayName: Build Audis.Primitives
+      - script: dotnet build --configuration $(buildConfiguration) src/Audis.Primitives/Audis.Primitives.sln
+        displayName: Build Audis.Primitives
 
-- script: dotnet test --no-build --configuration $(buildConfiguration) --logger trx src/Audis.Primitives/Audis.Primitives.sln
-  displayName: Test Audis.Primitives
+      - script: dotnet test --no-build --configuration $(buildConfiguration) --logger trx src/Audis.Primitives/Audis.Primitives.sln
+        displayName: Test Audis.Primitives
 
-- script: dotnet build --configuration $(buildConfiguration) src/Audis.Analyzer.Contract/Audis.Analyzer.Contract.sln
-  displayName: Build Audis.Analyzer.Contract
+      - script: dotnet build --configuration $(buildConfiguration) src/Audis.Analyzer.Contract/Audis.Analyzer.Contract.sln
+        displayName: Build Audis.Analyzer.Contract
 
-- script: dotnet build --configuration $(buildConfiguration) src/Audis.Endpoints.Contract/Audis.Endpoints.Contract.sln
-  displayName: Build Audis.Endpoints.Contract
+      - script: dotnet build --configuration $(buildConfiguration) src/Audis.Endpoints.Contract/Audis.Endpoints.Contract.sln
+        displayName: Build Audis.Endpoints.Contract
 
-- script: dotnet build --configuration $(buildConfiguration) src/Audis.AI.Relay.Contract/Audis.AI.Relay.Contract.sln
-  displayName: Build Audis.AI.Relay.Contract
+      - script: dotnet build --configuration $(buildConfiguration) src/Audis.AI.Relay.Contract/Audis.AI.Relay.Contract.sln
+        displayName: Build Audis.AI.Relay.Contract
 
-- script: dotnet build --configuration $(buildConfiguration) src/Audis.Catalog.Contract/Audis.Catalog.Contract.sln
-  displayName: Build Audis.Catalog.Contract
+      - script: dotnet build --configuration $(buildConfiguration) src/Audis.Catalog.Contract/Audis.Catalog.Contract.sln
+        displayName: Build Audis.Catalog.Contract
 
-- script: dotnet build --configuration $(buildConfiguration) src/Audis.Search.Contract/Audis.Search.Contract.sln
-  displayName: Build Audis.Search.Contract
+      - script: dotnet build --configuration $(buildConfiguration) src/Audis.Search.Contract/Audis.Search.Contract.sln
+        displayName: Build Audis.Search.Contract
 
-- script: dotnet build --configuration $(buildConfiguration) src/Audis.KnowledgeEnrichers.Contract/Audis.KnowledgeEnrichers.Contract.sln
-  displayName: Build Audis.KnowledgeEnrichers.Contract
+      - script: dotnet build --configuration $(buildConfiguration) src/Audis.KnowledgeEnrichers.Contract/Audis.KnowledgeEnrichers.Contract.sln
+        displayName: Build Audis.KnowledgeEnrichers.Contract
 
-- script: dotnet build --configuration $(buildConfiguration) src/Audis.Analyzer.Common/Audis.Analyzer.Common.sln
-  displayName: Build Audis.Analyzer.Common
+      - script: dotnet build --configuration $(buildConfiguration) src/Audis.Analyzer.Common/Audis.Analyzer.Common.sln
+        displayName: Build Audis.Analyzer.Common
 
-- script: dotnet test --no-build --configuration $(buildConfiguration) --logger trx src/Audis.Analyzer.Common
-  displayName: Test Audis.Analyzer.Common
+      - script: dotnet test --no-build --configuration $(buildConfiguration) --logger trx src/Audis.Analyzer.Common
+        displayName: Test Audis.Analyzer.Common
 
-- script: dotnet build --configuration $(buildConfiguration) src/Audis.Location/Audis.Location.sln
-  displayName: Build Audis.Location
+      - script: dotnet build --configuration $(buildConfiguration) src/Audis.Location/Audis.Location.sln
+        displayName: Build Audis.Location
 
-- script: dotnet build --configuration $(buildConfiguration) src/Audis.OpenID/Audis.OpenID.sln
-  displayName: Build Audis.OpenID
+      - script: dotnet build --configuration $(buildConfiguration) src/Audis.OpenID/Audis.OpenID.sln
+        displayName: Build Audis.OpenID
 
-- script: dotnet test --no-build --configuration $(buildConfiguration) --logger trx src/Audis.OpenID/Audis.OpenID.sln
-  displayName: Test Audis.OpenID
+      - script: dotnet test --no-build --configuration $(buildConfiguration) --logger trx src/Audis.OpenID/Audis.OpenID.sln
+        displayName: Test Audis.OpenID
 
+      - task: PublishTestResults@2
+        condition: succeededOrFailed()
+        inputs:
+          testResultsFormat: VSTest
+          testResultsFiles: "**/*.trx"
 
-- task: PublishTestResults@2
-  condition: succeededOrFailed()
-  inputs:
-    testResultsFormat: VSTest
-    testResultsFiles: '**/*.trx'
+      - task: CopyFiles@2
+        displayName: Collect NuGet packages for artifacts
+        inputs:
+          Contents: "**/*.nupkg"
+          TargetFolder: $(Build.ArtifactStagingDirectory)
+          flattenFolders: true
 
-- task: CopyFiles@2
-  displayName: Publish NuGet Packages to Artifacts
-  inputs:
-    Contents: '**/*.nupkg'
-    TargetFolder: $(Build.ArtifactStagingDirectory)
-    flattenFolders: true
+      - task: PublishBuildArtifacts@1
+        displayName: Publish artifacts
+        inputs:
+          PathtoPublish: $(Build.ArtifactStagingDirectory)
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifacts'
-  inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'
+  - job: PublishNuGet
+    displayName: Publish package to nuget.org
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
+    pool:
+      vmImage: ubuntu-latest
+    variables:
+      - group: Global-None-KeyVault-Variables
+    steps:
+      - checkout: self
+        fetchDepth: 0
+
+      - bash: |
+          set -euo pipefail
+
+          source_branch="$(Build.SourceBranch)"
+          tag="${source_branch#refs/tags/}"
+
+          if [ "$source_branch" = "$tag" ]; then
+            echo "##vso[task.logissue type=error]Build was not triggered by a git tag (source branch: '$source_branch')."
+            exit 1
+          fi
+
+          git fetch origin master --tags
+          if ! git branch -r --contains "$(Build.SourceVersion)" | grep -q 'origin/master'; then
+            echo "##vso[task.logissue type=error]Tag '$tag' must point to a commit on master (tagged commit is not contained in origin/master)."
+            exit 1
+          fi
+
+          package_prefix="${tag%%/*}"
+          version="${tag#*/}"
+
+          supported_packages="primitives contract analyzer-common analyzer-contract endpoints-contract ai-relay-contract catalog-contract search-contract knowledge-enrichers-contract openid-authentication openid-authorization location"
+
+          if [ "$package_prefix" = "$tag" ] || [ -z "$version" ]; then
+            echo "##vso[task.logissue type=error]Invalid tag '$tag'. Expected format: <package-prefix>/<version> (e.g. endpoints-contract/3.5.0)."
+            exit 1
+          fi
+
+          if ! echo "$supported_packages" | tr ' ' '\n' | grep -Fxq "$package_prefix"; then
+            echo "##vso[task.logissue type=error]Unknown package prefix '$package_prefix' in tag '$tag'."
+            echo "Supported package prefixes: $supported_packages"
+            exit 1
+          fi
+
+          case "$package_prefix" in
+            primitives)
+              solution_path="src/Audis.Primitives/Audis.Primitives.sln"
+              project_path="src/Audis.Primitives/Audis.Primitives/Audis.Primitives.csproj"
+              test_target="src/Audis.Primitives/Audis.Primitives.Tests/Audis.Primitives.Tests.csproj"
+              ;;
+            contract)
+              solution_path="src/Audis.Primitives/Audis.Primitives.sln"
+              project_path="src/Audis.Primitives/Audis.Contract/Audis.Contract.csproj"
+              test_target="src/Audis.Primitives/Audis.Primitives.Tests/Audis.Primitives.Tests.csproj"
+              ;;
+            analyzer-common)
+              solution_path="src/Audis.Analyzer.Common/Audis.Analyzer.Common.sln"
+              project_path="src/Audis.Analyzer.Common/Audis.Analyzer.Common/Audis.Analyzer.Common.csproj"
+              test_target="src/Audis.Analyzer.Common/Audis.Analyzer.Common.Tests/Audis.Analyzer.Common.Tests.csproj"
+              ;;
+            analyzer-contract)
+              solution_path="src/Audis.Analyzer.Contract/Audis.Analyzer.Contract.sln"
+              project_path="src/Audis.Analyzer.Contract/Audis.Analyzer.Contract/Audis.Analyzer.Contract.csproj"
+              test_target=""
+              ;;
+            endpoints-contract)
+              solution_path="src/Audis.Endpoints.Contract/Audis.Endpoints.Contract.sln"
+              project_path="src/Audis.Endpoints.Contract/Audis.Endpoints.Contract/Audis.Endpoints.Contract.csproj"
+              test_target=""
+              ;;
+            ai-relay-contract)
+              solution_path="src/Audis.AI.Relay.Contract/Audis.AI.Relay.Contract.sln"
+              project_path="src/Audis.AI.Relay.Contract/Audis.AI.Relay.Contract/Audis.AI.Relay.Contract.csproj"
+              test_target=""
+              ;;
+            catalog-contract)
+              solution_path="src/Audis.Catalog.Contract/Audis.Catalog.Contract.sln"
+              project_path="src/Audis.Catalog.Contract/Audis.Catalog.Contract/Audis.Catalog.Contract.csproj"
+              test_target=""
+              ;;
+            search-contract)
+              solution_path="src/Audis.Search.Contract/Audis.Search.Contract.sln"
+              project_path="src/Audis.Search.Contract/Audis.Search.Contract/Audis.Search.Contract.csproj"
+              test_target=""
+              ;;
+            knowledge-enrichers-contract)
+              solution_path="src/Audis.KnowledgeEnrichers.Contract/Audis.KnowledgeEnrichers.Contract.sln"
+              project_path="src/Audis.KnowledgeEnrichers.Contract/Audis.KnowledgeEnrichers.Contract/Audis.KnowledgeEnrichers.Contract.csproj"
+              test_target=""
+              ;;
+            openid-authentication)
+              solution_path="src/Audis.OpenID/Audis.OpenID.sln"
+              project_path="src/Audis.OpenID/Audis.OpenID.Authentication/Audis.OpenID.Authentication.csproj"
+              test_target="src/Audis.OpenID/Audis.OpenID.sln"
+              ;;
+            openid-authorization)
+              solution_path="src/Audis.OpenID/Audis.OpenID.sln"
+              project_path="src/Audis.OpenID/Audis.OpenID.Authorization/Audis.OpenID.Authorization.csproj"
+              test_target="src/Audis.OpenID/Audis.OpenID.sln"
+              ;;
+            location)
+              solution_path="src/Audis.Location/Audis.Location.sln"
+              project_path="src/Audis.Location/Audis.Location/Audis.Location.csproj"
+              test_target=""
+              ;;
+            *)
+              echo "##vso[task.logissue type=error]Unhandled package prefix '$package_prefix'."
+              exit 1
+              ;;
+          esac
+
+          echo "Release tag: $tag"
+          echo "Package prefix: $package_prefix"
+          echo "NuGet version: $version"
+
+          echo "##vso[task.setvariable variable=packageVersion]$version"
+          echo "##vso[task.setvariable variable=solutionPath]$solution_path"
+          echo "##vso[task.setvariable variable=projectPath]$project_path"
+          echo "##vso[task.setvariable variable=testTarget]$test_target"
+        displayName: Parse release tag and verify master
+
+      - task: UseDotNet@2
+        displayName: Use .NET 8
+        inputs:
+          packageType: sdk
+          version: 8.x
+
+      - task: UseDotNet@2
+        displayName: Use .NET 10
+        inputs:
+          packageType: sdk
+          version: 10.x
+
+      - script: dotnet restore "$(solutionPath)" --configuration $(buildConfiguration)
+        displayName: Restore solution
+
+      - script: dotnet build "$(solutionPath)" --configuration $(buildConfiguration) --no-restore
+        displayName: Build solution
+
+      - script: |
+          if [ -n "$(testTarget)" ]; then
+            dotnet test "$(testTarget)" --configuration $(buildConfiguration) --no-build --logger trx
+          else
+            echo "No tests configured for this package prefix."
+          fi
+        displayName: Test (if configured)
+
+      - task: PublishTestResults@2
+        condition: and(succeededOrFailed(), ne(variables['testTarget'], ''))
+        inputs:
+          testResultsFormat: VSTest
+          testResultsFiles: "**/*.trx"
+
+      - script: |
+          dotnet pack "$(projectPath)" \
+            --configuration $(buildConfiguration) \
+            /p:Version=$(packageVersion) \
+            /p:PackageVersion=$(packageVersion) \
+            --output "$(Build.ArtifactStagingDirectory)"
+        displayName: Pack NuGet package
+
+      - script: |
+          set -euo pipefail
+          shopt -s nullglob
+          packages=("$(Build.ArtifactStagingDirectory)"/*.nupkg)
+          if [ "${#packages[@]}" -eq 0 ]; then
+            echo "##vso[task.logissue type=error]No .nupkg files found to publish."
+            exit 1
+          fi
+          for package in "${packages[@]}"; do
+            echo "Publishing $package"
+            dotnet nuget push "$package" \
+              --source https://api.nuget.org/v3/index.json \
+              --api-key "$(NuGetOrgApiKey)" \
+              --skip-duplicate
+          done
+        displayName: Push to nuget.org

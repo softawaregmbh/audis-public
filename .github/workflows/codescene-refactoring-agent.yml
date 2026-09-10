@@ -1,0 +1,23 @@
+name: CodeScene Refactoring Agent
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  call:
+    if: ${{ github.event.issue.pull_request && (contains(github.event.comment.body, '/codescene') || contains(github.event.comment.body, '/cs-agent')) }}
+    uses: softawaregmbh/intern-github-actions/.github/workflows/codescene-refactoring-agent.yml@main
+    with:
+      pr_number: ${{ github.event.issue.number }}
+      command: ${{ github.event.comment.body }}
+      extra_instructions: 'Commit messages should follow conventional commits specification (prefix with "refactor: ")'
+    secrets: inherit
+
+  # Dummy step referencing the CodeScene agent so that CodeScene adds the fix button
+  # (see https://github.com/codescene-oss/pr-refactoring-agent/issues/15)
+  dummy:
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: codescene-oss/pr-refactoring-agent@main
