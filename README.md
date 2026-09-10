@@ -14,7 +14,7 @@ The repository contains the following packages, also available on [NuGet](https:
 
 ## Continuous integration
 
-- `azure-pipelines.yml` builds and tests all solutions on pushes to `master` and `dev`.
+- `azure-pipelines.yml` builds and tests all solutions on pushes to `master` and `dev`, and publishes to nuget.org when a release tag is pushed on `master`.
 - CodeScene analyzes pull requests for code health; comment `/codescene` on a PR to run the refactoring agent.
 
 ## NuGet releases (nuget.org)
@@ -34,7 +34,7 @@ git tag endpoints-contract/3.5.0
 git push origin endpoints-contract/3.5.0
 ```
 
-The pipeline `azure-pipelines-nuget.yml` packs the matching project, runs configured tests, and pushes to [nuget.org](https://www.nuget.org/). In Azure DevOps, register that YAML file as its own pipeline (same project as `azure-pipelines.yml`) and ensure `NuGetOrgApiKey` is set in the `Global-None-KeyVault-Variables` variable group.
+Tag the commit on **`master`**, then push the tag. The `PublishNuGet` job in `azure-pipelines.yml` packs the matching project, runs configured tests, and pushes to [nuget.org](https://www.nuget.org/) (`NuGetOrgApiKey` in `Global-None-KeyVault-Variables`).
 
 ### Package tag prefixes
 
