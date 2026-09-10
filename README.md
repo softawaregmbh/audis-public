@@ -34,7 +34,7 @@ git tag endpoints-contract/3.5.0
 git push origin endpoints-contract/3.5.0
 ```
 
-The pipeline `azure-pipelines-nuget.yml` packs the matching project, runs configured tests, and pushes to [nuget.org](https://www.nuget.org/) (requires `NuGetOrgApiKey` in the `Global-None-KeyVault-Variables` variable group).
+The pipeline `azure-pipelines-nuget.yml` packs the matching project, runs configured tests, and pushes to [nuget.org](https://www.nuget.org/). In Azure DevOps, register that YAML file as its own pipeline (same project as `azure-pipelines.yml`) and ensure `NuGetOrgApiKey` is set in the `Global-None-KeyVault-Variables` variable group.
 
 ### Package tag prefixes
 
