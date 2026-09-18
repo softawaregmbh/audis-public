@@ -15,7 +15,7 @@ The repository contains the following packages, also available on [NuGet](https:
 ## Continuous integration
 
 - `azure-pipelines.yml` builds and tests all solutions on pushes to `master` and `dev`, and publishes to nuget.org when a release tag is pushed on `master`.
-- CodeScene analyzes pull requests for code health; comment `/codescene` on a PR to run the refactoring agent.
+- CodeScene analyzes pull requests for code health.
 
 ## NuGet releases (nuget.org)
 
