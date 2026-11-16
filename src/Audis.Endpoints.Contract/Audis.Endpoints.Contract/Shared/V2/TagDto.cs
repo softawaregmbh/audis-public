@@ -14,14 +14,7 @@ public class TagDto
     required public string ExternalApiIdentifier { get; set; }
 
     /// <summary>
-    ///     Catalog domain key (e.g. <c>fw</c>). Null when the tag is not bound to a domain.
+    ///     Domain the tag is bound to. Null when the tag is not bound to a domain.
     /// </summary>
-    public string? DomainIdentifier { get; set; }
-
-    /// <summary>
-    ///     Identifier how the domain should be passed to an external API (e.g. <c>F</c> / <c>R</c>).
-    /// </summary>
-    public string? DomainExternalApiIdentifier { get; set; }
-
-    public string? DomainName { get; set; }
+    public DomainDto? Domain { get; set; }
 }
